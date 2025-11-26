@@ -1,5 +1,7 @@
 var temp_mon_8h =
 [
+    [ "ErrorFlag_s", "struct_error_flag__s.html", null ],
+    [ "errorCollector_t", "structerror_collector__t.html", null ],
     [ "COUNT_2000MS", "temp_mon_8h.html#ad30ea2a2ff24fa1ffcc792c318cdb2b0", null ],
     [ "COUNT_500MS", "temp_mon_8h.html#a618615bebaa5111ffaab3687c25e01e5", null ],
     [ "TEMPMON_OVERTEMP_LWTH", "temp_mon_8h.html#a14fcefeafe6bd9bb174a7804ccc4432c", null ],

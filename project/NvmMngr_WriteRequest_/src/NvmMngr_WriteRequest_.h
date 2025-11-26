@@ -73,13 +73,13 @@ typedef enum PageAddr_e
  * @brief Descriptor of a logical NVM block.
  *
  * Each entry of @ref NvmBlock_ defines:
- * - the data length in bytes,
+ * - the data l_len_u8gth in bytes,
  * - the page to which the block belongs,
  * - the absolute NVM address of the block.
  */
 typedef struct NvmBlock_s
 {
-  const uint8        dataLen_u8;     /**< Length of the block in bytes.            */
+  const uint8        datal_len_u8_u8;     /**< l_len_u8gth of the block in bytes.            */
   const PageAddr_t   belongPage_;    /**< Page containing this block.              */
   const uint32       addrData_u32;   /**< Absolute NVM address of block start.     */
 } NvmBlock_t;
@@ -107,13 +107,13 @@ NvmBlock_t NvmBlock_[] =
 {
   /* Reset reason */
   {
-    .dataLen_u8     = 5,
+    .datal_len_u8_u8     = 5,
     .belongPage_    = RESET_REASON_PAGE,
     .addrData_u32   = RESET_REASON_ADR
   },
   /* Calibration */
   {
-    .dataLen_u8     = 5,
+    .datal_len_u8_u8     = 5,
     .belongPage_    = CALIBRATION_PAGE,
     .addrData_u32   = RESET_REASON_ADR
   }
@@ -160,7 +160,7 @@ NvmPageCopy_t NvmPageCopy_[] =
 * | NvmPageCopy_[].startAddrPage_u32  | ✓  |     | uint32                |   -   |           1 |           0 |         1 | [0, UINT32_MAX]   | [-]       |
 * | NvmBlock_[].addrData_u32          | ✓  |     | uint32                |   -   |           1 |           0 |         1 | [0, UINT32_MAX]   | [-]       |
 * | data_pu8                          | ✓  |     | uint8*                |   -   |           1 |           0 |         1 | [0, UINT8_MAX]    | [-]       |
-* | NvmBlock_[].dataLen_u8            | ✓  |     | uint8                 |   -   |           1 |           0 |         1 | [0, UINT8_MAX]    | [-]       |
+* | NvmBlock_[].datal_len_u8_u8            | ✓  |     | uint8                 |   -   |           1 |           0 |         1 | [0, UINT8_MAX]    | [-]       |
 * | dataToWrite_                      | ✓  |     | NvmMngr_DataPosition_t|   -   |           1 |           0 |         1 | [0, 20]           | [-]       |
 * | NvmPageCopy_[].writeReq_b         |    | ✓   | bool                  |   -   |           1 |           0 |         1 | [0, 1]            | [-]       |
 * | NvmPageCopy_[].posListFifo_u8     |    | ✓   | uint8                 |   -   |           1 |           0 |         1 | [0, UINT8_MAX]    | [-]       |
@@ -172,31 +172,20 @@ NvmPageCopy_t NvmPageCopy_[] =
  * @startuml
  * start
  *
- * :Determine the NVM page associated\nwith the selected block.\n
- * NVM_PAGE = NvmBlock_[dataToWrite_].belongPage_;
+ * :Init l_nvmPage_ equal to NvmBlock_[dataToWrite_].belongPage_ 
+ * Init l_pageAddress_u32 equal to NvmPageCopy_[l_nvmPage_].startAddrPage_u32 
+ * Init l_blockStartAddress_u32 equal to NvmBlock_[dataToWrite_].addrData_u32 
+ * Init l_relOffset_u32 equal to l_blockStartAddress_u32 - l_pageAddress_u32 
+ * Init l_len_u8 = NvmBlock_[dataToWrite_].datal_len_u8_u8;
  *
- * :Read the start address of NVM_PAGE\nfrom the RAM page copy structure;\n
- * PAGE_START_ADDRESS = NvmPageCopy_[NVM_PAGE].startAddrPage_u32;
+ * :Assign true to NvmPageCopy_[l_nvmPage_].writeReq_b 
+ * Assign false to NvmPageCopy_[l_nvmPage_].writingDone_b 
+ * Write l_len_u8 bytes of data_pu8 inside NvmPageCopy_[l_nvmPage_].pageCopy_u8[] starting from the position l_relOffset_u32;
  *
- * :Read the absolute NVM address of the block\nfrom the block descriptor;\n
- * BLOCK_START_ADDRESS = NvmBlock_[dataToWrite_].addrData_u32;
- *
- * :Compute the relative offset inside the page:\n
- * REL_OFFSET = BLOCK_START_ADDRESS - PAGE_START_ADDRESS;
- *
- * :Read the block data length;\n
- * LEN = NvmBlock_[dataToWrite_].dataLen_u8;
- *
- * :Mark the page as pending write;\n
- * NvmPageCopy_[NVM_PAGE].writeReq_b = true;\n
- * NvmPageCopy_[NVM_PAGE].writingDone_b = false;
- *
- * :Copy user data into the RAM page buffer:\n
- * write LEN bytes starting at REL_OFFSET\ninside NvmPageCopy_[NVM_PAGE].pageCopy_u8[];
- * if (0xFF==NvmPageCopy_[NVM_PAGE].posListFifo_u8?) then (yes)
- *   :Assign next available FIFO slot to the page;\n
- *   posListFifo_u8 = fifoPrelation_u8;\n
- *   fifoPrelation_u8++;
+ * if (0xFF is equal to NvmPageCopy_[l_nvmPage_].posListFifo_u8) then (yes)
+ *  :Assign next available FIFO slot to the page 
+ *  Assign fifoPrelation_u8 to posListFifo_u8 
+ *  Assign fifoPrelation_u8++ to fifoPrelation_u8;
  * endif
  *
  * stop

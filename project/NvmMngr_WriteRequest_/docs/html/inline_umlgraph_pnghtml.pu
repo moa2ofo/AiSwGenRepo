@@ -1,31 +1,19 @@
 @startuml inline_umlgraph_1.png
  start
 
- :Determine the NVM page associated\nwith the selected block.\n
- NVM_PAGE = NvmBlock_[dataToWrite_].belongPage_;
+ :Init l_nvmPage_ equal to NvmBlock_[dataToWrite_].belongPage_ 
+ Init l_pageAddress_u32 equal to NvmPageCopy_[l_nvmPage_].startAddrPage_u32 
+ Init l_blockStartAddress_u32 equal to NvmBlock_[dataToWrite_].addrData_u32 
+ Init l_relOffset_u32 equal to l_blockStartAddress_u32 - l_pageAddress_u32 
+ Init l_len_u8 = NvmBlock_[dataToWrite_].datal_len_u8_u8;
 
- :Read the start address of NVM_PAGE\nfrom the RAM page copy structure;\n
- PAGE_START_ADDRESS = NvmPageCopy_[NVM_PAGE].startAddrPage_u32;
-
- :Read the absolute NVM address of the block\nfrom the block descriptor;\n
- BLOCK_START_ADDRESS = NvmBlock_[dataToWrite_].addrData_u32;
-
- :Compute the relative offset inside the page:\n
- REL_OFFSET = BLOCK_START_ADDRESS - PAGE_START_ADDRESS;
-
- :Read the block data length;\n
- LEN = NvmBlock_[dataToWrite_].dataLen_u8;
-
- :Mark the page as pending write;\n
- NvmPageCopy_[NVM_PAGE].writeReq_b = true;\n
- NvmPageCopy_[NVM_PAGE].writingDone_b = false;
-
- :Copy user data into the RAM page buffer:\n
- write LEN bytes starting at REL_OFFSET\ninside NvmPageCopy_[NVM_PAGE].pageCopy_u8[];
- if (0xFF==NvmPageCopy_[NVM_PAGE].posListFifo_u8?) then (yes)
-   :Assign next available FIFO slot to the page;\n
-   posListFifo_u8 = fifoPrelation_u8;\n
-   fifoPrelation_u8++;
+ :Assign true to NvmPageCopy_[l_nvmPage_].writeReq_b \n
+ Assign false to NvmPageCopy_[l_nvmPage_].writingDone_b \n
+ Write l_len_u8 bytes of data_pu8 inside NvmPageCopy_[l_nvmPage_].pageCopy_u8[] starting from the position l_relOffset_u32;
+ if (0xFF is equal to NvmPageCopy_[l_nvmPage_].posListFifo_u8) then (yes)
+  :Assign next available FIFO slot to the page \n
+  Assign fifoPrelation_u8 to posListFifo_u8 \n
+  Assign fifoPrelation_u8++ to fifoPrelation_u8;
  endif
 
  stop

@@ -118,8 +118,18 @@ Classes</h2></td></tr>
 <tr class="memitem:NvmPageCopy_5Fs" id="r_NvmPageCopy_5Fs"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_nvm_page_copy__s.html">NvmPageCopy_s</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAM copy of an NVM page used for staging updates.  <a href="struct_nvm_page_copy__s.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aa6f86af1d9fd88038aec75af8daf8f5d" id="r_aa6f86af1d9fd88038aec75af8daf8f5d"><td class="memItemLeft" align="right" valign="top"><a id="aa6f86af1d9fd88038aec75af8daf8f5d" name="aa6f86af1d9fd88038aec75af8daf8f5d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RESET_REASON_ADR</b>&#160;&#160;&#160;0x12005050</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:aa961e2cfd0d472f8870c6032a6773e36" id="r_aa961e2cfd0d472f8870c6032a6773e36"><td class="memItemLeft" align="right" valign="top">typedef int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa961e2cfd0d472f8870c6032a6773e36">sint16</a></td></tr>
+<tr class="memitem:a3e55e6174885a377573f0f04b8be2e54" id="r_a3e55e6174885a377573f0f04b8be2e54"><td class="memItemLeft" align="right" valign="top">typedef int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e55e6174885a377573f0f04b8be2e54">sint8</a></td></tr>
+<tr class="memitem:a33a5e996e7a90acefb8b1c0bea47e365" id="r_a33a5e996e7a90acefb8b1c0bea47e365"><td class="memItemLeft" align="right" valign="top">typedef uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a></td></tr>
+<tr class="memitem:ac2a9e79eb120216f855626495b7bd18a" id="r_ac2a9e79eb120216f855626495b7bd18a"><td class="memItemLeft" align="right" valign="top">typedef uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2a9e79eb120216f855626495b7bd18a">uint16</a></td></tr>
+<tr class="memitem:acbd4acd0d29e2d6c43104827f77d9cd2" id="r_acbd4acd0d29e2d6c43104827f77d9cd2"><td class="memItemLeft" align="right" valign="top">typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbd4acd0d29e2d6c43104827f77d9cd2">uint32</a></td></tr>
 <tr class="memitem:a69975eac5a689821ed5bd26df340095f" id="r_a69975eac5a689821ed5bd26df340095f"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="#abf9ef7f621e9866fb4589c723a698f67">NvmMngr_DataPosition_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69975eac5a689821ed5bd26df340095f">NvmMngr_DataPosition_t</a></td></tr>
 <tr class="memdesc:a69975eac5a689821ed5bd26df340095f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logical identifier of a data block managed by the NVM manager.  <br /></td></tr>
 <tr class="memitem:ae8e69c71df2194f041a5e94f251dcc98" id="r_ae8e69c71df2194f041a5e94f251dcc98"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="#aa1f7d1e9889133e78156ce38ad461d22">PageAddr_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8e69c71df2194f041a5e94f251dcc98">PageAddr_t</a></td></tr>
@@ -144,15 +154,13 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af53f649be18754c1c9f32bfebc31093a" id="r_af53f649be18754c1c9f32bfebc31093a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af53f649be18754c1c9f32bfebc31093a">NvmMngr_WriteRequest_</a> (<a class="el" href="#a69975eac5a689821ed5bd26df340095f">NvmMngr_DataPosition_t</a> dataToWrite_, uint8 *const data_pu8)</td></tr>
+<tr class="memitem:af53f649be18754c1c9f32bfebc31093a" id="r_af53f649be18754c1c9f32bfebc31093a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af53f649be18754c1c9f32bfebc31093a">NvmMngr_WriteRequest_</a> (<a class="el" href="#a69975eac5a689821ed5bd26df340095f">NvmMngr_DataPosition_t</a> dataToWrite_, <a class="el" href="#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const data_pu8)</td></tr>
 <tr class="memdesc:af53f649be18754c1c9f32bfebc31093a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare a write request for a logical NVM block.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a62446aee5b7cc04bfa156aeec399d61e" id="r_a62446aee5b7cc04bfa156aeec399d61e"><td class="memItemLeft" align="right" valign="top"><a id="a62446aee5b7cc04bfa156aeec399d61e" name="a62446aee5b7cc04bfa156aeec399d61e"></a>
-<a class="el" href="#abdd4141b7dbda5fe191b0c3208a0aca1">NvmBlock_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>NvmBlock_</b> []</td></tr>
-<tr class="memitem:a043f1872bf50ba86729ddbbb5fff13b0" id="r_a043f1872bf50ba86729ddbbb5fff13b0"><td class="memItemLeft" align="right" valign="top"><a id="a043f1872bf50ba86729ddbbb5fff13b0" name="a043f1872bf50ba86729ddbbb5fff13b0"></a>
-<a class="el" href="#ac8e5bc26777e114ad6a9ebf4718a481f">NvmPageCopy_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>NvmPageCopy_</b> []</td></tr>
+<tr class="memitem:a62446aee5b7cc04bfa156aeec399d61e" id="r_a62446aee5b7cc04bfa156aeec399d61e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#abdd4141b7dbda5fe191b0c3208a0aca1">NvmBlock_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62446aee5b7cc04bfa156aeec399d61e">NvmBlock_</a> []</td></tr>
+<tr class="memitem:a043f1872bf50ba86729ddbbb5fff13b0" id="r_a043f1872bf50ba86729ddbbb5fff13b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac8e5bc26777e114ad6a9ebf4718a481f">NvmPageCopy_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a043f1872bf50ba86729ddbbb5fff13b0">NvmPageCopy_</a> []</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>API and structures for handling NVM write requests. </p>
@@ -178,7 +186,7 @@ Variables</h2></td></tr>
 
 <p>Descriptor of a logical NVM block. </p>
 <p>Each entry of NvmBlock_ defines:</p><ul>
-<li>the data length in bytes,</li>
+<li>the data l_len_u8gth in bytes,</li>
 <li>the page to which the block belongs,</li>
 <li>the absolute NVM address of the block. </li>
 </ul>
@@ -216,6 +224,81 @@ Variables</h2></td></tr>
 
 <p>Logical identifier of an NVM page. </p>
 <p>Each page stores one or more data blocks. This enum declares the page identifiers used by the NVM manager. </p>
+
+</div>
+</div>
+<a id="aa961e2cfd0d472f8870c6032a6773e36" name="aa961e2cfd0d472f8870c6032a6773e36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa961e2cfd0d472f8870c6032a6773e36">&#9670;&#160;</a></span>sint16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int16_t <a class="el" href="#aa961e2cfd0d472f8870c6032a6773e36">sint16</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>AUTOSAR-like types for clarity Signed 16-bit integer. </p>
+
+</div>
+</div>
+<a id="a3e55e6174885a377573f0f04b8be2e54" name="a3e55e6174885a377573f0f04b8be2e54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e55e6174885a377573f0f04b8be2e54">&#9670;&#160;</a></span>sint8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef int8_t <a class="el" href="#a3e55e6174885a377573f0f04b8be2e54">sint8</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Signed 8-bit integer. </p>
+
+</div>
+</div>
+<a id="ac2a9e79eb120216f855626495b7bd18a" name="ac2a9e79eb120216f855626495b7bd18a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2a9e79eb120216f855626495b7bd18a">&#9670;&#160;</a></span>uint16</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint16_t <a class="el" href="#ac2a9e79eb120216f855626495b7bd18a">uint16</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unsigned 16-bit integer </p>
+
+</div>
+</div>
+<a id="acbd4acd0d29e2d6c43104827f77d9cd2" name="acbd4acd0d29e2d6c43104827f77d9cd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbd4acd0d29e2d6c43104827f77d9cd2">&#9670;&#160;</a></span>uint32</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint32_t <a class="el" href="#acbd4acd0d29e2d6c43104827f77d9cd2">uint32</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unsigned 32-bit integer </p>
+
+</div>
+</div>
+<a id="a33a5e996e7a90acefb8b1c0bea47e365" name="a33a5e996e7a90acefb8b1c0bea47e365"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33a5e996e7a90acefb8b1c0bea47e365">&#9670;&#160;</a></span>uint8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef uint8_t <a class="el" href="#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unsigned 8-bit integer. </p>
 
 </div>
 </div>
@@ -283,7 +366,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8 *const</td>          <td class="paramname"><span class="paramname"><em>data_pu8</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const</td>          <td class="paramname"><span class="paramname"><em>data_pu8</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -298,21 +381,21 @@ Variables</h2></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">NvmBlock_[].belongPage_  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone"><a class="el" href="#ae8e69c71df2194f041a5e94f251dcc98" title="Logical identifier of an NVM page.">PageAddr_t</a>  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, N_PAGE_COPY]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">NvmPageCopy_[].startAddrPage_u32  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone">uint32  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT32_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
+<td class="markdownTableBodyNone">NvmPageCopy_[].startAddrPage_u32  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone"><a class="el" href="#acbd4acd0d29e2d6c43104827f77d9cd2">uint32</a>  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT32_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">NvmBlock_[].addrData_u32  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone">uint32  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT32_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
+<td class="markdownTableBodyNone">NvmBlock_[].addrData_u32  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone"><a class="el" href="#acbd4acd0d29e2d6c43104827f77d9cd2">uint32</a>  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT32_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">data_pu8  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone">uint8*  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT8_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">NvmBlock_[].dataLen_u8  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone">uint8  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT8_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
+<td class="markdownTableBodyNone">NvmBlock_[].datal_len_u8_u8  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone"><a class="el" href="#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a>  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT8_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">dataToWrite_  </td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyNone"><a class="el" href="#a69975eac5a689821ed5bd26df340095f" title="Logical identifier of a data block managed by the NVM manager.">NvmMngr_DataPosition_t</a>  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, 20]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">NvmPageCopy_[].writeReq_b  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyNone">bool  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, 1]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">NvmPageCopy_[].posListFifo_u8  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyNone">uint8  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT8_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
+<td class="markdownTableBodyNone">NvmPageCopy_[].posListFifo_u8  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyNone"><a class="el" href="#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a>  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyNone">[0, UINT8_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">NvmPageCopy_[].pageCopy_u8  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyNone">uint8  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">128  </td><td class="markdownTableBodyNone">[0, UINT8_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
+<td class="markdownTableBodyNone">NvmPageCopy_[].pageCopy_u8  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">✓  </td><td class="markdownTableBodyNone"><a class="el" href="#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a>  </td><td class="markdownTableBodyCenter">-  </td><td class="markdownTableBodyRight">1  </td><td class="markdownTableBodyRight">0  </td><td class="markdownTableBodyRight">128  </td><td class="markdownTableBodyNone">[0, UINT8_MAX]  </td><td class="markdownTableBodyNone">[-]  </td></tr>
 </table>
 <dl class="section user"><dt>Activity diagram (PlantUML)</dt><dd></dd></dl>
 <div class="plantumlgraph">
@@ -327,6 +410,67 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>This function only updates the RAM shadow copy of the NVM page. The actual write to physical NVM is handled elsewhere. </dd></dl>
 
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="a62446aee5b7cc04bfa156aeec399d61e" name="a62446aee5b7cc04bfa156aeec399d61e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62446aee5b7cc04bfa156aeec399d61e">&#9670;&#160;</a></span>NvmBlock_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#abdd4141b7dbda5fe191b0c3208a0aca1">NvmBlock_t</a> NvmBlock_[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= </div>
+<div class="line">{</div>
+<div class="line">  </div>
+<div class="line">  {</div>
+<div class="line">    .datal_len_u8_u8     = 5,</div>
+<div class="line">    .belongPage_    = <a class="code hl_enumvalue" href="#aa1f7d1e9889133e78156ce38ad461d22aa701f1746ce1e4ed6d7471cea853fffa">RESET_REASON_PAGE</a>,</div>
+<div class="line">    .addrData_u32   = RESET_REASON_ADR</div>
+<div class="line">  },</div>
+<div class="line">  </div>
+<div class="line">  {</div>
+<div class="line">    .datal_len_u8_u8     = 5,</div>
+<div class="line">    .belongPage_    = <a class="code hl_enumvalue" href="#aa1f7d1e9889133e78156ce38ad461d22a34dc6bc4b73682017d001fcee526b258">CALIBRATION_PAGE</a>,</div>
+<div class="line">    .addrData_u32   = RESET_REASON_ADR</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+<div class="ttc" id="a_nvm_mngr___write_request___8h_html_aa1f7d1e9889133e78156ce38ad461d22a34dc6bc4b73682017d001fcee526b258"><div class="ttname"><a href="#aa1f7d1e9889133e78156ce38ad461d22a34dc6bc4b73682017d001fcee526b258">CALIBRATION_PAGE</a></div><div class="ttdeci">@ CALIBRATION_PAGE</div><div class="ttdef"><b>Definition</b> NvmMngr_WriteRequest_.h:64</div></div>
+<div class="ttc" id="a_nvm_mngr___write_request___8h_html_aa1f7d1e9889133e78156ce38ad461d22aa701f1746ce1e4ed6d7471cea853fffa"><div class="ttname"><a href="#aa1f7d1e9889133e78156ce38ad461d22aa701f1746ce1e4ed6d7471cea853fffa">RESET_REASON_PAGE</a></div><div class="ttdeci">@ RESET_REASON_PAGE</div><div class="ttdef"><b>Definition</b> NvmMngr_WriteRequest_.h:63</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a043f1872bf50ba86729ddbbb5fff13b0" name="a043f1872bf50ba86729ddbbb5fff13b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a043f1872bf50ba86729ddbbb5fff13b0">&#9670;&#160;</a></span>NvmPageCopy_</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac8e5bc26777e114ad6a9ebf4718a481f">NvmPageCopy_t</a> NvmPageCopy_[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">{</div>
+<div class="line">  {</div>
+<div class="line">    .pageCopy_u8 = {0},</div>
+<div class="line">    .posListFifo_u8 = 0xFF,</div>
+<div class="line">    .writeReq_b = <span class="keyword">false</span>,</div>
+<div class="line">    .startAddrPage_u32 = RESET_REASON_ADR</div>
+<div class="line">  },</div>
+<div class="line">  {</div>
+<div class="line">    .pageCopy_u8 = {0},</div>
+<div class="line">    .posListFifo_u8 = 0xFF,</div>
+<div class="line">    .writeReq_b = <span class="keyword">false</span>,</div>
+<div class="line">    .startAddrPage_u32 = RESET_REASON_ADR</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

@@ -1,27 +1,27 @@
 @startuml inline_umlgraph_1.png
  start
  
- :Read ECU temperature\n tempEcu_s16 = TempMeas_get_filtEcuTemp_s16();
+ :Init l_tempEcu_s16 = TempMeas_get_filtEcuTemp_s16();
  
- if (tempEcu_s16 >= TEMPMON_OVERTEMP_UPTH?) then (yes)
-   if (EC_Get_error_overtemperature_State_e() == EFS_TRUE?) then (yes)
-     :Reset debounce counter\n count_u8 = 0;
+ if (l_tempEcu_s16 >= TEMPMON_OVERTEMP_UPTH) then (yes)
+   if (EC_Get_error_overtemperature_State_e() == EFS_TRUE) then (yes)
+     :Assign 0 to count_u8;
    else (no)
-     :Increment debounce counter\n count_u8++;
-     if (count_u8 > COUNT_500MS?) then (yes)
-       :Reset debounce counter\n count_u8 = 0;
-       :Set diagnostic state\n EC_Set_error_overtemperature_State_e(EFS_TRUE);
+     :Assign count_u8++ to count_u8;
+     if (count_u8 > COUNT_500MS) then (yes)
+       :Assign 0 to count_u8
+       Call EC_Set_error_overtemperature_State_e(EFS_TRUE);
      endif
    endif
  else (no)
-   if (EC_Get_error_overtemperature_State_e() == EFS_TRUE?) then (yes)
-     :Increment debounce counter\n count_u8++;
-     if (count_u8 > COUNT_500MS?) then (yes)
-       :Reset debounce counter\n count_u8 = 0;
-       :Clear diagnostic state\n EC_Set_error_overtemperature_State_e(EFS_FALSE);
+   if (EC_Get_error_overtemperature_State_e() == EFS_TRUE) then (yes)
+     :Assign count_u8++ to count_u8;
+     if (count_u8 > COUNT_500MS) then (yes)
+       :Assign 0 to count_u8
+        Call EC_Set_error_overtemperature_State_e(EFS_FALSE);
      endif
    else (no)
-     :Reset debounce counter\n count_u8 = 0;
+     :Assign 0 to count_u8;
    endif
  endif
  

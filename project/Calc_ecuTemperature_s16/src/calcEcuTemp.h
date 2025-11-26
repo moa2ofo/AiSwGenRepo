@@ -63,14 +63,14 @@ typedef int16_t sint16;
  *
  * @startuml
  * start
- *
- * if (NtcTemp_s16 <= PAR_ECU_TEMP_LOW_THR\nor NtcErr_b == true?) then (yes)
- *   :l_ecuTemp_s16 = SysTemp_s16;
+ * :Init l_ecuTemp_s16 equal to 0;
+ * if (NtcTemp_s16 <= PAR_ECU_TEMP_LOW_THR \n   OR NtcErr_b == true) then (yes)
+ *   :Assign SysTemp_s16 to l_ecuTemp_s16;
  * else (no)
- *   if (NtcTemp_s16 >= PAR_ECU_TEMP_UP_THR?) then (yes)
- *     :l_ecuTemp_s16 = NtcTemp_s16;
+ *   if (NtcTemp_s16 >= PAR_ECU_TEMP_UP_THR) then (yes)
+ *     :Assign NtcTemp_s16 to l_ecuTemp_s16;
  *   else (no)
- *     :l_ecuTemp_s16 =\n(NtcTemp_s16 * (NtcTemp_s16 - PAR_ECU_TEMP_LOW_THR)\n + SysTemp_s16 * (PAR_ECU_TEMP_UP_THR - NtcTemp_s16))\n / (PAR_ECU_TEMP_UP_THR - PAR_ECU_TEMP_LOW_THR);
+ *     :Evaluate l_ecuTemp_s16 as \n(NtcTemp_s16 * (NtcTemp_s16 - PAR_ECU_TEMP_LOW_THR)\n + SysTemp_s16 * (PAR_ECU_TEMP_UP_THR - NtcTemp_s16))\n / (PAR_ECU_TEMP_UP_THR - PAR_ECU_TEMP_LOW_THR);
  *     note 
  *       This interpolation blends the two temperature
  *       measurements smoothly in the middle range,

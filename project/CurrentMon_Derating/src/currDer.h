@@ -222,16 +222,13 @@ sint16 CurrentMon_SetDeratingLimits_s16(const sint16 x_var,
  * @startuml
  * start
  *
- * :Read VBAT calling VoltMeas_get_vbat_u16();
- * :Read TECU calling TempMeas_get_filtEcuTemp_s16();
+ * :Init l_vbat_u16 equal to the value returned by VoltMeas_get_vbat_u16()
+ * Init l_tecu_s16 equal to the value returned by TempMeas_get_filtEcuTemp_s16();
  *
- * :Find IdcVdc limit CurrentMon_SetDeratingLimits_s16(VBAT,  CurrentMon_IdcVdcTab,CURRENTMON_IDC_VDC_N_POINTS);
- *
- * :Find IdcTemp limit CurrentMon_SetDeratingLimits_s16(TECU,  CurrentMon_IdcTecuTab,CURRENTMON_IDC_TECU_N_POINTS);
- *
- * :Find IlineTemp limit CurrentMon_SetDeratingLimits_s16(TECU,  CurrentMon_IlineTecuTab,CURRENTMON_ILINE_TECU_N_POINTS);
- *
- * :Assign to IdcLim_s16 the min between l_limitIdcVdc_s16 and l_limitIdctemp_s16;
+ * :Assign IdcVdc the value returned by CurrentMon_SetDeratingLimits_s16(l_vbat_u16,  CurrentMon_IdcVdcTab,CURRENTMON_IDC_VDC_N_POINTS)
+ * Assign IdcTemp the value returned by CurrentMon_SetDeratingLimits_s16(l_tecu_s16,  CurrentMon_IdcTecuTab,CURRENTMON_IDC_TECU_N_POINTS)
+ * Assign IlineTemp the value returned by CurrentMon_SetDeratingLimits_s16(l_tecu_s16,  CurrentMon_IlineTecuTab,CURRENTMON_ILINE_TECU_N_POINTS)
+ * Assign to IdcLim_s16 the min between l_limitIdcVdc_s16 and l_limitIdctemp_s16;
  *
  * stop
  * @enduml

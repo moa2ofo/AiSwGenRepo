@@ -1,0 +1,5 @@
+<map id="errorCollector_t" name="errorCollector_t">
+<area shape="rect" id="Node000001" title="Diagnostic state for the overtemperature error." alt="" coords="5,125,116,152"/>
+<area shape="rect" id="Node000002" href="$struct_error_flag__s.html" title=" " alt="" coords="16,5,105,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,47,63,125,58,124,58,49"/>
+</map>
