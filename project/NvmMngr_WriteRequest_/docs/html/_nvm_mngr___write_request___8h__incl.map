@@ -1,7 +1,0 @@
-<map id="src/NvmMngr_WriteRequest_.h" name="src/NvmMngr_WriteRequest_.h">
-<area shape="rect" id="Node000001" title="API and structures for handling NVM write requests." alt="" coords="5,5,210,32"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="29,80,93,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,31,79,69,75,65,97,34"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="117,80,191,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="117,30,141,67,135,67,114,35"/>
-</map>
