@@ -1,0 +1,4 @@
+| Function Name Under Test      | Total     | Passed    | Failed    | Ignored   |
+|-------------------------------|-----------|-----------|-----------|-----------|
+| voltMonRun                    | 22        | 22        | 0         | 0         |
+| ApplLinDiagReadDataById       | 5         | 5         | 0         | 0         |
