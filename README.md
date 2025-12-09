@@ -1,64 +1,61 @@
-# AiSwGenRepo
+# Project Overview
 
-This repository contains multiple sub-projects with unit implementations, documentation, and build configurations.  
-Unit tests are managed using **Ceedling**, and documentation is generated with **Doxygen**.
-
----
-
-## 📂 Directory Structure
+This project is designed to manage unit testing across multiple modules, update platform files automatically, execute tests, and generate consolidated reports of the results.
 
 ---
 
-### 🔹 Projects
+## 📂 Project Structure
 
-#### 1. Calc_ecuTemperature_s16
-- `docs/html/index.html` → Graphical visualization of Doxygen description  
-- `src/`  
-  - `file.c` → Implementation of the unit  
-  - `file.h` → Doxygen description of the unit  
-- `Makefile` → Builds the project (`file.c`, `file.h`)  
-- `Doxyfile` → Generates documentation inside `docs/html`
 
----
-
-#### 2. CurrentMon_Derating
-- `docs/html/index.html` → Graphical visualization of Doxygen description  
-- `src/`  
-  - `file.c` → Implementation of the unit  
-  - `file.h` → Doxygen description of the unit  
-- `Makefile` → Builds the project (`file.c`, `file.h`)  
-- `Doxyfile` → Generates documentation inside `docs/html`
+- **code/** → Contains source code for each module.  
+  - **cfg/** → Configuration files.  
+  - **pltf/** → Platform files updated by the script.  
+  - **unitTests/** → Unit test definitions.  
+- **mixin/** → Shared or reusable components.  
+- **utExecutionAndResults/** → Handles execution and results of unit tests.  
+  - **utUnderTest/** → Tests currently being executed.  
+  - **utResults/** → Stores results of executed tests.  
+    - **total_result_report.txt** → Consolidated report of all test results.
 
 ---
 
-#### 3. NvmMngr_WriteRequest_
-- `docs/html/index.html` → Graphical visualization of Doxygen description  
-- `src/`  
-  - `file.c` → Implementation of the unit  
-  - `file.h` → Doxygen description of the unit  
-- `Makefile` → Builds the project (`file.c`, `file.h`)  
-- `Doxyfile` → Generates documentation inside `docs/html`
+## 🛠️ Script Functionality
+
+The script performs three main tasks:
+
+1. **Update platform files**  
+   It updates the files contained in the `pltf` folder of each module to ensure the test configuration is refreshed.
+
+2. **Run unit tests**  
+   After updating, the script automatically launches the unit tests defined in the `unitTests` folders.
+
+3. **Generate consolidated report**  
+   Once all tests are executed, the script creates or updates the file:
+
+This file contains a summary of all executed tests.
 
 ---
 
-#### 4. TempMon_Run
-- `docs/html/index.html` → Graphical visualization of Doxygen description  
-- `src/`  
-  - `file.c` → Implementation of the unit  
-  - `file.h` → Doxygen description of the unit  
-- `Makefile` → Builds the project (`file.c`, `file.h`)  
-- `Doxyfile` → Generates documentation inside `docs/html`
+## 📊 Report Format
+
+The report file is structured as a table with aligned columns:
+
+- **Function Name Under Test** → Name of the function/module tested.  
+- **Total** → Total number of tests executed.  
+- **Passed** → Number of tests that passed.  
+- **Failed** → Number of tests that failed.  
+- **Ignored** → Number of tests ignored/skipped.
 
 ---
 
-### 🔹 Root-Level Files
-- `Makefile` → Launches the build process for all sub-projects
+## 🚀 Usage Workflow
 
----
+1. Place or update unit test files in the appropriate `unitTests` folder.  
+2. Run the script parsingUtTest.py in the folder main/project passing the augument all:
+   - Update the `pltf` files.  
+   - Execute all unit tests.  
+   - Generate/update the consolidated report.  
+3. Review results in utExecutionAndResults/utResults/total_result_report.txt
 
-## ⚙️ Build Instructions
 
-To build all sub-projects inside a Docker container, run the following command:
 
-```bash
-docker run -it --rm -v C:\_YOUR_PATH_\project:/usr/src/app -w /usr/src/app gcc:latest make
