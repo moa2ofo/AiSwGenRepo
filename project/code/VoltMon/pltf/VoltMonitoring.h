@@ -92,7 +92,7 @@ void VoltMon_Init(void);
  *   for at least the configured activation time.
  * - Returns to NORMAL state only when voltage re-enters the safe region for the
  *   required deactivation time.
- * - Uses three operation states: NORMAL(0), UNDERVOLTAGE(1), OVERVOLTAGE(2).
+ * - Uses three operation states: VOLT_MON_STATE_NORMAL(0), VOLT_MON_STATE_UNDERVOLTAGE(1), VOLT_MON_STATE_OVERVOLTAGE(2).
  *
  * @par Interface summary
  *
@@ -106,6 +106,9 @@ void VoltMon_Init(void);
  * | VoltMon_GetOverOff_mV()                   | X  |     | uint16    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
  * | VoltMon_ActivationTime_ms                 | X  |     | uint16    |   -   |      1      |           0 |         1 | [1, 5000]    | [ms]      |
  * | VoltMon_DeactivationTime_ms               | X  |     | uint16    |   -   |      1      |           0 |         1 | [1, 5000]    | [ms]      |
+ * | VOLT_MON_STATE_UNDERVOLTAGE               | X  |     | enum      |   -   |      1      |           0 |         1 |      [0]     | [-]       |
+ * | VOLT_MON_STATE_NORMAL                     | X  |     | enum      |   -   |      1      |           0 |         1 |      [1]     | [-]       |
+ * | VOLT_MON_STATE_OVERVOLTAGE                | X  |     | enum      |   -   |      1      |           0 |         1 |      [2]     | [-]       |
  * | VoltMon_Ctx.state                         | X  |  X  | enum      |   -   |      1      |           0 |         1 | {0,1,2}      | [-]       |
  * | VoltMon_Ctx.uvActivationTimer_ms          | X  |  X  | uint16    |   -   |      1      |           0 |         1 | [0, 65535]   | [ms]      |
  * | VoltMon_Ctx.ovActivationTimer_ms          | X  |  X  | uint16    |   -   |      1      |           0 |         1 | [0, 65535]   | [ms]      |
