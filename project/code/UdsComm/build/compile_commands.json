@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/workspace/build",
+  "command": "/usr/bin/cc  -I/workspace/pltf -I/workspace/cfg  -o CMakeFiles/udscomm.dir/pltf/diagnostic.c.o -c /workspace/pltf/diagnostic.c",
+  "file": "/workspace/pltf/diagnostic.c",
+  "output": "CMakeFiles/udscomm.dir/pltf/diagnostic.c.o"
+},
+{
+  "directory": "/workspace/build",
+  "command": "/usr/bin/cc  -I/workspace/pltf -I/workspace/cfg  -o CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.o -c /workspace/cfg/diagnostic_cfg.c",
+  "file": "/workspace/cfg/diagnostic_cfg.c",
+  "output": "CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.o"
+}
+]

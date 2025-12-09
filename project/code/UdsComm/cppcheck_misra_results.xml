@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<results version="2">
+    <cppcheck version="2.13.0"/>
+    <errors>
+        <error id="misra-c2012-10.3" severity="style" msg="misra violation (rule-texts-file not found: /workspace/.misra)" verbose="misra violation (rule-texts-file not found: /workspace/.misra)" file0="pltf/diagnostic.c">
+            <location file="pltf/diagnostic.c" line="24" column="29"/>
+        </error>
+        <error id="misra-c2012-10.4" severity="style" msg="misra violation (rule-texts-file not found: /workspace/.misra)" verbose="misra violation (rule-texts-file not found: /workspace/.misra)" file0="pltf/diagnostic.c">
+            <location file="pltf/diagnostic.c" line="25" column="61"/>
+        </error>
+        <error id="misra-c2012-10.6" severity="style" msg="misra violation (rule-texts-file not found: /workspace/.misra)" verbose="misra violation (rule-texts-file not found: /workspace/.misra)" file0="pltf/diagnostic.c">
+            <location file="pltf/diagnostic.c" line="45" column="27"/>
+        </error>
+        <error id="redundantAssignment" severity="style" msg="Variable &apos;l_result_&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;l_result_&apos; is reassigned a value before the old one has been used." cwe="563" file0="cfg/diagnostic_cfg.c">
+            <location file="cfg/diagnostic_cfg.c" line="63" column="22" info="l_result_ is overwritten"/>
+            <location file="cfg/diagnostic_cfg.c" line="58" column="19" info="l_result_ is assigned"/>
+            <symbol>l_result_</symbol>
+        </error>
+        <error id="misra-c2012-12.1" severity="style" msg="misra violation (rule-texts-file not found: /workspace/.misra)" verbose="misra violation (rule-texts-file not found: /workspace/.misra)" file0="cfg/diagnostic_cfg.c">
+            <location file="cfg/diagnostic_cfg.c" line="15" column="25"/>
+        </error>
+        <error id="misra-c2012-13.4" severity="style" msg="misra violation (rule-texts-file not found: /workspace/.misra)" verbose="misra violation (rule-texts-file not found: /workspace/.misra)" file0="cfg/diagnostic_cfg.c">
+            <location file="cfg/diagnostic_cfg.c" line="63" column="22"/>
+        </error>
+        <error id="misra-c2012-17.8" severity="style" msg="misra violation (rule-texts-file not found: /workspace/.misra)" verbose="misra violation (rule-texts-file not found: /workspace/.misra)" file0="cfg/diagnostic_cfg.c">
+            <location file="cfg/diagnostic_cfg.c" line="59" column="22"/>
+        </error>
+    </errors>
+</results>

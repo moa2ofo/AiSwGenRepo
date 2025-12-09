@@ -1,0 +1,2 @@
+/usr/bin/ar qc libudscomm.a CMakeFiles/udscomm.dir/pltf/diagnostic.c.o CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.o
+/usr/bin/ranlib libudscomm.a
