@@ -1,0 +1,5 @@
+---
+- utExecutionAndResults/utUnderTest/build/vendor/unity/src/unity.h
+- utExecutionAndResults/utUnderTest/src/voltMonRun.h
+- mock_VoltMonitoring_priv.h
+- mock_VoltMonitoring_cfg.h

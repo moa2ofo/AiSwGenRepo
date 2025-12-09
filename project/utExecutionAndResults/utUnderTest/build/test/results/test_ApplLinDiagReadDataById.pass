@@ -1,0 +1,35 @@
+---
+:source:
+  :file: utExecutionAndResults/utUnderTest/test/test_ApplLinDiagReadDataById.c
+  :dirname: utExecutionAndResults/utUnderTest/test
+  :basename: test_ApplLinDiagReadDataById.c
+:successes:
+- :test: test_ApplLinDiagReadDataById_DidNotSupported
+  :line: 121
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ApplLinDiagReadDataById_SuccessfulExecution_DidSupported
+  :line: 145
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ApplLinDiagReadDataById_WrongNad_Fails
+  :line: 169
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ApplLinDiagReadDataById_MsgDataLength_Fails
+  :line: 196
+  :message: ''
+  :unity_test_time: 0
+- :test: test_ApplLinDiagReadDataById_HandlerFails
+  :line: 223
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 5
+  :passed: 5
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.012740262005536351
