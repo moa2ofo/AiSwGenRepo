@@ -22,6 +22,8 @@ This project is designed to manage unit testing across multiple modules, update 
 ## 🛠️ Script Functionality
 
 The script performs three main tasks:
+1. **Collect all the test folder**  
+   Search all the forders TEST_ that contain unit tests.
 
 1. **Update platform files**  
    It updates the files contained in the `pltf` folder of each module to ensure the test configuration is refreshed.
@@ -29,8 +31,8 @@ The script performs three main tasks:
 2. **Run unit tests**  
    After updating, the script automatically launches the unit tests defined in the `unitTests` folders.
 
-3. **Generate consolidated report**  
-   Once all tests are executed, the script creates or updates the file:
+3. **Update the report**  
+   Once all/one tests are executed, the script creates or updates the file:
 
 This file contains a summary of all executed tests.
 
