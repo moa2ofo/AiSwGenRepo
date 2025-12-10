@@ -13,6 +13,7 @@ import shutil
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
+from prettytable import PrettyTable
 
 UNIT_TEST_PREFIX = "TEST_"
 
@@ -399,12 +400,13 @@ def update_unit_under_test(module: UnitModule, unit_name: str):
 
 def update_total_result_report(build_folder: Path, function_name: str, report_folder: Path):
     """
-    Read test result values from the Ceedling report file and update a summary report.
-    The summary report will contain rows with columns:
-    | Function Name Under Test | Total | Passed | Failed | Ignored |
+    Read test result values from the Ceedling report file and update a summary file
+    with raw data only (CSV-style, no formatting).
 
-    If the function_name already exists in the summary report, its row is updated
-    instead of adding a duplicate row.
+    The file 'total_result_report.txt' will contain:
+        function_name,total,passed,failed,ignored
+        foo,10,9,1,0
+        bar,5,5,0,0
     """
     report_file = build_folder / "test" / "results" / f"test_{function_name}.pass"
     if not report_file.exists():
@@ -418,83 +420,90 @@ def update_total_result_report(build_folder: Path, function_name: str, report_fo
         for line in report_file.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if line.startswith(":total:"):
-                total = line.split(":")[2].strip()
+                total = line.split(":", 2)[2].strip()
             elif line.startswith(":passed:"):
-                passed = line.split(":")[2].strip()
+                passed = line.split(":", 2)[2].strip()
             elif line.startswith(":failed:"):
-                failed = line.split(":")[2].strip()
+                failed = line.split(":", 2)[2].strip()
             elif line.startswith(":ignored:"):
-                ignored = line.split(":")[2].strip()
+                ignored = line.split(":", 2)[2].strip()
 
         # Ensure all values were found
         if None in (total, passed, failed, ignored):
             print(f"⚠️ Missing values in report file '{report_file}'.")
             return
 
-        summary_file = report_folder / "total_result_report.txt"
         report_folder.mkdir(parents=True, exist_ok=True)
+        summary_file = report_folder / "total_result_report.txt"
 
-        # Column widths for alignment
-        col_widths = [30, 10, 10, 10, 10]
+        # Load existing rows (if any), stored as CSV: function_name,total,passed,failed,ignored
+        rows: dict[str, tuple[str, str, str, str]] = {}
+        header = "function_name,total,passed,failed,ignored"
 
-        header = (
-            f"| {'Function Name Under Test'.ljust(col_widths[0])}"
-            f"| {'Total'.ljust(col_widths[1])}"
-            f"| {'Passed'.ljust(col_widths[2])}"
-            f"| {'Failed'.ljust(col_widths[3])}"
-            f"| {'Ignored'.ljust(col_widths[4])}|\n"
-        )
-        separator = (
-            f"|{'-'*(col_widths[0]+1)}|{'-'*(col_widths[1]+1)}|{'-'*(col_widths[2]+1)}|"
-            f"{'-'*(col_widths[3]+1)}|{'-'*(col_widths[4]+1)}|\n"
-        )
-        row = (
-            f"| {function_name.ljust(col_widths[0])}"
-            f"| {total.ljust(col_widths[1])}"
-            f"| {passed.ljust(col_widths[2])}"
-            f"| {failed.ljust(col_widths[3])}"
-            f"| {ignored.ljust(col_widths[4])}|\n"
-        )
+        if summary_file.exists():
+            lines = summary_file.read_text(encoding="utf-8").splitlines()
+            if lines:
+                header = lines[0]  # keep existing header if present
+                for line in lines[1:]:
+                    if not line.strip():
+                        continue
+                    parts = [p.strip() for p in line.split(",")]
+                    if len(parts) != 5:
+                        continue
+                    fn, t, p, f, ig = parts
+                    rows[fn] = (t, p, f, ig)
 
-        # If the summary file does not exist, create it with header and first row
-        if not summary_file.exists():
-            summary_file.write_text(header + separator + row, encoding="utf-8")
-            print(f"✅ Created summary report: {summary_file}")
-            return
+        # Update / insert current function row
+        rows[function_name] = (total, passed, failed, ignored)
 
-        # If the summary file exists, update the row if function_name is already present
-        lines = summary_file.read_text(encoding="utf-8").splitlines(keepends=True)
+        # Serialize back to CSV-style text
+        lines_out = [header]
+        for fn, (t, p, f, ig) in rows.items():
+            lines_out.append(f"{fn},{t},{p},{f},{ig}")
 
-        updated = False
-        for i, line in enumerate(lines):
-            # Skip separator lines
-            if line.startswith("|-"):
-                continue
-            # Consider only table rows (start with '|' and not the header separator)
-            if line.startswith("|"):
-                parts = line.split("|")
-                if len(parts) > 2:
-                    name_col = parts[1].strip()
-                    if name_col == function_name:
-                        lines[i] = row
-                        updated = True
-                        break
-
-        # If not updated, append the new row at the end
-        if not updated:
-            if lines and not lines[-1].endswith("\n"):
-                lines[-1] = lines[-1] + "\n"
-            lines.append(row)
-
-        summary_file.write_text("".join(lines), encoding="utf-8")
-
-        if updated:
-            print(f"✅ Updated existing entry for '{function_name}' in summary report: {summary_file}")
-        else:
-            print(f"✅ Added new entry for '{function_name}' to summary report: {summary_file}")
+        summary_file.write_text("\n".join(lines_out) + "\n", encoding="utf-8")
+        print(f"✅ Updated raw summary data for '{function_name}' in: {summary_file}")
 
     except Exception as e:
-        print(f"❌ Error updating report: {e}")
+        print(f"❌ Error updating raw report data: {e}")
+
+
+def format_total_result_report(report_folder: Path):
+    """
+    Read the raw 'total_result_report.txt' (CSV-style) and rewrite it
+    as a pretty aligned table using PrettyTable.
+    """
+    summary_file = report_folder / "total_result_report.txt"
+    if not summary_file.exists():
+        print(f"⚠️ Summary file '{summary_file}' does not exist. Nothing to format.")
+        return
+
+    lines = summary_file.read_text(encoding="utf-8").splitlines()
+    if not lines:
+        print(f"⚠️ Summary file '{summary_file}' is empty. Nothing to format.")
+        return
+
+    # First line is the header
+    header_parts = [h.strip() for h in lines[0].split(",") if h.strip()]
+    if not header_parts:
+        print(f"⚠️ Summary file '{summary_file}' has an invalid header. Cannot format.")
+        return
+
+    table = PrettyTable()
+    table.field_names = header_parts
+
+    # Add rows
+    for line in lines[1:]:
+        if not line.strip():
+            continue
+        parts = [p.strip() for p in line.split(",")]
+        if len(parts) != len(header_parts):
+            continue
+        table.add_row(parts)
+
+    # Overwrite file with pretty table
+    summary_file.write_text(str(table) + "\n", encoding="utf-8")
+    print(f"✅ Formatted summary report with PrettyTable: {summary_file}")
 
 
 def run_bash_cmd(cmd: list[str]):
@@ -613,5 +622,6 @@ if __name__ == "__main__":
 
         module = unit_metadata[0]   # single module
         run_and_collect_results(module)
-
+    # Format the summary report at the very end (pretty output)
+    format_total_result_report(UNIT_RESULT_FOLDER)
     clear_folder(UNIT_EXECUTION_FOLDER)

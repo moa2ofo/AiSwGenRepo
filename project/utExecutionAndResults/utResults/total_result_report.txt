@@ -1,5 +1,7 @@
-| Function Name Under Test      | Total     | Passed    | Failed    | Ignored   |
-|-------------------------------|-----------|-----------|-----------|-----------|
-| ApplLinDiagReadDataById       | 5         | 5         | 0         | 0         |
-| checkMsgDataLength            | 7         | 7         | 0         | 0         |
-| voltMonRun                    | 22        | 22        | 0         | 0         |
++-------------------------+-------+--------+--------+---------+
+|      function_name      | total | passed | failed | ignored |
++-------------------------+-------+--------+--------+---------+
+| ApplLinDiagReadDataById |   5   |   5    |   0    |    0    |
+|    checkMsgDataLength   |   7   |   7    |   0    |    0    |
+|        voltMonRun       |   22  |   22   |   0    |    0    |
++-------------------------+-------+--------+--------+---------+
