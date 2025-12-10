@@ -10,6 +10,7 @@ import re
 import sys
 import shutil
 import subprocess
+from dataclasses import dataclass
 
 UNIT_TEST_PREFIX = "TEST_"
 UNIT_EXECUTION_FOLDER = "utExecutionAndResults/utUnderTest"
@@ -37,6 +38,46 @@ CEEDLING_CLEAN = ["ceedling", "clobber"]
 DOCKER_CLEAN = DOCKER_BASE + CEEDLING_CLEAN
 
 
+# ==============================
+# DATA CLASS FOR MODULE METADATA
+# ==============================
+@dataclass
+class UnitModule:
+    """
+    Metadata for a unit under test:
+
+    - module_name   : C source file name (e.g. 'diagnostic.c')
+    - function_name : C function name (e.g. 'ApplLinDiagReadDataById')
+    - source_dir    : directory (relative to project root) where the C file is
+    - test_root     : directory (relative to project root) of the unitTests root
+                      (the TEST_<function> folder will be inside this)
+    """
+    module_name: str
+    function_name: str
+    source_dir: str
+    test_root: str
+
+    @property
+    def test_case_folder(self) -> str:
+        """
+        Folder that contains the TEST_<function_name> unit test:
+        <test_root>/TEST_<function_name>
+        """
+        return os.path.join(self.test_root, f"{UNIT_TEST_PREFIX}{self.function_name}")
+
+    @property
+    def test_c_path(self) -> str:
+        """
+        Path to the C test file:
+        <test_root>/TEST_<function_name>/src/<function_name>.c
+        """
+        return os.path.join(
+            self.test_case_folder,
+            "src",
+            f"{self.function_name}.c",
+        )
+
+
 def find_function_definition(path, func_name):
     """
     Search for the definition of a C function in .c files
@@ -62,17 +103,16 @@ def find_function_definition(path, func_name):
 def build_modules(path):
     """
     Search for all folders starting with TEST_XXXX and build
-    a structure like:
+    a list of UnitModule objects.
 
-    modules = [
-        {
-            "nome_modulo": "<file_name.c>",
-            "nome_funzione": "<XXXX>",
-            "percorso": "<relative/path/of/file/without_name>",
-            "testFolder": "<relative/path/of/unitTests/folder>"
-        },
-        ...
-    ]
+    Example structure:
+
+    UnitModule(
+        module_name="diagnostic.c",
+        function_name="ApplLinDiagReadDataById",
+        source_dir="code/UdsComm/pltf",
+        test_root="code/UdsComm/unitTests"
+    )
     """
     modules = []
 
@@ -92,22 +132,24 @@ def build_modules(path):
 
                     # Relative path of the .c file with respect to 'path'
                     file_rel = os.path.relpath(file_path, path)
-                    nome_modulo = os.path.basename(file_rel)
-                    percorso = os.path.dirname(file_rel).replace(os.sep, "/")
+                    module_name = os.path.basename(file_rel)
+                    source_dir = os.path.dirname(file_rel).replace(os.sep, "/")
                 else:
                     print(f"⚠️ No source file found for test folder '{folder_path}'")
                     continue
 
                 # unitTests folder relative to the root
-                test_folder_rel = os.path.relpath(os.path.dirname(folder_path), path)
-                test_folder_rel = test_folder_rel.replace(os.sep, "/")
+                test_root_rel = os.path.relpath(os.path.dirname(folder_path), path)
+                test_root_rel = test_root_rel.replace(os.sep, "/")
 
-                modules.append({
-                    "nome_modulo": nome_modulo,
-                    "nome_funzione": func_name,
-                    "percorso": percorso,
-                    "testFolder": test_folder_rel,
-                })
+                modules.append(
+                    UnitModule(
+                        module_name=module_name,
+                        function_name=func_name,
+                        source_dir=source_dir,
+                        test_root=test_root_rel,
+                    )
+                )
 
     return modules
 
@@ -327,43 +369,33 @@ def clear_folder(folder_path: str):
     print(f"✅ Folder '{folder_path}' cleared successfully.")
 
 
-def update_unit_under_test(module, unit_name):
+def update_unit_under_test(module: UnitModule, unit_name: str):
     """
     Update the unit test for a single module.
-    'module' is a dict with keys:
-        - nome_modulo
-        - nome_funzione
-        - percorso
-        - testFolder
     """
     if not module:
-        print(f"❌ No entry found with nome_funzione = {unit_name}")
+        print(f"❌ No entry found for function = {unit_name}")
         sys.exit(1)
 
-    module_name = module["nome_modulo"]
-    function_name = module["nome_funzione"]
-    percorso = module["percorso"]
-    unit_test_folder = module["testFolder"]
+    module_name = module.module_name
+    function_name = module.function_name
+    source_dir = module.source_dir
+    unit_test_root = module.test_root
 
-    extracted_body = find_and_extract_function(module_name, function_name, percorso)
+    extracted_body = find_and_extract_function(module_name, function_name, source_dir)
 
     if extracted_body is None:
         print(f"❌ Cannot extract body for function '{function_name}' in module '{module_name}'")
         sys.exit(1)
 
     # Update the corresponding unit test file with the extracted function body
-    test_c_path = os.path.join(
-        unit_test_folder,
-        f"{UNIT_TEST_PREFIX}{function_name}",
-        "src",
-        f"{function_name}.c",
-    )
+    test_c_path = module.test_c_path
     modify_file_after_marker(test_c_path, extracted_body)
 
     # Prepare the execution folder
     clear_folder(UNIT_EXECUTION_FOLDER)
     copy_folder_contents(
-        os.path.join(unit_test_folder, UNIT_TEST_PREFIX + unit_name),
+        os.path.join(unit_test_root, UNIT_TEST_PREFIX + unit_name),
         UNIT_EXECUTION_FOLDER,
     )
 
@@ -511,11 +543,12 @@ def run_bash_cmd(cmd):
     print("✔️  Command executed successfully.\n")
 
 
-def run_and_collect_results(module, function_name):
+def run_and_collect_results(module: UnitModule):
     """
     Orchestrate: update unit under test, run Ceedling in Docker,
     update the aggregated report and copy build results.
     """
+    function_name = module.function_name
     update_unit_under_test(module, function_name)
     run_bash_cmd(DOCKER_CLEAN)
     run_bash_cmd(DOCKER_BASE + ["ceedling", "test:" + function_name])
@@ -546,7 +579,7 @@ Description:
 
 Arguments:
   function_name        Name of the function to test.
-                       It must match 'nome_funzione' in the modules list.
+                       It must match 'function_name' in the discovered modules.
   all                  Run the process for all modules discovered under the project root.
 
 Options:
@@ -579,17 +612,16 @@ if __name__ == "__main__":
         clear_folder(UNIT_RESULT_FOLDER)
         # Run for all modules in the list
         for module in modules:
-            function_name = module["nome_funzione"]
-            print(f"▶ Processing unit: {function_name}")
-            run_and_collect_results(module, function_name)
+            print(f"▶ Processing unit: {module.function_name}")
+            run_and_collect_results(module)
     else:
         # Run only for the selected unit
-        unit_metadata = [m for m in modules if m["nome_funzione"] == unit_to_test]
+        unit_metadata = [m for m in modules if m.function_name == unit_to_test]
         if not unit_metadata:
             print(f"❌ No module found for function '{unit_to_test}'")
             sys.exit(1)
 
         module = unit_metadata[0]   # single module
-        run_and_collect_results(module, unit_to_test)
+        run_and_collect_results(module)
 
     clear_folder(UNIT_EXECUTION_FOLDER)
