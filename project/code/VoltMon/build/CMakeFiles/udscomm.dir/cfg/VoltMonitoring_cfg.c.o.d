@@ -1,7 +1,7 @@
-CMakeFiles/udscomm.dir/pltf/diagnostic.c.o: \
- /workspace/code/UdsComm/pltf/diagnostic.c /usr/include/stdc-predef.h \
- /workspace/code/UdsComm/pltf/diagnostic_priv.h \
- /workspace/code/UdsComm/pltf/diagnostic.h \
+CMakeFiles/udscomm.dir/cfg/VoltMonitoring_cfg.c.o: \
+ /workspace/code/VoltMon/cfg/VoltMonitoring_cfg.c \
+ /usr/include/stdc-predef.h \
+ /workspace/code/VoltMon/cfg/VoltMonitoring_cfg.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -17,6 +17,4 @@ CMakeFiles/udscomm.dir/pltf/diagnostic.c.o: \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
- /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /workspace/code/UdsComm/cfg/diagnostic_cfg.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h
+ /usr/include/x86_64-linux-gnu/bits/stdint-least.h

@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspace/code/UdsComm
+CMAKE_SOURCE_DIR = /workspace/code/VoltMon
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspace/code/UdsComm/build
+CMAKE_BINARY_DIR = /workspace/code/VoltMon/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code/UdsComm/build/CMakeFiles /workspace/code/UdsComm/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code/VoltMon/build/CMakeFiles /workspace/code/VoltMon/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code/UdsComm/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/code/VoltMon/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,53 +129,53 @@ udscomm/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/build
 .PHONY : udscomm/fast
 
-cfg/diagnostic_cfg.o: cfg/diagnostic_cfg.c.o
-.PHONY : cfg/diagnostic_cfg.o
+cfg/VoltMonitoring_cfg.o: cfg/VoltMonitoring_cfg.c.o
+.PHONY : cfg/VoltMonitoring_cfg.o
 
 # target to build an object file
-cfg/diagnostic_cfg.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.o
-.PHONY : cfg/diagnostic_cfg.c.o
+cfg/VoltMonitoring_cfg.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/cfg/VoltMonitoring_cfg.c.o
+.PHONY : cfg/VoltMonitoring_cfg.c.o
 
-cfg/diagnostic_cfg.i: cfg/diagnostic_cfg.c.i
-.PHONY : cfg/diagnostic_cfg.i
+cfg/VoltMonitoring_cfg.i: cfg/VoltMonitoring_cfg.c.i
+.PHONY : cfg/VoltMonitoring_cfg.i
 
 # target to preprocess a source file
-cfg/diagnostic_cfg.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.i
-.PHONY : cfg/diagnostic_cfg.c.i
+cfg/VoltMonitoring_cfg.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/cfg/VoltMonitoring_cfg.c.i
+.PHONY : cfg/VoltMonitoring_cfg.c.i
 
-cfg/diagnostic_cfg.s: cfg/diagnostic_cfg.c.s
-.PHONY : cfg/diagnostic_cfg.s
+cfg/VoltMonitoring_cfg.s: cfg/VoltMonitoring_cfg.c.s
+.PHONY : cfg/VoltMonitoring_cfg.s
 
 # target to generate assembly for a file
-cfg/diagnostic_cfg.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.s
-.PHONY : cfg/diagnostic_cfg.c.s
+cfg/VoltMonitoring_cfg.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/cfg/VoltMonitoring_cfg.c.s
+.PHONY : cfg/VoltMonitoring_cfg.c.s
 
-pltf/diagnostic.o: pltf/diagnostic.c.o
-.PHONY : pltf/diagnostic.o
+pltf/VoltMonitoring.o: pltf/VoltMonitoring.c.o
+.PHONY : pltf/VoltMonitoring.o
 
 # target to build an object file
-pltf/diagnostic.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/pltf/diagnostic.c.o
-.PHONY : pltf/diagnostic.c.o
+pltf/VoltMonitoring.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/pltf/VoltMonitoring.c.o
+.PHONY : pltf/VoltMonitoring.c.o
 
-pltf/diagnostic.i: pltf/diagnostic.c.i
-.PHONY : pltf/diagnostic.i
+pltf/VoltMonitoring.i: pltf/VoltMonitoring.c.i
+.PHONY : pltf/VoltMonitoring.i
 
 # target to preprocess a source file
-pltf/diagnostic.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/pltf/diagnostic.c.i
-.PHONY : pltf/diagnostic.c.i
+pltf/VoltMonitoring.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/pltf/VoltMonitoring.c.i
+.PHONY : pltf/VoltMonitoring.c.i
 
-pltf/diagnostic.s: pltf/diagnostic.c.s
-.PHONY : pltf/diagnostic.s
+pltf/VoltMonitoring.s: pltf/VoltMonitoring.c.s
+.PHONY : pltf/VoltMonitoring.s
 
 # target to generate assembly for a file
-pltf/diagnostic.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/pltf/diagnostic.c.s
-.PHONY : pltf/diagnostic.c.s
+pltf/VoltMonitoring.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/udscomm.dir/build.make CMakeFiles/udscomm.dir/pltf/VoltMonitoring.c.s
+.PHONY : pltf/VoltMonitoring.c.s
 
 # Help Target
 help:
@@ -186,12 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... udscomm"
-	@echo "... cfg/diagnostic_cfg.o"
-	@echo "... cfg/diagnostic_cfg.i"
-	@echo "... cfg/diagnostic_cfg.s"
-	@echo "... pltf/diagnostic.o"
-	@echo "... pltf/diagnostic.i"
-	@echo "... pltf/diagnostic.s"
+	@echo "... cfg/VoltMonitoring_cfg.o"
+	@echo "... cfg/VoltMonitoring_cfg.i"
+	@echo "... cfg/VoltMonitoring_cfg.s"
+	@echo "... pltf/VoltMonitoring.o"
+	@echo "... pltf/VoltMonitoring.i"
+	@echo "... pltf/VoltMonitoring.s"
 .PHONY : help
 
 

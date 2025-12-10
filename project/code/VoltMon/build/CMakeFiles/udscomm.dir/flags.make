@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/workspace/code/UdsComm/pltf -I/workspace/code/UdsComm/cfg
+C_INCLUDES = -I/workspace/code/VoltMon/pltf -I/workspace/code/VoltMon/cfg
 
 C_FLAGS = 
 

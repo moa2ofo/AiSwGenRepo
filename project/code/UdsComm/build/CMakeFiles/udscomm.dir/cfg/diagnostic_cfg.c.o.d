@@ -1,6 +1,6 @@
 CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.o: \
- /workspace/cfg/diagnostic_cfg.c /usr/include/stdc-predef.h \
- /workspace/cfg/diagnostic_cfg.h \
+ /workspace/code/UdsComm/cfg/diagnostic_cfg.c /usr/include/stdc-predef.h \
+ /workspace/code/UdsComm/cfg/diagnostic_cfg.h \
  /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -17,4 +17,4 @@ CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
- /workspace/cfg/diagnostic_cfg_priv.h
+ /workspace/code/UdsComm/cfg/diagnostic_cfg_priv.h

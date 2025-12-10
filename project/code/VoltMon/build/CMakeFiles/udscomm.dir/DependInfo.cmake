@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspace/code/UdsComm/cfg/diagnostic_cfg.c" "CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.o" "gcc" "CMakeFiles/udscomm.dir/cfg/diagnostic_cfg.c.o.d"
-  "/workspace/code/UdsComm/pltf/diagnostic.c" "CMakeFiles/udscomm.dir/pltf/diagnostic.c.o" "gcc" "CMakeFiles/udscomm.dir/pltf/diagnostic.c.o.d"
+  "/workspace/code/VoltMon/cfg/VoltMonitoring_cfg.c" "CMakeFiles/udscomm.dir/cfg/VoltMonitoring_cfg.c.o" "gcc" "CMakeFiles/udscomm.dir/cfg/VoltMonitoring_cfg.c.o.d"
+  "/workspace/code/VoltMon/pltf/VoltMonitoring.c" "CMakeFiles/udscomm.dir/pltf/VoltMonitoring.c.o" "gcc" "CMakeFiles/udscomm.dir/pltf/VoltMonitoring.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
