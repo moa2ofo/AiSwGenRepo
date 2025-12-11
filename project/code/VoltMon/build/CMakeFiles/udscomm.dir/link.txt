@@ -1,2 +1,0 @@
-/usr/bin/ar qc libudscomm.a CMakeFiles/udscomm.dir/cfg/VoltMonitoring_cfg.c.o CMakeFiles/udscomm.dir/pltf/VoltMonitoring.c.o
-/usr/bin/ranlib libudscomm.a
