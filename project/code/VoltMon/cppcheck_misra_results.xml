@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<results version="2">
-    <cppcheck version="2.13.0"/>
-    <errors>
-        <error id="misra-c2012-8.2" severity="style" msg="Function types shall be in prototype form with named parameters\011" verbose="Function types shall be in prototype form with named parameters\011" file0="pltf/VoltMonitoring.c">
-            <location file="pltf/VoltMonitoring.c" line="156" column="9"/>
-        </error>
-    </errors>
-</results>

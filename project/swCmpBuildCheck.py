@@ -1,7 +1,171 @@
 #!/usr/bin/env python3
 import os
+import sys
+import xml.etree.ElementTree as ET
+import html
 import subprocess
 from pathlib import Path
+
+def generate_html_for_cppcheck_xml(xml_path: str) -> str:
+    """
+    Parse cppcheck_misra_results.xml and generate cppcheck_misra_results.html.
+    After generating HTML, remove '\011' and '\342\200\246' from the HTML file.
+    Remove also the entire 'file0' and 'verbose' columns.
+    Finally, delete the original XML file.
+    """
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+
+    errors = root.findall(".//error")
+    if not errors:
+        print(f"[INFO] No <error> elements found in {xml_path}")
+        return ""
+
+    # ------------------------------------------------------------------
+    # Collect attribute names, then REMOVE 'file0' and 'verbose'
+    # ------------------------------------------------------------------
+    attr_names = set()
+    for err in errors:
+        attr_names.update(err.attrib.keys())
+
+    attr_names.discard("cwe")
+    attr_names.discard("file0")      # REMOVE ENTIRE COLUMN
+    attr_names.discard("verbose")    # REMOVE ENTIRE COLUMN
+
+    # Order wished WITHOUT file0 and verbose
+    preferred_order = ["id", "severity", "file1", "msg"]
+
+    ordered_attrs = [a for a in preferred_order if a in attr_names]
+    ordered_attrs.extend(sorted(attr_names - set(ordered_attrs)))
+
+    # Add custom column for locations
+    columns = ordered_attrs + ["locations"]
+
+    # ------------------------------------------------------------------
+    # Build HTML rows
+    # ------------------------------------------------------------------
+    rows_html = []
+
+    for err in errors:
+        cells = []
+
+        # Only include selected columns
+        for col in ordered_attrs:
+            val = err.attrib.get(col, "")
+            cells.append(f"<td>{html.escape(val)}</td>")
+
+        # Build 'locations' cell
+        locations = []
+        for loc in err.findall("location"):
+            file_ = loc.attrib.get("file", "")
+            line = loc.attrib.get("line", "")
+            col_ = loc.attrib.get("column", "")
+            info = loc.attrib.get("info", "")
+
+            parts = [p for p in (file_, line, col_) if p]
+            pos = ":".join(parts)
+            loc_str = f"{pos} - {info}" if pos and info else pos or info
+            locations.append(html.escape(loc_str))
+
+        loc_html = "<br>".join(locations)
+        cells.append(f"<td>{loc_html}</td>")
+
+        rows_html.append("<tr>" + "".join(cells) + "</tr>")
+
+    # ------------------------------------------------------------------
+    # Build HTML document
+    # ------------------------------------------------------------------
+    header_html = "<tr>" + "".join(f"<th>{html.escape(col)}</th>" for col in columns) + "</tr>"
+
+    css = """
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) td {
+    background-color: #fafafa;
+}
+tbody tr:hover td {
+    background-color: #e8f2ff;
+}
+"""
+
+    title = f"Cppcheck MISRA Results - {html.escape(os.path.basename(xml_path))}"
+
+    html_doc = f"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{title}</title>
+<style>{css}</style>
+</head>
+<body>
+<h1>{title}</h1>
+<p>Source file: <code>{html.escape(xml_path)}</code></p>
+<table>
+<thead>{header_html}</thead>
+<tbody>{''.join(rows_html)}</tbody>
+</table>
+</body>
+</html>
+"""
+
+    html_path = os.path.splitext(xml_path)[0] + ".html"
+
+    # Write original HTML
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(html_doc)
+
+    # ------------------------------------------------------------------
+    # Clean unwanted escape sequences
+    # ------------------------------------------------------------------
+    with open(html_path, "r", encoding="utf-8") as f:
+        cleaned = (
+            f.read()
+            .replace("\\011", " ")
+            .replace("\\342\\200\\246", "…")
+        )
+
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(cleaned)
+
+    print(f"[OK] Cleaned and generated: {html_path}")
+
+    # ------------------------------------------------------------------
+    # Delete the source XML file
+    # ------------------------------------------------------------------
+    try:
+        os.remove(xml_path)
+        print(f"[OK] Deleted source XML: {xml_path}")
+    except Exception as e:
+        print(f"[WARNING] Could not delete {xml_path}: {e}")
+
+    return html_path
+
+
+
+
+def generate_cppcheck_html_reports(root_folder: str) -> None:
+    """
+    Walk root_folder recursively and convert every cppcheck_misra_results XML file to HTML.
+    """
+    for dirpath, _, filenames in os.walk(root_folder):
+        for filename in filenames:
+            if filename in ("cppcheck_misra_results.mxl", "cppcheck_misra_results.xml"):
+                xml_path = os.path.join(dirpath, filename)
+                try:
+                    generate_html_for_cppcheck_xml(xml_path)
+                except Exception as e:
+                    print(f"[ERROR] Failed to process {xml_path}: {e}")
 
 
 def find_targets_with_pltf_or_cfg(root: Path):
@@ -99,7 +263,7 @@ def main():
                     print(f"  Already removed: {cmake_path}")
         else:
             print("\nNo generated CMakeLists.txt to clean up.")
-
+    generate_cppcheck_html_reports(codebase_root)
     print("\nDone.")
 
 
