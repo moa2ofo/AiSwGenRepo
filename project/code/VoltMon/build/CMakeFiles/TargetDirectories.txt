@@ -1,3 +1,0 @@
-/workspace/code/VoltMon/build/CMakeFiles/udscomm.dir
-/workspace/code/VoltMon/build/CMakeFiles/edit_cache.dir
-/workspace/code/VoltMon/build/CMakeFiles/rebuild_cache.dir

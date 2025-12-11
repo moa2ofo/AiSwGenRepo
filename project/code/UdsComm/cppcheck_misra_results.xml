@@ -5,16 +5,6 @@
         <error id="redundantAssignment" severity="style" msg="Variable &apos;l_result_&apos; is reassigned a value before the old one has been used." verbose="Variable &apos;l_result_&apos; is reassigned a value before the old one has been used." cwe="563" file0="cfg/diagnostic_cfg.c">
             <location file="cfg/diagnostic_cfg.c" line="63" column="22" info="l_result_ is overwritten"/>
             <location file="cfg/diagnostic_cfg.c" line="58" column="19" info="l_result_ is assigned"/>
-            <symbol>l_result_</symbol>
-        </error>
-        <error id="misra-c2012-12.1" severity="style" msg="The precedence of operators within expressions should be made explicit\011" verbose="The precedence of operators within expressions should be made explicit\011" file0="cfg/diagnostic_cfg.c">
-            <location file="cfg/diagnostic_cfg.c" line="15" column="25"/>
-        </error>
-        <error id="misra-c2012-13.4" severity="style" msg="The result of an assignment operator should not be used\011" verbose="The result of an assignment operator should not be used\011" file0="cfg/diagnostic_cfg.c">
-            <location file="cfg/diagnostic_cfg.c" line="63" column="22"/>
-        </error>
-        <error id="misra-c2012-17.8" severity="style" msg="A function parameter should not be modified\011" verbose="A function parameter should not be modified\011" file0="cfg/diagnostic_cfg.c">
-            <location file="cfg/diagnostic_cfg.c" line="59" column="22"/>
         </error>
         <error id="misra-c2012-10.3" severity="style" msg="The value of an expression shall not be assigned to an object with a narrower essential type or of a different essential type category\011" verbose="The value of an expression shall not be assigned to an object with a narrower essential type or of a different essential type category\011" file0="pltf/diagnostic.c">
             <location file="pltf/diagnostic.c" line="24" column="29"/>
@@ -25,8 +15,17 @@
         <error id="misra-c2012-10.4" severity="style" msg="Both operands of an operator in which the usual arithmetic conversions are performed shall have the same essential type category\011" verbose="Both operands of an operator in which the usual arithmetic conversions are performed shall have the same essential type category\011" file0="pltf/diagnostic.c">
             <location file="pltf/diagnostic.c" line="25" column="61"/>
         </error>
+        <error id="misra-c2012-12.1" severity="style" msg="The precedence of operators within expressions should be made explicit\011" verbose="The precedence of operators within expressions should be made explicit\011" file0="cfg/diagnostic_cfg.c">
+            <location file="cfg/diagnostic_cfg.c" line="15" column="25"/>
+        </error>
         <error id="misra-c2012-10.6" severity="style" msg="The value of a composite expression shall not be assigned to an object with wider essential type\011" verbose="The value of a composite expression shall not be assigned to an object with wider essential type\011" file0="pltf/diagnostic.c">
             <location file="pltf/diagnostic.c" line="45" column="27"/>
+        </error>
+        <error id="misra-c2012-13.4" severity="style" msg="The result of an assignment operator should not be used\011" verbose="The result of an assignment operator should not be used\011" file0="cfg/diagnostic_cfg.c">
+            <location file="cfg/diagnostic_cfg.c" line="63" column="22"/>
+        </error>
+        <error id="misra-c2012-17.8" severity="style" msg="A function parameter should not be modified\011" verbose="A function parameter should not be modified\011" file0="cfg/diagnostic_cfg.c">
+            <location file="cfg/diagnostic_cfg.c" line="59" column="22"/>
         </error>
     </errors>
 </results>
