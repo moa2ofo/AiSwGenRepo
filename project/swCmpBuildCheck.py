@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import xml.etree.ElementTree as ET
 import html
 import subprocess
@@ -7,6 +8,7 @@ import re
 from pathlib import Path
 from typing import Union, Dict
 
+# Default MISRA rules file path (adjust if needed)
 MISRA_RULES_PATH = Path(__file__).resolve().parent / "misra" / "misra_c_2012_headlines.txt"
 
 
@@ -72,13 +74,16 @@ def generate_html_for_cppcheck_xml(
     - Remove '\\011' and '\\342\\200\\246' from the HTML file.
     - Remove the entire 'file0', 'verbose', and 'cwe' columns.
     - Color the row background based on final Severity:
-        style    -> white (default)
-        Advisory -> yellow
-        Required -> orange
-        Mandatory-> red
+        style/unknown -> white (default)
+        Advisory      -> yellow
+        Required      -> orange
+        Mandatory     -> red
+    - Locations column entries become clickable VS Code links:
+        pltf/diagnostic.c:45:27  -->  vscode://file/<abs-path>/pltf/diagnostic.c:45:27
     - Finally, delete the original XML file.
     """
     xml_path = str(xml_path)
+    xml_dir = os.path.dirname(xml_path)
     tree = ET.parse(xml_path)
     root = tree.getroot()
 
@@ -147,7 +152,6 @@ def generate_html_for_cppcheck_xml(
             row_style = ' style="background-color: #ffcc80;"'   # orange
         elif "mandatory" in sev_norm:
             row_style = ' style="background-color: #ff9999;"'   # red
-        # 'style' or anything else -> no custom bg, keep default
 
         # ---- Build <td> cells
         for col in ordered_attrs:
@@ -158,23 +162,67 @@ def generate_html_for_cppcheck_xml(
 
             cells.append("<td>%s</td>" % html.escape(val))
 
-        # Build 'locations' cell
-        locations = []
+        # ------------------------------------------------------------------
+        # Build 'locations' cell with VS Code links
+        # ------------------------------------------------------------------
+        locations_html = []
+
         for loc in err.findall("location"):
             file_ = loc.attrib.get("file", "")
             line = loc.attrib.get("line", "")
             col_ = loc.attrib.get("column", "")
             info = loc.attrib.get("info", "")
 
-            parts = [p for p in (file_, line, col_) if p]
-            pos = ":".join(parts)
-            if pos and info:
-                loc_str = "%s - %s" % (pos, info)
-            else:
-                loc_str = pos or info
-            locations.append(html.escape(loc_str))
+            # Build relative display like "pltf/diagnostic.c:45:27"
+            display_parts = []
+            if file_:
+                display_parts.append(file_)
+            if line:
+                display_parts.append(line)
+            if col_:
+                display_parts.append(col_)
+            display_text = ":".join(display_parts)
 
-        loc_html = "<br>".join(locations)
+            # Absolute path for VS Code link (resolved from XML directory)
+            abs_path = os.path.abspath(os.path.join(xml_dir, file_)) if file_ else ""
+            # VS Code URI: vscode://file/<absolute-path>:line[:col]
+            if line:
+                if col_:
+                    vscode_target = "vscode://file/%s:%s:%s" % (
+                        abs_path.replace("\\", "/"),
+                        line,
+                        col_,
+                    )
+                else:
+                    vscode_target = "vscode://file/%s:%s" % (
+                        abs_path.replace("\\", "/"),
+                        line,
+                    )
+            else:
+                # No line -> open file at start
+                vscode_target = "vscode://file/%s" % abs_path.replace("\\", "/")
+
+            # HTML link text (safe)
+            link_text = html.escape(display_text) if display_text else html.escape(file_)
+
+            # Info text
+            info_html = ""
+            if info:
+                info_html = " - %s" % html.escape(info)
+
+            if abs_path:
+                link_html = '<a href="%s">%s</a>%s' % (
+                    html.escape(vscode_target),
+                    link_text,
+                    info_html,
+                )
+            else:
+                # Fallback: just plain text if path is missing
+                link_html = "%s%s" % (link_text, info_html)
+
+            locations_html.append(link_html)
+
+        loc_html = "<br>".join(locations_html)
         cells.append("<td>%s</td>" % loc_html)
 
         # Append full row with optional inline style for background color
@@ -186,6 +234,7 @@ def generate_html_for_cppcheck_xml(
     header_cells = "".join("<th>%s</th>" % html.escape(col) for col in columns)
     header_html = "<tr>%s</tr>" % header_cells
 
+    # NOTE: removed zebra striping, to not override severity colors
     css = """
 table {
     border-collapse: collapse;
@@ -200,8 +249,6 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
-/* Removed zebra striping so severity colors are visible */
-/* Keep a light hover effect, but not too intrusive */
 tbody tr:hover td {
     background-color: #e8f2ff;
 }
@@ -315,8 +362,9 @@ def main():
     if not codebase_root.is_dir():
         raise SystemExit("ERROR: code directory not found at: %s" % codebase_root)
 
-    # MISRA rules file path (fixed)
+    # MISRA rules file path (fixed default)
     misra_rules_path = MISRA_RULES_PATH
+
     print("Scanning for components under: %s" % codebase_root)
     print("Using MISRA rules file: %s" % misra_rules_path)
 
