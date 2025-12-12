@@ -96,23 +96,23 @@ void VoltMon_Init(void);
  *
  * @par Interface summary
  *
- * | Interface                                 | In | Out | Data type | Param | Data factor | Data offset | Data size | Data range   | Data unit |
- * |-------------------------------------------|:--:|:---:|-----------|-------|------------:|------------:|----------:|--------------|-----------|
- * | dt_ms                                     | X  |     | uint16    |   -   |      1      |           0 |         1 | [0, 1000]    | [ms]      |
- * | READ_VOLT_PROJECT_MV                      | X  |     | uint16    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
- * | VoltMon_GetUnderOn_mV()                   | X  |     | uint16    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
- * | VoltMon_GetUnderOff_mV()                  | X  |     | uint16    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
- * | VoltMon_GetOverOn_mV()                    | X  |     | uint16    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
- * | VoltMon_GetOverOff_mV()                   | X  |     | uint16    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
- * | VoltMon_ActivationTime_ms                 | X  |     | uint16    |   -   |      1      |           0 |         1 | [1, 5000]    | [ms]      |
- * | VoltMon_DeactivationTime_ms               | X  |     | uint16    |   -   |      1      |           0 |         1 | [1, 5000]    | [ms]      |
- * | VOLT_MON_STATE_UNDERVOLTAGE               | X  |     | enum      |   -   |      1      |           0 |         1 |      [0]     | [-]       |
- * | VOLT_MON_STATE_NORMAL                     | X  |     | enum      |   -   |      1      |           0 |         1 |      [1]     | [-]       |
- * | VOLT_MON_STATE_OVERVOLTAGE                | X  |     | enum      |   -   |      1      |           0 |         1 |      [2]     | [-]       |
- * | VoltMon_Ctx.state                         | X  |  X  | enum      |   -   |      1      |           0 |         1 | {0,1,2}      | [-]       |
- * | VoltMon_Ctx.uvActivationTimer_ms          | X  |  X  | uint16    |   -   |      1      |           0 |         1 | [0, 65535]   | [ms]      |
- * | VoltMon_Ctx.ovActivationTimer_ms          | X  |  X  | uint16    |   -   |      1      |           0 |         1 | [0, 65535]   | [ms]      |
- * | VoltMon_Ctx.deactivationTimer_ms          | X  |  X  | uint16    |   -   |      1      |           0 |         1 | [0, 65535]   | [ms]      |
+ * | Interface                                 | In | Out | Data type       | Param | Data factor | Data offset | Data size | Data range   | Data unit |
+ * |-------------------------------------------|:--:|:---:|-----------------|-------|------------:|------------:|----------:|--------------|-----------|
+ * | dt_ms                                     | X  |     | uint16          |   -   |      1      |           0 |         1 | [0, 1000]    | [ms]      |
+ * | READ_VOLT_PROJECT_MV                      | X  |     | uint16          |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
+ * | VoltMon_GetUnderOn_mV()                   | X  |     | uint16(void)    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
+ * | VoltMon_GetUnderOff_mV()                  | X  |     | uint16(void)    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
+ * | VoltMon_GetOverOn_mV()                    | X  |     | uint16(void)    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
+ * | VoltMon_GetOverOff_mV()                   | X  |     | uint16(void)    |   -   |      1      |           0 |         1 | [0, 20000]   | [mV]      |
+ * | VoltMon_ActivationTime_ms                 | X  |     | uint16          |   -   |      1      |           0 |         1 | [1, 5000]    | [ms]      |
+ * | VoltMon_DeactivationTime_ms               | X  |     | uint16          |   -   |      1      |           0 |         1 | [1, 5000]    | [ms]      |
+ * | VOLT_MON_STATE_UNDERVOLTAGE               | X  |     | enum            |   -   |      1      |           0 |         1 |      [0]     | [-]       |
+ * | VOLT_MON_STATE_NORMAL                     | X  |     | enum            |   -   |      1      |           0 |         1 |      [1]     | [-]       |
+ * | VOLT_MON_STATE_OVERVOLTAGE                | X  |     | enum            |   -   |      1      |           0 |         1 |      [2]     | [-]       |
+ * | VoltMon_Ctx.state                         | X  |  X  | enum            |   -   |      1      |           0 |         1 | {0,1,2}      | [-]       |
+ * | VoltMon_Ctx.uvActivationTimer_ms          | X  |  X  | uint16          |   -   |      1      |           0 |         1 | [0, 65535]   | [ms]      |
+ * | VoltMon_Ctx.ovActivationTimer_ms          | X  |  X  | uint16          |   -   |      1      |           0 |         1 | [0, 65535]   | [ms]      |
+ * | VoltMon_Ctx.deactivationTimer_ms          | X  |  X  | uint16          |   -   |      1      |           0 |         1 | [0, 65535]   | [ms]      |
  *
  * @par Activity diagram (PlantUML)
  *

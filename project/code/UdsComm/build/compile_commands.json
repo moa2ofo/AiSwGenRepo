@@ -1,13 +1,13 @@
 [
 {
   "directory": "/workspace/code/UdsComm/build",
-  "command": "/usr/bin/cc  -I/workspace/code/UdsComm/pltf -I/workspace/code/UdsComm/cfg  -o CMakeFiles/UdsComm.dir/cfg/diagnostic_cfg.c.o -c /workspace/code/UdsComm/cfg/diagnostic_cfg.c",
+  "command": "/usr/bin/cc  -I/workspace/code/UdsComm/pltf -I/workspace/code/UdsComm/cfg -Wall -Wextra -Wpedantic -o CMakeFiles/UdsComm.dir/cfg/diagnostic_cfg.c.o -c /workspace/code/UdsComm/cfg/diagnostic_cfg.c",
   "file": "/workspace/code/UdsComm/cfg/diagnostic_cfg.c",
   "output": "CMakeFiles/UdsComm.dir/cfg/diagnostic_cfg.c.o"
 },
 {
   "directory": "/workspace/code/UdsComm/build",
-  "command": "/usr/bin/cc  -I/workspace/code/UdsComm/pltf -I/workspace/code/UdsComm/cfg  -o CMakeFiles/UdsComm.dir/pltf/diagnostic.c.o -c /workspace/code/UdsComm/pltf/diagnostic.c",
+  "command": "/usr/bin/cc  -I/workspace/code/UdsComm/pltf -I/workspace/code/UdsComm/cfg -Wall -Wextra -Wpedantic -o CMakeFiles/UdsComm.dir/pltf/diagnostic.c.o -c /workspace/code/UdsComm/pltf/diagnostic.c",
   "file": "/workspace/code/UdsComm/pltf/diagnostic.c",
   "output": "CMakeFiles/UdsComm.dir/pltf/diagnostic.c.o"
 }

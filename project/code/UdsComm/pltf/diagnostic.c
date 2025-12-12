@@ -5,7 +5,6 @@ uint8_t pbLinDiagBuffer[32];
 /* Message length */
 uint16_t g_linDiagDataLength = 0;
 
-
 /* Send positive response */
 void LinDiagSendPosResponse(void)
 {

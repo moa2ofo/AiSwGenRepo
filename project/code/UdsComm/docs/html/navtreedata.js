@@ -26,14 +26,19 @@ var NAVTREE =
 [
   [ "ACSL Doc", "index.html", [
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"diagnostic_8h_source.html"
+"diagnostic_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';
