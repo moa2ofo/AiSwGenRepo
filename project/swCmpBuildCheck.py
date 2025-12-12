@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
-import sys
+import getpass
+from datetime import datetime
 import xml.etree.ElementTree as ET
 import html
 import subprocess
@@ -62,7 +63,6 @@ def load_misra_rules(misra_rules_path: Union[str, Path]) -> Dict[str, str]:
 # Match things like "misra-c2012-21.5" and extract "21.5"
 MISRA_ID_REGEX = re.compile(r"misra-c2012-(\d+\.\d+)")
 
-
 def generate_html_for_cppcheck_xml(
     xml_path: Union[str, Path], misra_rules_path: Union[str, Path]
 ) -> str:
@@ -80,10 +80,14 @@ def generate_html_for_cppcheck_xml(
         Mandatory     -> red
     - Locations column entries become clickable VS Code links:
         pltf/diagnostic.c:45:27  -->  vscode://file/<abs-path>/pltf/diagnostic.c:45:27
+    - Add metadata under the title:
+        Tester: <pc-user>  Date: DD/MM/YY  Time: HH:mm:ss
     - Finally, delete the original XML file.
     """
+
     xml_path = str(xml_path)
     xml_dir = os.path.dirname(xml_path)
+
     tree = ET.parse(xml_path)
     root = tree.getroot()
 
@@ -185,6 +189,7 @@ def generate_html_for_cppcheck_xml(
 
             # Absolute path for VS Code link (resolved from XML directory)
             abs_path = os.path.abspath(os.path.join(xml_dir, file_)) if file_ else ""
+
             # VS Code URI: vscode://file/<absolute-path>:line[:col]
             if line:
                 if col_:
@@ -252,9 +257,23 @@ th {
 tbody tr:hover td {
     background-color: #e8f2ff;
 }
+.meta {
+    margin: 6px 0 10px 0;
+}
 """
 
-    title = "Cppcheck MISRA Results - %s" % html.escape(os.path.basename(xml_path))
+    title = "Cppcheck MISRA Results"
+
+    # Metadata line (PC user + current date/time)
+    tester = getpass.getuser()
+    now = datetime.now()
+    date_str = now.strftime("%d/%m/%y")
+    time_str = now.strftime("%H:%M:%S")
+    meta_line = "Tester: %s&nbsp;&nbsp;Date: %s&nbsp;&nbsp;Time: %s" % (
+        html.escape(tester),
+        html.escape(date_str),
+        html.escape(time_str),
+    )
 
     html_doc = """<!DOCTYPE html>
 <html>
@@ -265,6 +284,7 @@ tbody tr:hover td {
 </head>
 <body>
 <h1>%s</h1>
+<p class="meta"><strong>%s</strong></p>
 <p>Source file: <code>%s</code></p>
 <table>
 <thead>%s</thead>
@@ -276,6 +296,7 @@ tbody tr:hover td {
         title,
         css,
         title,
+        meta_line,
         html.escape(xml_path),
         header_html,
         "".join(rows_html),
