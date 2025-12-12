@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['voltmon_5factivationtime_5fms_0',['voltmon_activationtime_ms',['../VoltMonitoring__cfg_8c.html#a4865bd65858ef8e80dc8676ce4842d6b',1,'VoltMon_ActivationTime_ms:&#160;VoltMonitoring_cfg.c'],['../VoltMonitoring__cfg_8h.html#a4865bd65858ef8e80dc8676ce4842d6b',1,'VoltMon_ActivationTime_ms:&#160;VoltMonitoring_cfg.c']]],
+  ['voltmon_5fctx_1',['voltmon_ctx',['../VoltMonitoring_8c.html#a99ded6f965f927029572950c7184ff0c',1,'VoltMon_Ctx:&#160;VoltMonitoring.c'],['../VoltMonitoring__priv_8h.html#a99ded6f965f927029572950c7184ff0c',1,'VoltMon_Ctx:&#160;VoltMonitoring.c']]],
+  ['voltmon_5fdeactivationtime_5fms_2',['voltmon_deactivationtime_ms',['../VoltMonitoring__cfg_8c.html#a8654139cec06d95bdb3dc890ca58b731',1,'VoltMon_DeactivationTime_ms:&#160;VoltMonitoring_cfg.c'],['../VoltMonitoring__cfg_8h.html#a8654139cec06d95bdb3dc890ca58b731',1,'VoltMon_DeactivationTime_ms:&#160;VoltMonitoring_cfg.c']]],
+  ['voltmon_5fhysteresis_5fmv_3',['voltmon_hysteresis_mv',['../VoltMonitoring__cfg_8c.html#a1c480677102e006f2f523e4f70838ade',1,'VoltMon_Hysteresis_mV:&#160;VoltMonitoring_cfg.c'],['../VoltMonitoring__cfg_8h.html#a1c480677102e006f2f523e4f70838ade',1,'VoltMon_Hysteresis_mV:&#160;VoltMonitoring_cfg.c']]],
+  ['voltmon_5ftaskperiod_5fms_4',['voltmon_taskperiod_ms',['../VoltMonitoring__cfg_8c.html#ab2ae6432d40a365e7315f8808774735c',1,'VoltMon_TaskPeriod_ms:&#160;VoltMonitoring_cfg.c'],['../VoltMonitoring__cfg_8h.html#ab2ae6432d40a365e7315f8808774735c',1,'VoltMon_TaskPeriod_ms:&#160;VoltMonitoring_cfg.c']]],
+  ['voltmon_5fthresholdover_5fmv_5',['voltmon_thresholdover_mv',['../VoltMonitoring__cfg_8c.html#a92987f37858e7d4dc32bbd9073a311db',1,'VoltMon_ThresholdOver_mV:&#160;VoltMonitoring_cfg.c'],['../VoltMonitoring__cfg_8h.html#a92987f37858e7d4dc32bbd9073a311db',1,'VoltMon_ThresholdOver_mV:&#160;VoltMonitoring_cfg.c']]],
+  ['voltmon_5fthresholdunder_5fmv_6',['voltmon_thresholdunder_mv',['../VoltMonitoring__cfg_8c.html#acac11666a1d1a484c12d34a85c481b49',1,'VoltMon_ThresholdUnder_mV:&#160;VoltMonitoring_cfg.c'],['../VoltMonitoring__cfg_8h.html#acac11666a1d1a484c12d34a85c481b49',1,'VoltMon_ThresholdUnder_mV:&#160;VoltMonitoring_cfg.c']]]
+];

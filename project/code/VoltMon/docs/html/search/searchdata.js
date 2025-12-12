@@ -1,11 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "v",
+  0: "dmorsuv",
   1: "v",
   2: "v",
-  3: "v",
-  4: "v",
-  5: "v"
+  3: "mv",
+  4: "dosuv",
+  5: "v",
+  6: "v",
+  7: "r"
 };
 
 var indexSectionNames =
@@ -14,8 +16,10 @@ var indexSectionNames =
   1: "classes",
   2: "files",
   3: "functions",
-  4: "enums",
-  5: "enumvalues"
+  4: "variables",
+  5: "enums",
+  6: "enumvalues",
+  7: "defines"
 };
 
 var indexSectionLabels =
@@ -24,7 +28,9 @@ var indexSectionLabels =
   1: "Classes",
   2: "Files",
   3: "Functions",
-  4: "Enumerations",
-  5: "Enumerator"
+  4: "Variables",
+  5: "Enumerations",
+  6: "Enumerator",
+  7: "Macros"
 };
 

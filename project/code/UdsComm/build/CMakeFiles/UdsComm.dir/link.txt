@@ -1,2 +1,0 @@
-/usr/bin/ar qc libUdsComm.a CMakeFiles/UdsComm.dir/cfg/diagnostic_cfg.c.o CMakeFiles/UdsComm.dir/pltf/diagnostic.c.o
-/usr/bin/ranlib libUdsComm.a
