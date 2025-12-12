@@ -1,2 +1,0 @@
-/usr/bin/ar qc libVoltMon.a CMakeFiles/VoltMon.dir/cfg/VoltMonitoring_cfg.c.o CMakeFiles/VoltMon.dir/pltf/VoltMonitoring.c.o
-/usr/bin/ranlib libVoltMon.a

@@ -209,3 +209,71 @@ This project provides automated unit test execution and consolidated reporting, 
 It is designed for embedded C projects where quality, compliance, and automation are mandatory.
 
 ---
+## Docker-Based Build System
+
+The Docker environment ensures consistent compiler versions, reproducible builds, and identical static analysis results across machines.
+
+The Docker image includes:
+
+* GCC
+* CMake
+* cppcheck with MISRA addon
+* Required Python tooling
+
+All builds and analyses are executed inside the container, while results are written back to the host filesystem.
+
+---
+
+## SwCmpDocsGenerator Script Functionality
+
+* The swCmpDocsGenerator.py script automates the generation of Doxygen documentation for all software components located inside the code directory.
+
+* Its purpose is to ensure that each software component:
+
+* Is documented using a consistent and reproducible environment
+
+Generates complete HTML documentation using Doxygen
+
+* Includes UML, call, include, and dependency diagrams
+
+* Renders UML diagrams using PlantUML and Graphviz
+
+* Remains fully independent from build and static analysis workflows
+
+* All documentation steps are executed inside a Docker container to guarantee deterministic and repeatable results.
+
+## Component discovery
+
+* The script recursively scans the code directory and identifies software components containing a pltf folder and/or a cfg folder.
+ 
+* Each identified directory is treated as an independent documentation unit.
+
+* For each component, the script executes the documentation workflow directly inside the component directory.
+
+* The following commands are executed:
+
+* docker build -t doxygen-plantuml .
+
+* docker run --rm -v "${PWD}:/workspace" doxygen-plantuml
+
+## Documentation output
+
+* The output directory is defined by the OUTPUT_DIRECTORY parameter in the Doxyfile, for example ./docs/html/index.html.
+
+## Cleanup
+
+* After documentation generation is completed, the script:
+
+* Removes the copied documentation Dockerfile and Doxyfile
+
+## Usage
+
+* From the main project directory, run:
+
+* python swCmpDocsGenerator.py
+
+* To display help and exit:
+
+* python swCmpDocsGenerator.py -h
+
+* python swCmpDocsGenerator.py -help

@@ -1,0 +1,56 @@
+@startuml inline_umlgraph_1.svg
+start
+:Read DID from pbLinDiagBuffer[1..2];
+:l_result = E_OK;
+:l_errCode = 0;
+:l_diagBuf = &pbLinDiagBuffer[3];
+:l_diagBufSize = 0;
+
+:checkCurrentNad(0, &l_result);
+if (l_result == E_OK) then (OK)
+  :checkMsgDataLength(g_linDiagDataLength, &l_result);
+endif
+
+if (l_result == E_OK) then (OK)
+  :getHandlersForReadDataById(l_errCode, l_did,
+                              &l_diagBufSize,
+                              &l_didSupported,
+                              l_diagBuf);
+endif
+
+if (l_result == E_OK) then (POS)
+  :g_linDiagDataLength = l_diagBufSize + 2;
+  :LinDiagSendPosResponse();
+else (NEG)
+  :LinDiagSendNegResponse(l_errCode);
+endif
+stop
+@enduml
+@startuml inline_umlgraph_2.svg
+start
+:Read DID from pbLinDiagBuffer[1..2];
+:l_result = E_OK;
+:l_errCode = 0;
+:l_diagBuf = &pbLinDiagBuffer[3];
+:l_diagBufSize = 0;
+
+:checkCurrentNad(0, &l_result);
+if (l_result == E_OK) then (OK)
+  :checkMsgDataLength(g_linDiagDataLength, &l_result);
+endif
+
+if (l_result == E_OK) then (OK)
+  :getHandlersForReadDataById(l_errCode, l_did,
+                              &l_diagBufSize,
+                              &l_didSupported,
+                              l_diagBuf);
+endif
+
+if (l_result == E_OK) then (POS)
+  :g_linDiagDataLength = l_diagBufSize + 2;
+  :LinDiagSendPosResponse();
+else (NEG)
+  :LinDiagSendNegResponse(l_errCode);
+endif
+stop
+@enduml
