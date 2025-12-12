@@ -1,21 +1,16 @@
-Project Overview
+# Project Overview
 
-This project provides a unified framework to manage unit testing, platform file synchronization, build automation, and static code analysis across multiple C software components.
+This project manages unit testing, platform file synchronization, build automation, and static code analysis across multiple C software modules.
 
-It supports:
+It automatically updates platform files, executes unit tests, generates consolidated test result reports, and performs static analysis using **cppcheck** with **MISRA C:2012** rules.
 
-Automated execution of unit tests
+A Docker-based environment is provided to ensure reproducible builds and consistent analysis results across different machines.
 
-Consolidated reporting of test results
+The goal of the project is to guarantee consistency, traceability, and quality compliance across all software components.
 
-Docker-based builds for reproducibility
-
-Static analysis using cppcheck with MISRA C:2012 rules
-
-Generation of human-readable HTML reports
-
-The goal is to ensure consistency, traceability, and quality compliance across all software modules.
-
+## Project Structure
+---
+```
 📂 Project Structure
 code/                             # Source code for each software component
  ├─ swComponent1/
@@ -44,216 +39,173 @@ utExecutionAndResults/
  └─ utResults/
      └─ total_result_report.txt   # Consolidated unit test results
 
-Dockerfile                        # Docker environment for build + analysis
+Dockerfile
+  Docker environment for build, test, and MISRA analysis
 
-unitTestsLauncher                 # Script to execute unit tests (use -h for help)
+unitTestsLauncher
+  Script used to launch all unit tests or a specific one (use help to see functionalities)
 
-project                           # Ceedling configuration for unit testing
+project
+  Ceedling configuration used to execute unit tests
 
-swCmpBuildCheck.py                # Script to build and statically analyze components
+swCmpBuildCheck.py
+  Script used to build and perform static checks on all software components inside the code folder
 
-CMakeLists.txt                    # Template CMake configuration for components
+CMakeLists.txt
+  Template CMake configuration used during the build process
+```
 
-🧪 UnitTestsLauncher Script
+## UnitTestsLauncher Script Functionality
 
-The unitTestsLauncher script automates the execution of unit tests across all software components.
+The `unitTestsLauncher` script automates the execution of unit tests across all software modules and performs the following operations:
 
-Main Responsibilities
+### Collect all test folders
 
-Discover unit tests
-Scans all software components and locates test folders (e.g. TEST_*).
+The script scans all modules and finds folders named `TEST_*` that contain unit tests.
 
-Update platform files
-Synchronizes the pltf/ folder for each component to ensure the correct test configuration.
+### Update platform files
 
-Execute unit tests
-Runs all unit tests defined inside each component’s unitTests/ directory.
+The `pltf` folder of each module is updated to ensure test configurations are synchronized.
 
-Generate a consolidated report
-Updates the global report file:
+### Run unit tests
 
+All unit tests located in the `unitTests` directories are executed.
+
+### Update the consolidated report
+
+After execution, the script creates or updates the consolidated report located at:
+
+```text
 utExecutionAndResults/utResults/total_result_report.txt
+```
 
-📊 Unit Test Report Format
+This file contains a global summary of all executed unit tests.
 
-The consolidated report contains a summary table with the following columns:
+## Report Format
 
-Function Name Under Test – Function or module being tested
+The consolidated report contains a table with the following columns:
 
-Total – Total number of executed tests
+* **Function Name Under Test**
+  The function or module being tested
 
-Passed – Number of successful tests
+* **Total**
+  Total number of executed tests
 
-Failed – Number of failed tests
+* **Passed**
+  Number of tests that passed
 
-Ignored – Number of skipped or disabled tests
+* **Failed**
+  Number of tests that failed
 
-The table is formatted and aligned for readability.
+* **Ignored**
+  Number of skipped or disabled tests
 
-🚀 Unit Test Workflow
+The table is aligned to ensure easy readability.
 
-Add or update unit tests inside each component’s unitTests/ directory.
+## Unit Test Usage Workflow
 
-From the main project directory, run:
+1. Place or update unit test files inside each module’s `unitTests` folder.
+2. From the main project directory, run:
 
+```bash
 python parsingUtTest.py all
+```
 
+3. The script will:
 
-The script will:
+   * Update the `pltf` files
+   * Execute all unit tests
+   * Update the consolidated report
 
-Update platform files
+4. Review the results in:
 
-Execute all unit tests
-
-Update the consolidated report
-
-Review the results in:
-
+```text
 utExecutionAndResults/utResults/total_result_report.txt
+```
 
-🧪 SwCmpBuildCheck Script
+## SwCmpBuildCheck Script Functionality
 
-The swCmpBuildCheck.py script automates build validation and static analysis for all software components under the code/ directory.
+The `swCmpBuildCheck.py` script automates the build and static analysis of all software components located inside the `code` directory.
 
-Purpose
+Its purpose is to ensure that each software component:
 
-This script ensures that every software component:
-
-Builds correctly using CMake
-
-Is compiled with GCC
-
-Is analyzed with cppcheck using MISRA C:2012 rules
-
-Produces traceable and readable HTML reports
+* Builds correctly using **CMake**
+* Is compiled with **GCC**
+* Is analyzed using **cppcheck** with **MISRA C:2012** rules
+* Produces readable and traceable HTML analysis reports
 
 All operations are executed inside a Docker container to guarantee a reproducible environment.
 
-What the Script Does
+### Component discovery
 
-Component discovery
-Recursively scans the code/ directory and identifies components containing:
+The script recursively scans the `code` directory and identifies components containing a `pltf` folder and/or a `cfg` folder.
 
-a pltf/ folder and/or
+### Temporary CMakeLists generation
 
-a cfg/ folder
+If a component does not already contain a `CMakeLists.txt` file, one is generated automatically.
+The project name is derived from the component directory name.
+Existing `CMakeLists.txt` files are never overwritten.
 
-Temporary CMakeLists generation
+### Docker-based build and analysis
 
-If a component does not already contain a CMakeLists.txt, one is generated automatically
+The Docker image defined by the `Dockerfile` is built.
+The project is mounted into `/workspace` inside the container.
+For each component, the script:
 
-The project name is derived from the component folder name
+* Runs CMake configure and build
+* Generates `compile_commands.json`
+* Executes cppcheck with the MISRA addon
 
-Existing CMakeLists files are never overwritten
+### HTML report generation
 
-Docker-based build and analysis
+`cppcheck_misra_results.xml` files are converted into HTML reports.
+MISRA severities are resolved using the MISRA rules file.
+Violations are color-coded as **Advisory**, **Required**, or **Mandatory**.
+File references are clickable **VS Code links**.
+Tester name, date, and time are embedded in the report.
 
-Builds a Docker image defined by Dockerfile
+### Cleanup
 
-Mounts the project into /workspace inside the container
+Only the `CMakeLists.txt` files generated by the script are removed.
+The original cppcheck XML files are deleted after HTML generation.
 
-For each component:
+## SwCmpBuildCheck Usage
 
-Runs CMake configure and build
+From the main project directory, run:
 
-Generates compile_commands.json
-
-Executes cppcheck with MISRA addon
-
-HTML report generation
-
-Converts cppcheck_misra_results.xml into an HTML report
-
-MISRA severities are resolved using the MISRA rules file
-
-Rows are color-coded (Advisory / Required / Mandatory)
-
-File references are clickable VS Code links
-
-Tester name, date, and time are embedded in the report
-
-Cleanup
-
-Deletes only the CMakeLists files generated by the script
-
-Removes the original cppcheck XML files after HTML generation
-
-Paths Used by SwCmpBuildCheck
-
-Script location
-The directory where swCmpBuildCheck.py resides
-
-Codebase root
-
-<script_dir>/code
-
-
-Docker workspace inside container
-
-/workspace
-
-
-MISRA rules file
-
-misra/misra_c_2012_headlines.txt
-
-
-Cppcheck output
-
-Temporary: cppcheck_misra_results.xml
-
-Final: cppcheck_misra_results.html
-
-Usage
-
-From the main project directory:
-
+```bash
 python swCmpBuildCheck.py
-
+```
 
 To display help and exit:
 
+```bash
 python swCmpBuildCheck.py -h
+```
 
+or:
 
-or
-
+```bash
 python swCmpBuildCheck.py -help
+```
 
-🐳 Docker-Based Build System
+## Docker-Based Build System
 
-The Docker environment ensures:
-
-Consistent compiler versions
-
-Reproducible builds
-
-Identical static analysis results across machines
+The Docker environment ensures consistent compiler versions, reproducible builds, and identical static analysis results across machines.
 
 The Docker image includes:
 
-GCC
-
-CMake
-
-cppcheck with MISRA addon
-
-Required Python tooling
+* GCC
+* CMake
+* cppcheck with MISRA addon
+* Required Python tooling
 
 All builds and analyses are executed inside the container, while results are written back to the host filesystem.
 
-✅ Summary
+## Summary
 
-This project provides:
-
-Automated unit test execution and reporting
-
-Scalable build and static analysis across multiple components
-
-MISRA-compliant static checks
-
-Clean HTML reports with traceable diagnostics
-
-Docker-based reproducibility
+This project provides automated unit test execution and consolidated reporting, scalable build and static analysis across multiple software components, MISRA-compliant static checks, clean HTML reports with traceable diagnostics, and Docker-based reproducibility.
 
 It is designed for embedded C projects where quality, compliance, and automation are mandatory.
+
+---
