@@ -461,32 +461,16 @@ No command-line arguments are required.
         misra_rules=misra_rules,
     ))
 
-def main():
-    # Directory where script.py lives (your "main" directory)
-    script_dir = Path(__file__).resolve().parent
-    os.chdir(script_dir)  # ensure docker build uses this directory as context
 
-    # Template CMakeLists.txt in main/
-    template_path = script_dir / "CMakeLists.txt"
-    if not template_path.is_file():
-        raise SystemExit("ERROR: Template CMakeLists.txt not found at: %s" % template_path)
-
-    template_content = template_path.read_text(encoding="utf-8")
-
-    # Root of the codebase to scan
-    codebase_root = script_dir / "code"
-    if not codebase_root.is_dir():
-        raise SystemExit("ERROR: code directory not found at: %s" % codebase_root)
-
-    # MISRA rules file path (fixed default)
-    misra_rules_path = MISRA_RULES_PATH
-
+def scan_components(codebase_root: Path, template_content: str) -> list[Path]:
+    """
+    Scan all eligible component directories under codebase_root and create a CMakeLists.txt
+    only if it does not already exist. Returns the list of generated CMakeLists paths.
+    """
     print("Scanning for components under: %s" % codebase_root)
-    print("Using MISRA rules file: %s" % misra_rules_path)
 
-    created_cmakelists = []
+    created_cmakelists: list[Path] = []
 
-    # 1) Create CMakeLists.txt for each eligible component dir
     for target_dir in find_targets_with_pltf_or_cfg(codebase_root):
         cmake_path = target_dir / "CMakeLists.txt"
 
@@ -495,7 +479,7 @@ def main():
             print("Skipping existing CMakeLists.txt in: %s" % target_dir)
             continue
 
-        project_name = target_dir.name  # e.g. 'swComponent1', 'swComponentXYZ'
+        project_name = target_dir.name  # e.g. 'swComponent1'
         component_content = template_content.replace("projectName", project_name)
 
         print("Creating CMakeLists.txt in: %s (projectName -> %s)" % (target_dir, project_name))
@@ -503,54 +487,104 @@ def main():
         created_cmakelists.append(cmake_path)
 
     if not created_cmakelists:
-        print("No new CMakeLists.txt files were created.")
+        print(f"No new CMakeLists.txt files were created in {cmake_path}")
+        sys.exit(0)
     else:
         print("\nCMakeLists.txt created in:")
         for p in created_cmakelists:
-            print("  - %s" % p)
+            print(" - %s" % p)
 
-    # 2) Run docker build + docker run, then clean up generated CMakeLists
+    return created_cmakelists
+
+
+def build_and_run_docker(script_dir: Path) -> None:
+    """
+    Build the Docker image and run the container with the current project mounted to /workspace.
+    """
+    print("\n[Docker] Building image: cmake-misra-multi")
+    subprocess.run(
+        ["docker", "build", "-t", "cmake-misra-multi", "."],
+        check=True,
+    )
+
+    cwd = str(script_dir.resolve())
+    print("[Docker] Running analysis with workspace: %s" % cwd)
+    subprocess.run(
+        [
+            "docker",
+            "run",
+            "--rm",
+            "-v",
+            "%s:/workspace" % cwd,
+            "cmake-misra-multi",
+            "build-and-check-all.sh",
+        ],
+        check=True,
+    )
+
+
+def generate_reports(codebase_root: Path, misra_rules_path: Path) -> None:
+    """
+    Generate HTML reports from cppcheck MISRA XML results.
+    """
+    print("Using MISRA rules file: %s" % misra_rules_path)
+    generate_cppcheck_html_reports(codebase_root, misra_rules_path)
+
+
+def _load_template(script_dir: Path) -> str:
+    template_path = script_dir / "CMakeLists.txt"
+    if not template_path.is_file():
+        raise SystemExit("ERROR: Template CMakeLists.txt not found at: %s" % template_path)
+    return template_path.read_text(encoding="utf-8")
+
+
+def _get_codebase_root(script_dir: Path) -> Path:
+    codebase_root = script_dir / "code"
+    if not codebase_root.is_dir():
+        raise SystemExit("ERROR: code directory not found at: %s" % codebase_root)
+    return codebase_root
+
+
+def _cleanup_generated_cmakelists(created_cmakelists: list[Path]) -> None:
+    if not created_cmakelists:
+        print("\nNo generated CMakeLists.txt to clean up.")
+        return
+
+    print("\nCleaning up generated CMakeLists.txt files...")
+    for cmake_path in created_cmakelists:
+        try:
+            cmake_path.unlink()
+            print(" Removed %s" % cmake_path)
+        except FileNotFoundError:
+            print(" Already removed: %s" % cmake_path)
+
+
+def main():
+    # Directory where script.py lives (your "main" directory)
+    script_dir = Path(__file__).resolve().parent
+    os.chdir(script_dir)  # ensure docker build uses this directory as context
+
+    template_content = _load_template(script_dir)
+    codebase_root = _get_codebase_root(script_dir)
+
+    misra_rules_path = MISRA_RULES_PATH
+
+    created_cmakelists: list[Path] = []
     try:
-        # Build the Docker image
-        print("\n[Docker] Building image: cmake-misra-multi")
-        subprocess.run(
-            ["docker", "build", "-t", "cmake-misra-multi", "."],
-            check=True,
-        )
+        # 1) Create CMakeLists.txt for each eligible component dir
+        created_cmakelists = scan_components(codebase_root, template_content)
 
-        # Run the container with the current project mounted to /workspace
-        cwd = str(script_dir.resolve())
-        print("[Docker] Running analysis with workspace: %s" % cwd)
-        subprocess.run(
-            [
-                "docker",
-                "run",
-                "--rm",
-                "-v",
-                "%s:/workspace" % cwd,
-                "cmake-misra-multi",
-                "build-and-check-all.sh",
-            ],
-            check=True,
-        )
+        # 2) Run docker build + docker run
+        build_and_run_docker(script_dir)
 
     finally:
         # 3) Delete only the CMakeLists.txt files created by this script
-        if created_cmakelists:
-            print("\nCleaning up generated CMakeLists.txt files...")
-            for cmake_path in created_cmakelists:
-                try:
-                    cmake_path.unlink()
-                    print("  Removed %s" % cmake_path)
-                except FileNotFoundError:
-                    print("  Already removed: %s" % cmake_path)
-        else:
-            print("\nNo generated CMakeLists.txt to clean up.")
+        _cleanup_generated_cmakelists(created_cmakelists)
 
     # 4) Generate HTML reports from cppcheck MISRA XML
-    generate_cppcheck_html_reports(codebase_root, misra_rules_path)
-    print("\nDone.")
+    generate_reports(codebase_root, misra_rules_path)
 
+    print("\nDone.")
 
 
 if __name__ == "__main__":
