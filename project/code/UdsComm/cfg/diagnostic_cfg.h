@@ -157,11 +157,11 @@ void checkMsgDataLength(uint16_t dataLength, Std_ReturnType *result);
  * :l_handler = SubfunctionRequestOutOfRange_;
  *
  * if (l_did_cu16 == 0xF308) then (YES)
- *   :*l_diagBufSize_u8 = DID_F308_SIZE;
+ *   : *l_diagBufSize_u8 = DID_F308_SIZE;
  *   :l_handler = RdbiVhitOverVoltageFaultDiag_;
  * else (NO)
- *   :*l_didSupported_ = E_NOT_OK;
- *   :*l_errCode_u8 = kLinDiagNrcRequestOutOfRange;
+ *   : *l_didSupported_) = E_NOT_OK;
+ *   : *l_errCode_u8 = kLinDiagNrcRequestOutOfRange";
  * endif
  *
  * :return l_handler(l_diagBuf_pu8, l_diagBufSize_u8, &l_errCode_u8);
