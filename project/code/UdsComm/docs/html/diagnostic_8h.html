@@ -79,11 +79,12 @@ $(function() {
   <div class="headertitle"><div class="title">diagnostic.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for diagnostic.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic_8h__incl.svg" width="138" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic_8h__incl.svg" width="190" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
@@ -98,6 +99,9 @@ Functions</h2></td></tr>
 <tr class="memitem:afa994a86f133db5dbe1e009caad44e85" id="r_afa994a86f133db5dbe1e009caad44e85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diagnostic_8h.html#afa994a86f133db5dbe1e009caad44e85">ApplLinDiagReadDataById</a> (void)</td></tr>
 <tr class="memdesc:afa994a86f133db5dbe1e009caad44e85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle LIN diagnostic service "ReadDataByIdentifier" (0x22).  <br /></td></tr>
 <tr class="separator:afa994a86f133db5dbe1e009caad44e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6915a5943b6e5a3aad910b0758f12b03" id="r_a6915a5943b6e5a3aad910b0758f12b03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diagnostic_8h.html#a6915a5943b6e5a3aad910b0758f12b03">genericGet_b</a> (uint8_t intput)</td></tr>
+<tr class="memdesc:a6915a5943b6e5a3aad910b0758f12b03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic getter service for diagnostic data.  <br /></td></tr>
+<tr class="separator:a6915a5943b6e5a3aad910b0758f12b03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -154,11 +158,11 @@ Variables</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">g_linDiagDataLength_u16   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone">uint16   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyNone">[0,65535]   </td><td class="markdownTableBodyNone">[byte]    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="diagnostic__cfg_8c.html#ad158936d88b7d913d4ba0f10bae535a2">checkCurrentNad()</a>   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone">void(uint8 nad, Std_ReturnType *result)   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">[-]    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="group__DiagnosticCfgModule.html#gad158936d88b7d913d4ba0f10bae535a2">checkCurrentNad()</a>   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone">void(uint8 nad, Std_ReturnType *result)   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">[-]    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="diagnostic__cfg_8c.html#a6c372cd2d55d665a5a86e8eedc5ac715">checkMsgDataLength()</a>   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone">void(uint16 len, Std_ReturnType *result)   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">[-]    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="group__DiagnosticCfgModule.html#ga6c372cd2d55d665a5a86e8eedc5ac715" title="Validate the received LIN diagnostic message length.">checkMsgDataLength()</a>   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone">void(uint16 len, Std_ReturnType *result)   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">[-]    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="diagnostic__cfg_8c.html#a9029039986a6e787abd7c3bd809e83a3">getHandlersForReadDataById()</a>   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType(uint8*, uint16, uint8*, Std_ReturnType*, uint8*)</a>   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyNone">E_OK/E_NOT_OK   </td><td class="markdownTableBodyNone">[-]    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="group__DiagnosticCfgModule.html#ga9029039986a6e787abd7c3bd809e83a3" title="Dispatch the handler associated with a ReadDataByIdentifier DID request.">getHandlersForReadDataById()</a>   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone"><a class="el" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType(uint8*, uint16, uint8*, Std_ReturnType*, uint8*)</a>   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyNone">E_OK/E_NOT_OK   </td><td class="markdownTableBodyNone">[-]    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><a class="el" href="diagnostic_8c.html#adeef6dd72bd779ad261090c13a440525">LinDiagSendPosResponse()</a>   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone">void(void)   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyRight">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">[-]    </td></tr>
 <tr class="markdownTableRowOdd">
@@ -170,50 +174,91 @@ Variables</h2></td></tr>
 </div>
 <dl class="section return"><dt>Returns</dt><dd>None. The function sends a LIN diagnostic response and may update <code>g_linDiagDataLength_u16</code> and the payload area <code>pbLinDiagBuffer[3..]</code> depending on the outcome. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="diagnostic_8c_source.html#l00021">21</a> of file <a class="el" href="diagnostic_8c_source.html">diagnostic.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>{</div>
-<div class="line"><span class="lineno">   23</span>  <span class="keyword">const</span> uint16_t l_did_cu16 = ((uint16_t)(<a class="code hl_variable" href="diagnostic_8c.html#a410b1dc1eee1a3843126538fc0242796">pbLinDiagBuffer</a>[1] &lt;&lt; 8) &amp; (uint16_t)0xFF00) |</div>
-<div class="line"><span class="lineno">   24</span>                              ((uint16_t)<a class="code hl_variable" href="diagnostic_8c.html#a410b1dc1eee1a3843126538fc0242796">pbLinDiagBuffer</a>[2] &amp; (uint16_t)0x00FF);</div>
-<div class="line"><span class="lineno">   25</span>  <a class="code hl_typedef" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> l_result_ = <a class="code hl_define" href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a>;</div>
-<div class="line"><span class="lineno">   26</span>  uint8_t l_errCode_u8 = 0;</div>
-<div class="line"><span class="lineno">   27</span>  uint8_t * <span class="keyword">const</span> l_diagBuf_pu8 = &amp;<a class="code hl_variable" href="diagnostic_8c.html#a410b1dc1eee1a3843126538fc0242796">pbLinDiagBuffer</a>[3];</div>
-<div class="line"><span class="lineno">   28</span>  uint8_t l_diagBufSize_u8 = 0;</div>
-<div class="line"><span class="lineno">   29</span>  <a class="code hl_typedef" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> l_didSupported_ = <a class="code hl_define" href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a>;</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>  <a class="code hl_function" href="diagnostic__cfg_8c.html#ad158936d88b7d913d4ba0f10bae535a2">checkCurrentNad</a>((uint8_t)0u, &amp;l_result_);</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>  <span class="keywordflow">if</span> (<a class="code hl_define" href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a> == l_result_) {</div>
-<div class="line"><span class="lineno">   34</span>    <a class="code hl_function" href="diagnostic__cfg_8c.html#a6c372cd2d55d665a5a86e8eedc5ac715">checkMsgDataLength</a>(<a class="code hl_variable" href="diagnostic_8c.html#a1532caabea39ff2369083c109c8b71b0">g_linDiagDataLength_u16</a>, &amp;l_result_);</div>
-<div class="line"><span class="lineno">   35</span>  }</div>
-<div class="line"><span class="lineno">   36</span> </div>
-<div class="line"><span class="lineno">   37</span>  <span class="keywordflow">if</span> (<a class="code hl_define" href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a> == l_result_) {</div>
-<div class="line"><span class="lineno">   38</span>    l_result_ = <a class="code hl_function" href="diagnostic__cfg_8c.html#a9029039986a6e787abd7c3bd809e83a3">getHandlersForReadDataById</a>(&amp;l_errCode_u8, l_did_cu16, &amp;l_diagBufSize_u8, &amp;l_didSupported_, l_diagBuf_pu8);</div>
-<div class="line"><span class="lineno">   39</span>  }</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>  <span class="keywordflow">switch</span> (l_result_)</div>
-<div class="line"><span class="lineno">   42</span>  {</div>
-<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">case</span> <a class="code hl_define" href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a>:</div>
-<div class="line"><span class="lineno">   44</span>      <a class="code hl_variable" href="diagnostic_8c.html#a1532caabea39ff2369083c109c8b71b0">g_linDiagDataLength_u16</a> = ((uint16_t)l_diagBufSize_u8 + 2u);</div>
-<div class="line"><span class="lineno">   45</span>      <a class="code hl_function" href="diagnostic_8c.html#adeef6dd72bd779ad261090c13a440525">LinDiagSendPosResponse</a>();</div>
-<div class="line"><span class="lineno">   46</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   47</span>    <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">   48</span>      <a class="code hl_function" href="diagnostic_8c.html#a7a1b596d1ff4b5d45331d4d234e100b0">LinDiagSendNegResponse</a>(l_errCode_u8);</div>
-<div class="line"><span class="lineno">   49</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   50</span>  }</div>
-<div class="line"><span class="lineno">   51</span>}</div>
-<div class="ttc" id="adiagnostic_8c_html_a1532caabea39ff2369083c109c8b71b0"><div class="ttname"><a href="diagnostic_8c.html#a1532caabea39ff2369083c109c8b71b0">g_linDiagDataLength_u16</a></div><div class="ttdeci">uint16_t g_linDiagDataLength_u16</div><div class="ttdoc">Current LIN diagnostic message length.</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00006">diagnostic.c:6</a></div></div>
-<div class="ttc" id="adiagnostic_8c_html_a410b1dc1eee1a3843126538fc0242796"><div class="ttname"><a href="diagnostic_8c.html#a410b1dc1eee1a3843126538fc0242796">pbLinDiagBuffer</a></div><div class="ttdeci">uint8_t pbLinDiagBuffer[32]</div><div class="ttdoc">Shared LIN diagnostic buffer.</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00004">diagnostic.c:4</a></div></div>
-<div class="ttc" id="adiagnostic_8c_html_a7a1b596d1ff4b5d45331d4d234e100b0"><div class="ttname"><a href="diagnostic_8c.html#a7a1b596d1ff4b5d45331d4d234e100b0">LinDiagSendNegResponse</a></div><div class="ttdeci">void LinDiagSendNegResponse(uint8_t errorCode)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00015">diagnostic.c:15</a></div></div>
-<div class="ttc" id="adiagnostic_8c_html_adeef6dd72bd779ad261090c13a440525"><div class="ttname"><a href="diagnostic_8c.html#adeef6dd72bd779ad261090c13a440525">LinDiagSendPosResponse</a></div><div class="ttdeci">void LinDiagSendPosResponse(void)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00009">diagnostic.c:9</a></div></div>
-<div class="ttc" id="adiagnostic__cfg_8c_html_a6c372cd2d55d665a5a86e8eedc5ac715"><div class="ttname"><a href="diagnostic__cfg_8c.html#a6c372cd2d55d665a5a86e8eedc5ac715">checkMsgDataLength</a></div><div class="ttdeci">void checkMsgDataLength(uint16_t dataLength, Std_ReturnType *result)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00013">diagnostic_cfg.c:13</a></div></div>
-<div class="ttc" id="adiagnostic__cfg_8c_html_a9029039986a6e787abd7c3bd809e83a3"><div class="ttname"><a href="diagnostic__cfg_8c.html#a9029039986a6e787abd7c3bd809e83a3">getHandlersForReadDataById</a></div><div class="ttdeci">Std_ReturnType getHandlersForReadDataById(uint8 *l_errCode_u8, uint16 l_did_cu16, uint8 *l_diagBufSize_u8, Std_ReturnType *l_didSupported_, uint8 *l_diagBuf_pu8)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00043">diagnostic_cfg.c:43</a></div></div>
-<div class="ttc" id="adiagnostic__cfg_8c_html_ad158936d88b7d913d4ba0f10bae535a2"><div class="ttname"><a href="diagnostic__cfg_8c.html#ad158936d88b7d913d4ba0f10bae535a2">checkCurrentNad</a></div><div class="ttdeci">void checkCurrentNad(uint8 currentNad, Std_ReturnType *result)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00006">diagnostic_cfg.c:6</a></div></div>
-<div class="ttc" id="adiagnostic__cfg_8h_html_a1e7cc741c56207a8872ea58373276925"><div class="ttname"><a href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a></div><div class="ttdeci">#define E_OK</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8h_source.html#l00011">diagnostic_cfg.h:11</a></div></div>
-<div class="ttc" id="adiagnostic__cfg_8h_html_a7ba1ab0e3cce347ba1de27f426253160"><div class="ttname"><a href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a></div><div class="ttdeci">uint8_t Std_ReturnType</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8h_source.html#l00009">diagnostic_cfg.h:9</a></div></div>
+<p class="definition">Definition at line <a class="el" href="diagnostic_8c_source.html#l00060">60</a> of file <a class="el" href="diagnostic_8c_source.html">diagnostic.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   61</span>{</div>
+<div class="line"><span class="lineno">   62</span>  <span class="keyword">const</span> uint16_t l_did_cu16 = ((uint16_t)(<a class="code hl_variable" href="diagnostic_8c.html#a410b1dc1eee1a3843126538fc0242796">pbLinDiagBuffer</a>[1] &lt;&lt; 8) &amp; (uint16_t)0xFF00) |</div>
+<div class="line"><span class="lineno">   63</span>                              ((uint16_t)<a class="code hl_variable" href="diagnostic_8c.html#a410b1dc1eee1a3843126538fc0242796">pbLinDiagBuffer</a>[2] &amp; (uint16_t)0x00FF);</div>
+<div class="line"><span class="lineno">   64</span>  <a class="code hl_typedef" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> l_result_ = <a class="code hl_define" href="group__DiagnosticCfgModule.html#ga1e7cc741c56207a8872ea58373276925">E_OK</a>;</div>
+<div class="line"><span class="lineno">   65</span>  uint8_t l_errCode_u8 = 0;</div>
+<div class="line"><span class="lineno">   66</span>  uint8_t * <span class="keyword">const</span> l_diagBuf_pu8 = &amp;<a class="code hl_variable" href="diagnostic_8c.html#a410b1dc1eee1a3843126538fc0242796">pbLinDiagBuffer</a>[3];</div>
+<div class="line"><span class="lineno">   67</span>  uint8_t l_diagBufSize_u8 = 0;</div>
+<div class="line"><span class="lineno">   68</span>  <a class="code hl_typedef" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> l_didSupported_ = <a class="code hl_define" href="group__DiagnosticCfgModule.html#ga1e7cc741c56207a8872ea58373276925">E_OK</a>;</div>
+<div class="line"><span class="lineno">   69</span> </div>
+<div class="line"><span class="lineno">   70</span>  <a class="code hl_function" href="group__DiagnosticCfgModule.html#gad158936d88b7d913d4ba0f10bae535a2">checkCurrentNad</a>((uint8_t)0u, &amp;l_result_);</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>  <span class="keywordflow">if</span> (<a class="code hl_define" href="group__DiagnosticCfgModule.html#ga1e7cc741c56207a8872ea58373276925">E_OK</a> == l_result_) {</div>
+<div class="line"><span class="lineno">   73</span>    <a class="code hl_function" href="group__DiagnosticCfgModule.html#ga6c372cd2d55d665a5a86e8eedc5ac715">checkMsgDataLength</a>(<a class="code hl_variable" href="diagnostic_8c.html#a1532caabea39ff2369083c109c8b71b0">g_linDiagDataLength_u16</a>, &amp;l_result_);</div>
+<div class="line"><span class="lineno">   74</span>  }</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>  <span class="keywordflow">if</span> (<a class="code hl_define" href="group__DiagnosticCfgModule.html#ga1e7cc741c56207a8872ea58373276925">E_OK</a> == l_result_) {</div>
+<div class="line"><span class="lineno">   77</span>    l_result_ = <a class="code hl_function" href="group__DiagnosticCfgModule.html#ga9029039986a6e787abd7c3bd809e83a3">getHandlersForReadDataById</a>(&amp;l_errCode_u8, l_did_cu16, &amp;l_diagBufSize_u8, &amp;l_didSupported_, l_diagBuf_pu8);</div>
+<div class="line"><span class="lineno">   78</span>  }</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>  <span class="keywordflow">switch</span> (l_result_)</div>
+<div class="line"><span class="lineno">   81</span>  {</div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">case</span> <a class="code hl_define" href="group__DiagnosticCfgModule.html#ga1e7cc741c56207a8872ea58373276925">E_OK</a>:</div>
+<div class="line"><span class="lineno">   83</span>      <a class="code hl_variable" href="diagnostic_8c.html#a1532caabea39ff2369083c109c8b71b0">g_linDiagDataLength_u16</a> = ((uint16_t)l_diagBufSize_u8 + 2u);</div>
+<div class="line"><span class="lineno">   84</span>      <a class="code hl_function" href="diagnostic_8c.html#adeef6dd72bd779ad261090c13a440525">LinDiagSendPosResponse</a>();</div>
+<div class="line"><span class="lineno">   85</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">   87</span>      <a class="code hl_function" href="diagnostic_8c.html#a7a1b596d1ff4b5d45331d4d234e100b0">LinDiagSendNegResponse</a>(l_errCode_u8);</div>
+<div class="line"><span class="lineno">   88</span>      <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   89</span>  }</div>
+<div class="line"><span class="lineno">   90</span>}</div>
+<div class="ttc" id="adiagnostic_8c_html_a1532caabea39ff2369083c109c8b71b0"><div class="ttname"><a href="diagnostic_8c.html#a1532caabea39ff2369083c109c8b71b0">g_linDiagDataLength_u16</a></div><div class="ttdeci">uint16_t g_linDiagDataLength_u16</div><div class="ttdoc">Current LIN diagnostic message length.</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00007">diagnostic.c:7</a></div></div>
+<div class="ttc" id="adiagnostic_8c_html_a410b1dc1eee1a3843126538fc0242796"><div class="ttname"><a href="diagnostic_8c.html#a410b1dc1eee1a3843126538fc0242796">pbLinDiagBuffer</a></div><div class="ttdeci">uint8_t pbLinDiagBuffer[32]</div><div class="ttdoc">Shared LIN diagnostic buffer.</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00005">diagnostic.c:5</a></div></div>
+<div class="ttc" id="adiagnostic_8c_html_a7a1b596d1ff4b5d45331d4d234e100b0"><div class="ttname"><a href="diagnostic_8c.html#a7a1b596d1ff4b5d45331d4d234e100b0">LinDiagSendNegResponse</a></div><div class="ttdeci">void LinDiagSendNegResponse(uint8_t errorCode)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00054">diagnostic.c:54</a></div></div>
+<div class="ttc" id="adiagnostic_8c_html_adeef6dd72bd779ad261090c13a440525"><div class="ttname"><a href="diagnostic_8c.html#adeef6dd72bd779ad261090c13a440525">LinDiagSendPosResponse</a></div><div class="ttdeci">void LinDiagSendPosResponse(void)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00048">diagnostic.c:48</a></div></div>
+<div class="ttc" id="agroup__DiagnosticCfgModule_html_ga1e7cc741c56207a8872ea58373276925"><div class="ttname"><a href="group__DiagnosticCfgModule.html#ga1e7cc741c56207a8872ea58373276925">E_OK</a></div><div class="ttdeci">#define E_OK</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8h_source.html#l00025">diagnostic_cfg.h:25</a></div></div>
+<div class="ttc" id="agroup__DiagnosticCfgModule_html_ga6c372cd2d55d665a5a86e8eedc5ac715"><div class="ttname"><a href="group__DiagnosticCfgModule.html#ga6c372cd2d55d665a5a86e8eedc5ac715">checkMsgDataLength</a></div><div class="ttdeci">void checkMsgDataLength(uint16_t dataLength, Std_ReturnType *result)</div><div class="ttdoc">Validate the received LIN diagnostic message length.</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00027">diagnostic_cfg.c:27</a></div></div>
+<div class="ttc" id="agroup__DiagnosticCfgModule_html_ga7ba1ab0e3cce347ba1de27f426253160"><div class="ttname"><a href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a></div><div class="ttdeci">uint8_t Std_ReturnType</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8h_source.html#l00023">diagnostic_cfg.h:23</a></div></div>
+<div class="ttc" id="agroup__DiagnosticCfgModule_html_ga9029039986a6e787abd7c3bd809e83a3"><div class="ttname"><a href="group__DiagnosticCfgModule.html#ga9029039986a6e787abd7c3bd809e83a3">getHandlersForReadDataById</a></div><div class="ttdeci">Std_ReturnType getHandlersForReadDataById(uint8 *l_errCode_u8, uint16 l_did_cu16, uint8 *l_diagBufSize_u8, Std_ReturnType *l_didSupported_, uint8 *l_diagBuf_pu8)</div><div class="ttdoc">Dispatch the handler associated with a ReadDataByIdentifier DID request.</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00057">diagnostic_cfg.c:57</a></div></div>
+<div class="ttc" id="agroup__DiagnosticCfgModule_html_gad158936d88b7d913d4ba0f10bae535a2"><div class="ttname"><a href="group__DiagnosticCfgModule.html#gad158936d88b7d913d4ba0f10bae535a2">checkCurrentNad</a></div><div class="ttdeci">void checkCurrentNad(uint8 currentNad, Std_ReturnType *result)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00015">diagnostic_cfg.c:15</a></div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="diagnostic_8h_afa994a86f133db5dbe1e009caad44e85_cgraph.svg" width="100%" height="475"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
+
+</div>
+</div>
+<a id="a6915a5943b6e5a3aad910b0758f12b03" name="a6915a5943b6e5a3aad910b0758f12b03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6915a5943b6e5a3aad910b0758f12b03">&#9670;&#160;</a></span>genericGet_b()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool genericGet_b </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>intput</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generic getter service for diagnostic data. </p>
+<p>This function provides a generic access mechanism to retrieve a diagnostic value. The current implementation returns <code>true</code> when the input is strictly greater than 9.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">intput</td><td>Input value to be evaluated. (Name kept as in the implementation.) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the input satisfies the implemented condition, <code>false</code> otherwise.</dd></dl>
+<p>Generic getter service for diagnostic data.</p>
+<p>Generic getter service for diagnostic data.</p>
+
+<p class="definition">Definition at line <a class="el" href="diagnostic_8c_source.html#l00093">93</a> of file <a class="el" href="diagnostic_8c_source.html">diagnostic.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   93</span>                                 {</div>
+<div class="line"><span class="lineno">   94</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="diagnostic_8c.html#af706657e5b193c75365c0de19cdbc7e8">checkCorrectResultll_b</a>(intput); </div>
+<div class="line"><span class="lineno">   95</span>}</div>
+<div class="ttc" id="adiagnostic_8c_html_af706657e5b193c75365c0de19cdbc7e8"><div class="ttname"><a href="diagnostic_8c.html#af706657e5b193c75365c0de19cdbc7e8">checkCorrectResultll_b</a></div><div class="ttdeci">static bool checkCorrectResultll_b(uint8_t input)</div><div class="ttdoc">Validate a diagnostic service result and update the internal counter.</div><div class="ttdef"><b>Definition</b> <a href="diagnostic_8c_source.html#l00035">diagnostic.c:35</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic_8h_a6915a5943b6e5a3aad910b0758f12b03_cgraph.svg" width="338" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -252,7 +297,7 @@ Here is the call graph for this function:</div>
 <td class="markdownTableBodyNone">g_linDiagDataLength_u16   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyNone">uint16   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyNone">[0,65535]   </td><td class="markdownTableBodyNone">[byte]   </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="diagnostic_8c_source.html#l00006">6</a> of file <a class="el" href="diagnostic_8c_source.html">diagnostic.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="diagnostic_8c_source.html#l00007">7</a> of file <a class="el" href="diagnostic_8c_source.html">diagnostic.c</a>.</p>
 
 </div>
 </div>
@@ -291,7 +336,7 @@ Here is the call graph for this function:</div>
 </table>
 <dl class="section warning"><dt>Warning</dt><dd>Buffer overrun must be prevented by all services writing into this array. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="diagnostic_8c_source.html#l00004">4</a> of file <a class="el" href="diagnostic_8c_source.html">diagnostic.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="diagnostic_8c_source.html#l00005">5</a> of file <a class="el" href="diagnostic_8c_source.html">diagnostic.c</a>.</p>
 
 </div>
 </div>

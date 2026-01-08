@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Configuration and helper services for the Diagnostic module.">
 <polygon fill="#999999" stroke="#666666" points="105,-140 0,-140 0,-110 105,-110 105,-140"/>
 <text text-anchor="start" x="8" y="-128" font-family="Helvetica,sans-Serif" font-size="10.00">cfg/diagnostic_cfg</text>
 <text text-anchor="middle" x="52.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">_priv.h</text>
@@ -31,7 +31,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="diagnostic__cfg_8h.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="diagnostic__cfg_8h.html" target="_top" xlink:title="Configuration and helper services for the Diagnostic module.">
 <polygon fill="white" stroke="#666666" points="100.5,-74 4.5,-74 4.5,-55 100.5,-55 100.5,-74"/>
 <text text-anchor="middle" x="52.5" y="-62" font-family="Helvetica,sans-Serif" font-size="10.00">diagnostic_cfg.h</text>
 </a>

@@ -54,3 +54,70 @@ else (NEG)
 endif
 stop
 @enduml
+@startuml inline_umlgraph_3.svg
+start
+:Compare currentNad with 0x7F;
+if (currentNad == 0x7F) then (YES)
+  :*result = E_OK;
+else (NO)
+  :*result = E_NOT_OK;
+endif
+stop
+@enduml
+@startuml inline_umlgraph_4.svg
+start
+:Check (dataLength > 0) AND (dataLength <= 32);
+if (valid length) then (YES)
+  :*result = E_OK;
+else (NO)
+  :*result = E_NOT_OK;
+endif
+stop
+@enduml
+@startuml inline_umlgraph_5.svg
+start
+:l_handler = SubfunctionRequestOutOfRange_;
+
+if (l_did_cu16 == 0xF308) then (YES)
+  :*l_diagBufSize_u8 = DID_F308_SIZE;
+  :l_handler = RdbiVhitOverVoltageFaultDiag_;
+else (NO)
+  :*l_didSupported_ = E_NOT_OK;
+  :*l_errCode_u8 = kLinDiagNrcRequestOutOfRange;
+endif
+
+:return l_handler(l_diagBuf_pu8, l_diagBufSize_u8, &l_errCode_u8);
+stop
+@enduml
+@startuml inline_umlgraph_6.svg
+start
+:output_pu8[0] = 0x01;
+:return E_OK;
+stop
+@enduml
+@startuml inline_umlgraph_7.svg
+start
+:output_pu8[0] = <overvoltage_status>;
+:*size_pu8 = 1;
+:return E_OK;
+stop
+@enduml
+@startuml inline_umlgraph_8.svg
+start
+if (errCode_pu8 != NULL) then (YES)
+  :*errCode_pu8 = 0x12;
+endif
+:return E_NOT_OK;
+stop
+@enduml
+@startuml inline_umlgraph_9.svg
+start
+if (size_pu8 != NULL) then (YES)
+  :*size_pu8 = 0;
+endif
+if (errCode_pu8 != NULL) then (YES)
+  :*errCode_pu8 = 0x12;
+endif
+:return E_NOT_OK;
+stop
+@enduml

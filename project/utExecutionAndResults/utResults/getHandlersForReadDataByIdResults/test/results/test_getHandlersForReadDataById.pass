@@ -21,15 +21,15 @@
   :message: ''
   :unity_test_time: 0
 - :test: test_getHandlersForReadDataById_ErrorCodePassedToHandler
-  :line: 128
+  :line: 129
   :message: ''
   :unity_test_time: 0
 - :test: test_getHandlersForReadDataById_OutputBufferPassedToHandler
-  :line: 149
+  :line: 150
   :message: ''
   :unity_test_time: 0
 - :test: test_getHandlersForReadDataById_BufferSizePointerPassedToHandler
-  :line: 170
+  :line: 171
   :message: ''
   :unity_test_time: 0
 :failures: []
@@ -40,4 +40,4 @@
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.008942427999500069
+:time: 0.012540004001493799

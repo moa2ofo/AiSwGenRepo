@@ -6,7 +6,7 @@
 #include "mock_diagnostic_cfg.h"
 
 static const char* CMockString_RdbiVhitOverVoltageFaultDiag_ = "RdbiVhitOverVoltageFaultDiag_";
-static const char* CMockString_Subfunction_Request_Out_Of_Range = "Subfunction_Request_Out_Of_Range";
+static const char* CMockString_SubfunctionRequestOutOfRange_ = "SubfunctionRequestOutOfRange_";
 static const char* CMockString_checkCurrentNad = "checkCurrentNad";
 static const char* CMockString_checkMsgDataLength = "checkMsgDataLength";
 static const char* CMockString_currentNad = "currentNad";
@@ -45,7 +45,7 @@ typedef struct _CMOCK_RdbiVhitOverVoltageFaultDiag__CALL_INSTANCE
 
 } CMOCK_RdbiVhitOverVoltageFaultDiag__CALL_INSTANCE;
 
-typedef struct _CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE
+typedef struct _CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE
 {
   UNITY_LINE_TYPE LineNumber;
   Std_ReturnType ReturnVal;
@@ -54,7 +54,7 @@ typedef struct _CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE
   uint8* Expected_size_pu8;
   uint8* Expected_errCode_pu8;
 
-} CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE;
+} CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE;
 
 static struct mock_diagnostic_cfgInstance
 {
@@ -74,12 +74,12 @@ static struct mock_diagnostic_cfgInstance
   CMOCK_RdbiVhitOverVoltageFaultDiag__CALLBACK RdbiVhitOverVoltageFaultDiag__CallbackFunctionPointer;
   int RdbiVhitOverVoltageFaultDiag__CallbackCalls;
   CMOCK_MEM_INDEX_TYPE RdbiVhitOverVoltageFaultDiag__CallInstance;
-  char Subfunction_Request_Out_Of_Range_IgnoreBool;
-  Std_ReturnType Subfunction_Request_Out_Of_Range_FinalReturn;
-  char Subfunction_Request_Out_Of_Range_CallbackBool;
-  CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK Subfunction_Request_Out_Of_Range_CallbackFunctionPointer;
-  int Subfunction_Request_Out_Of_Range_CallbackCalls;
-  CMOCK_MEM_INDEX_TYPE Subfunction_Request_Out_Of_Range_CallInstance;
+  char SubfunctionRequestOutOfRange__IgnoreBool;
+  Std_ReturnType SubfunctionRequestOutOfRange__FinalReturn;
+  char SubfunctionRequestOutOfRange__CallbackBool;
+  CMOCK_SubfunctionRequestOutOfRange__CALLBACK SubfunctionRequestOutOfRange__CallbackFunctionPointer;
+  int SubfunctionRequestOutOfRange__CallbackCalls;
+  CMOCK_MEM_INDEX_TYPE SubfunctionRequestOutOfRange__CallInstance;
 } Mock;
 
 extern int GlobalExpectCount;
@@ -128,15 +128,15 @@ void mock_diagnostic_cfg_Verify(void)
     call_instance = CMOCK_GUTS_NONE;
     (void)call_instance;
   }
-  call_instance = Mock.Subfunction_Request_Out_Of_Range_CallInstance;
-  if (Mock.Subfunction_Request_Out_Of_Range_IgnoreBool)
+  call_instance = Mock.SubfunctionRequestOutOfRange__CallInstance;
+  if (Mock.SubfunctionRequestOutOfRange__IgnoreBool)
     call_instance = CMOCK_GUTS_NONE;
   if (CMOCK_GUTS_NONE != call_instance)
   {
-    UNITY_SET_DETAIL(CMockString_Subfunction_Request_Out_Of_Range);
+    UNITY_SET_DETAIL(CMockString_SubfunctionRequestOutOfRange_);
     UNITY_TEST_FAIL(cmock_line, CMockStringCalledLess);
   }
-  if (Mock.Subfunction_Request_Out_Of_Range_CallbackFunctionPointer != NULL)
+  if (Mock.SubfunctionRequestOutOfRange__CallbackFunctionPointer != NULL)
   {
     call_instance = CMOCK_GUTS_NONE;
     (void)call_instance;
@@ -439,26 +439,26 @@ void RdbiVhitOverVoltageFaultDiag__Stub(CMOCK_RdbiVhitOverVoltageFaultDiag__CALL
   Mock.RdbiVhitOverVoltageFaultDiag__CallbackFunctionPointer = Callback;
 }
 
-Std_ReturnType Subfunction_Request_Out_Of_Range(uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8)
+Std_ReturnType SubfunctionRequestOutOfRange_(uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8)
 {
   UNITY_LINE_TYPE cmock_line = TEST_LINE_NUM;
-  CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE* cmock_call_instance;
-  UNITY_SET_DETAIL(CMockString_Subfunction_Request_Out_Of_Range);
-  cmock_call_instance = (CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.Subfunction_Request_Out_Of_Range_CallInstance);
-  Mock.Subfunction_Request_Out_Of_Range_CallInstance = CMock_Guts_MemNext(Mock.Subfunction_Request_Out_Of_Range_CallInstance);
-  if (Mock.Subfunction_Request_Out_Of_Range_IgnoreBool)
+  CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE* cmock_call_instance;
+  UNITY_SET_DETAIL(CMockString_SubfunctionRequestOutOfRange_);
+  cmock_call_instance = (CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE*)CMock_Guts_GetAddressFor(Mock.SubfunctionRequestOutOfRange__CallInstance);
+  Mock.SubfunctionRequestOutOfRange__CallInstance = CMock_Guts_MemNext(Mock.SubfunctionRequestOutOfRange__CallInstance);
+  if (Mock.SubfunctionRequestOutOfRange__IgnoreBool)
   {
     UNITY_CLR_DETAILS();
     if (cmock_call_instance == NULL)
-      return Mock.Subfunction_Request_Out_Of_Range_FinalReturn;
-    memcpy((void*)(&Mock.Subfunction_Request_Out_Of_Range_FinalReturn), (void*)(&cmock_call_instance->ReturnVal),
+      return Mock.SubfunctionRequestOutOfRange__FinalReturn;
+    memcpy((void*)(&Mock.SubfunctionRequestOutOfRange__FinalReturn), (void*)(&cmock_call_instance->ReturnVal),
          sizeof(Std_ReturnType[sizeof(cmock_call_instance->ReturnVal) == sizeof(Std_ReturnType) ? 1 : -1])); /* add Std_ReturnType to :treat_as_array if this causes an error */
     return cmock_call_instance->ReturnVal;
   }
-  if (!Mock.Subfunction_Request_Out_Of_Range_CallbackBool &&
-      Mock.Subfunction_Request_Out_Of_Range_CallbackFunctionPointer != NULL)
+  if (!Mock.SubfunctionRequestOutOfRange__CallbackBool &&
+      Mock.SubfunctionRequestOutOfRange__CallbackFunctionPointer != NULL)
   {
-    Std_ReturnType cmock_cb_ret = Mock.Subfunction_Request_Out_Of_Range_CallbackFunctionPointer(output_pu8, size_pu8, errCode_pu8, Mock.Subfunction_Request_Out_Of_Range_CallbackCalls++);
+    Std_ReturnType cmock_cb_ret = Mock.SubfunctionRequestOutOfRange__CallbackFunctionPointer(output_pu8, size_pu8, errCode_pu8, Mock.SubfunctionRequestOutOfRange__CallbackCalls++);
     UNITY_CLR_DETAILS();
     return cmock_cb_ret;
   }
@@ -469,88 +469,88 @@ Std_ReturnType Subfunction_Request_Out_Of_Range(uint8* const output_pu8, uint8* 
   if (cmock_call_instance->CallOrder < GlobalVerifyOrder)
     UNITY_TEST_FAIL(cmock_line, CMockStringCalledLate);
   {
-    UNITY_SET_DETAILS(CMockString_Subfunction_Request_Out_Of_Range,CMockString_output_pu8);
+    UNITY_SET_DETAILS(CMockString_SubfunctionRequestOutOfRange_,CMockString_output_pu8);
     if (cmock_call_instance->Expected_output_pu8 == NULL)
       { UNITY_TEST_ASSERT_NULL(output_pu8, cmock_line, CMockStringExpNULL); }
     else
       { UNITY_TEST_ASSERT_EQUAL_HEX8_ARRAY(cmock_call_instance->Expected_output_pu8, output_pu8, 1, cmock_line, CMockStringMismatch); }
   }
   {
-    UNITY_SET_DETAILS(CMockString_Subfunction_Request_Out_Of_Range,CMockString_size_pu8);
+    UNITY_SET_DETAILS(CMockString_SubfunctionRequestOutOfRange_,CMockString_size_pu8);
     if (cmock_call_instance->Expected_size_pu8 == NULL)
       { UNITY_TEST_ASSERT_NULL(size_pu8, cmock_line, CMockStringExpNULL); }
     else
       { UNITY_TEST_ASSERT_EQUAL_HEX8_ARRAY(cmock_call_instance->Expected_size_pu8, size_pu8, 1, cmock_line, CMockStringMismatch); }
   }
   {
-    UNITY_SET_DETAILS(CMockString_Subfunction_Request_Out_Of_Range,CMockString_errCode_pu8);
+    UNITY_SET_DETAILS(CMockString_SubfunctionRequestOutOfRange_,CMockString_errCode_pu8);
     if (cmock_call_instance->Expected_errCode_pu8 == NULL)
       { UNITY_TEST_ASSERT_NULL(errCode_pu8, cmock_line, CMockStringExpNULL); }
     else
       { UNITY_TEST_ASSERT_EQUAL_HEX8_ARRAY(cmock_call_instance->Expected_errCode_pu8, errCode_pu8, 1, cmock_line, CMockStringMismatch); }
   }
-  if (Mock.Subfunction_Request_Out_Of_Range_CallbackFunctionPointer != NULL)
+  if (Mock.SubfunctionRequestOutOfRange__CallbackFunctionPointer != NULL)
   {
-    cmock_call_instance->ReturnVal = Mock.Subfunction_Request_Out_Of_Range_CallbackFunctionPointer(output_pu8, size_pu8, errCode_pu8, Mock.Subfunction_Request_Out_Of_Range_CallbackCalls++);
+    cmock_call_instance->ReturnVal = Mock.SubfunctionRequestOutOfRange__CallbackFunctionPointer(output_pu8, size_pu8, errCode_pu8, Mock.SubfunctionRequestOutOfRange__CallbackCalls++);
   }
   UNITY_CLR_DETAILS();
   return cmock_call_instance->ReturnVal;
 }
 
-void CMockExpectParameters_Subfunction_Request_Out_Of_Range(CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE* cmock_call_instance, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8);
-void CMockExpectParameters_Subfunction_Request_Out_Of_Range(CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE* cmock_call_instance, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8)
+void CMockExpectParameters_SubfunctionRequestOutOfRange_(CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE* cmock_call_instance, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8);
+void CMockExpectParameters_SubfunctionRequestOutOfRange_(CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE* cmock_call_instance, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8)
 {
   cmock_call_instance->Expected_output_pu8 = output_pu8;
   cmock_call_instance->Expected_size_pu8 = size_pu8;
   cmock_call_instance->Expected_errCode_pu8 = errCode_pu8;
 }
 
-void Subfunction_Request_Out_Of_Range_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Std_ReturnType cmock_to_return)
+void SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Std_ReturnType cmock_to_return)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE));
-  CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE* cmock_call_instance = (CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE));
+  CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE* cmock_call_instance = (CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
-  Mock.Subfunction_Request_Out_Of_Range_CallInstance = CMock_Guts_MemChain(Mock.Subfunction_Request_Out_Of_Range_CallInstance, cmock_guts_index);
-  Mock.Subfunction_Request_Out_Of_Range_IgnoreBool = (char)0;
+  Mock.SubfunctionRequestOutOfRange__CallInstance = CMock_Guts_MemChain(Mock.SubfunctionRequestOutOfRange__CallInstance, cmock_guts_index);
+  Mock.SubfunctionRequestOutOfRange__IgnoreBool = (char)0;
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->ReturnVal = cmock_to_return;
-  Mock.Subfunction_Request_Out_Of_Range_IgnoreBool = (char)1;
+  Mock.SubfunctionRequestOutOfRange__IgnoreBool = (char)1;
 }
 
-void Subfunction_Request_Out_Of_Range_CMockStopIgnore(void)
+void SubfunctionRequestOutOfRange__CMockStopIgnore(void)
 {
-  if(Mock.Subfunction_Request_Out_Of_Range_IgnoreBool)
-    Mock.Subfunction_Request_Out_Of_Range_CallInstance = CMock_Guts_MemNext(Mock.Subfunction_Request_Out_Of_Range_CallInstance);
-  Mock.Subfunction_Request_Out_Of_Range_IgnoreBool = (char)0;
+  if(Mock.SubfunctionRequestOutOfRange__IgnoreBool)
+    Mock.SubfunctionRequestOutOfRange__CallInstance = CMock_Guts_MemNext(Mock.SubfunctionRequestOutOfRange__CallInstance);
+  Mock.SubfunctionRequestOutOfRange__IgnoreBool = (char)0;
 }
 
-void Subfunction_Request_Out_Of_Range_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, Std_ReturnType cmock_to_return)
+void SubfunctionRequestOutOfRange__CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, Std_ReturnType cmock_to_return)
 {
-  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE));
-  CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE* cmock_call_instance = (CMOCK_Subfunction_Request_Out_Of_Range_CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
+  CMOCK_MEM_INDEX_TYPE cmock_guts_index = CMock_Guts_MemNew(sizeof(CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE));
+  CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE* cmock_call_instance = (CMOCK_SubfunctionRequestOutOfRange__CALL_INSTANCE*)CMock_Guts_GetAddressFor(cmock_guts_index);
   UNITY_TEST_ASSERT_NOT_NULL(cmock_call_instance, cmock_line, CMockStringOutOfMemory);
   memset(cmock_call_instance, 0, sizeof(*cmock_call_instance));
-  Mock.Subfunction_Request_Out_Of_Range_CallInstance = CMock_Guts_MemChain(Mock.Subfunction_Request_Out_Of_Range_CallInstance, cmock_guts_index);
-  Mock.Subfunction_Request_Out_Of_Range_IgnoreBool = (char)0;
+  Mock.SubfunctionRequestOutOfRange__CallInstance = CMock_Guts_MemChain(Mock.SubfunctionRequestOutOfRange__CallInstance, cmock_guts_index);
+  Mock.SubfunctionRequestOutOfRange__IgnoreBool = (char)0;
   cmock_call_instance->LineNumber = cmock_line;
   cmock_call_instance->CallOrder = ++GlobalExpectCount;
-  CMockExpectParameters_Subfunction_Request_Out_Of_Range(cmock_call_instance, output_pu8, size_pu8, errCode_pu8);
+  CMockExpectParameters_SubfunctionRequestOutOfRange_(cmock_call_instance, output_pu8, size_pu8, errCode_pu8);
   memcpy((void*)(&cmock_call_instance->ReturnVal), (void*)(&cmock_to_return),
          sizeof(Std_ReturnType[sizeof(cmock_to_return) == sizeof(Std_ReturnType) ? 1 : -1])); /* add Std_ReturnType to :treat_as_array if this causes an error */
 }
 
-void Subfunction_Request_Out_Of_Range_AddCallback(CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK Callback)
+void SubfunctionRequestOutOfRange__AddCallback(CMOCK_SubfunctionRequestOutOfRange__CALLBACK Callback)
 {
-  Mock.Subfunction_Request_Out_Of_Range_IgnoreBool = (char)0;
-  Mock.Subfunction_Request_Out_Of_Range_CallbackBool = (char)1;
-  Mock.Subfunction_Request_Out_Of_Range_CallbackFunctionPointer = Callback;
+  Mock.SubfunctionRequestOutOfRange__IgnoreBool = (char)0;
+  Mock.SubfunctionRequestOutOfRange__CallbackBool = (char)1;
+  Mock.SubfunctionRequestOutOfRange__CallbackFunctionPointer = Callback;
 }
 
-void Subfunction_Request_Out_Of_Range_Stub(CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK Callback)
+void SubfunctionRequestOutOfRange__Stub(CMOCK_SubfunctionRequestOutOfRange__CALLBACK Callback)
 {
-  Mock.Subfunction_Request_Out_Of_Range_IgnoreBool = (char)0;
-  Mock.Subfunction_Request_Out_Of_Range_CallbackBool = (char)0;
-  Mock.Subfunction_Request_Out_Of_Range_CallbackFunctionPointer = Callback;
+  Mock.SubfunctionRequestOutOfRange__IgnoreBool = (char)0;
+  Mock.SubfunctionRequestOutOfRange__CallbackBool = (char)0;
+  Mock.SubfunctionRequestOutOfRange__CallbackFunctionPointer = Callback;
 }
 

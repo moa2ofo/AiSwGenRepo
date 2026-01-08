@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['rdbivhitovervoltagefaultdiag_5f_0',['rdbivhitovervoltagefaultdiag_',['../diagnostic__cfg_8c.html#ae108d0401f813aac27f8da5a3322c2ce',1,'RdbiVhitOverVoltageFaultDiag_(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8):&#160;diagnostic_cfg.c'],['../diagnostic__cfg__priv_8h.html#ae108d0401f813aac27f8da5a3322c2ce',1,'RdbiVhitOverVoltageFaultDiag_(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8):&#160;diagnostic_cfg.c']]]
+  ['std_5freturntype_0',['Std_ReturnType',['../group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160',1,'diagnostic_cfg.h']]],
+  ['subfunctionrequestoutofrange_5f_1',['subfunctionrequestoutofrange_',['../group__DiagnosticCfgModule.html#ga623602ac7db748ce50de86c75b512405',1,'SubfunctionRequestOutOfRange_(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8):&#160;diagnostic_cfg.c'],['../group__DiagnosticCfgModule.html#ga623602ac7db748ce50de86c75b512405',1,'SubfunctionRequestOutOfRange_(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8):&#160;diagnostic_cfg.c']]]
 ];

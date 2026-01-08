@@ -1,7 +1,60 @@
 #ifndef DIAGNOSTIC_H
 #define DIAGNOSTIC_H
 
+#include <stdbool.h>
 #include <stdint.h>
+
+
+/**
+ * @defgroup DiagnosticModule LIN Diagnostic Module
+ * @brief Module providing LIN diagnostic services and shared diagnostic buffers.
+ *
+ * @details
+ * This module is composed of:
+ * - **Diagnostic.h**: public interface and module-level documentation (this file)
+ * - **diagnostic.c**: implementation of the diagnostic services
+ *
+ * The main data items exchanged with the LIN stack are:
+ * - @ref pbLinDiagBuffer: global diagnostic buffer (request/response)
+ * - @ref g_linDiagDataLength_u16: length of the valid data inside the buffer
+ *
+ * @note
+ * Some helpers and state are intentionally kept **internal** to the implementation
+ * file (e.g. @ref counter_u8 and @ref checkCorrectResult_b). They are documented
+ * here so that the whole module can be browsed from a single entry point.
+ * @{
+ */
+
+/**
+ * @var counter_u8
+ * @brief Internal invocation counter for the diagnostic result checker.
+ *
+ * @details
+ * File-local counter incremented when @ref checkCorrectResult_b returns @c true.
+ * It is wrapped to 0 when it exceeds 100.
+ *
+ * @internal
+ * This symbol is defined in **diagnostic.c** and is not accessible outside it.
+ */
+
+/**
+ * @fn checkCorrectResult_b(uint8_t input)
+ * @brief Validate a diagnostic service result and update the internal counter.
+ *
+ * @details
+ * Returns @c true when @p input is strictly greater than 5; in that case the
+ * internal counter @ref counter_u8 is incremented. The counter is reset to 0 when
+ * it exceeds 100.
+ *
+ * @param input Value to be checked.
+ * @return @c true if the input represents a correct result, @c false otherwise.
+ *
+ * @internal
+ * This helper is defined as a static function in **diagnostic.c**.
+ */
+
+/** @} */
+
 
 /**
  * @file Diagnostic.h
@@ -61,6 +114,14 @@ extern uint8_t pbLinDiagBuffer[32];
  * | g_linDiagDataLength_u16    | X  |  X  | uint16    |   -   |      1      |      0      |     1     | [0,65535]    | [byte]   |
  */
 extern uint16_t g_linDiagDataLength_u16;
+
+/**
+ * @internal
+ * Internal helper functions (documented in diagnostic.c):
+ * - checkCorrectResult_b()
+ * @endinternal
+ */
+
 
 /**
  * @brief Handle LIN diagnostic service "ReadDataByIdentifier" (0x22).
@@ -137,5 +198,17 @@ extern uint16_t g_linDiagDataLength_u16;
  * depending on the outcome.
  */
 void ApplLinDiagReadDataById(void);
+
+/**
+ * @brief Generic getter service for diagnostic data.
+ *
+ * @details
+ * This function provides a generic access mechanism to retrieve a diagnostic value.
+ * The current implementation returns @c true when the input is strictly greater than 9.
+ *
+ * @param intput Input value to be evaluated.  (Name kept as in the implementation.)
+ * @return @c true if the input satisfies the implemented condition, @c false otherwise.
+ */
+bool genericGet_b(uint8_t intput);
 
 #endif /* DIAGNOSTIC_H */

@@ -1,0 +1,43 @@
+---
+:source:
+  :file: utExecutionAndResults/utUnderTest/test/test_checkCurrentNad.c
+  :dirname: utExecutionAndResults/utUnderTest/test
+  :basename: test_checkCurrentNad.c
+:successes:
+- :test: test_checkCurrentNad_WithInvalidNad_0x7F_ReturnsNotOk
+  :line: 18
+  :message: ''
+  :unity_test_time: 0
+- :test: test_checkCurrentNad_WithInvalidNad_0x7E_ReturnsNotOk
+  :line: 31
+  :message: ''
+  :unity_test_time: 0
+- :test: test_checkCurrentNad_WithValidNad_0x00_ReturnsOk
+  :line: 44
+  :message: ''
+  :unity_test_time: 0
+- :test: test_checkCurrentNad_WithValidNad_0x01_ReturnsOk
+  :line: 57
+  :message: ''
+  :unity_test_time: 0
+- :test: test_checkCurrentNad_WithValidNad_0x7D_ReturnsOk
+  :line: 70
+  :message: ''
+  :unity_test_time: 0
+- :test: test_checkCurrentNad_WithValidNad_0xFF_ReturnsOk
+  :line: 83
+  :message: ''
+  :unity_test_time: 0
+- :test: test_checkCurrentNad_WithValidNad_0x80_ReturnsOk
+  :line: 96
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 7
+  :passed: 7
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.009568109999236185

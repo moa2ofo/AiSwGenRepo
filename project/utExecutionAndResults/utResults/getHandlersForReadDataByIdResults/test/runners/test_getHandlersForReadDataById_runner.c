@@ -92,9 +92,9 @@ int main(void)
   run_test(test_getHandlersForReadDataById_InvalidDID, "test_getHandlersForReadDataById_InvalidDID", 48);
   run_test(test_getHandlersForReadDataById_MultipleInvalidDIDs, "test_getHandlersForReadDataById_MultipleInvalidDIDs", 77);
   run_test(test_getHandlersForReadDataById_ValidDID_HandlerReturnsError, "test_getHandlersForReadDataById_ValidDID_HandlerReturnsError", 103);
-  run_test(test_getHandlersForReadDataById_ErrorCodePassedToHandler, "test_getHandlersForReadDataById_ErrorCodePassedToHandler", 128);
-  run_test(test_getHandlersForReadDataById_OutputBufferPassedToHandler, "test_getHandlersForReadDataById_OutputBufferPassedToHandler", 149);
-  run_test(test_getHandlersForReadDataById_BufferSizePointerPassedToHandler, "test_getHandlersForReadDataById_BufferSizePointerPassedToHandler", 170);
+  run_test(test_getHandlersForReadDataById_ErrorCodePassedToHandler, "test_getHandlersForReadDataById_ErrorCodePassedToHandler", 129);
+  run_test(test_getHandlersForReadDataById_OutputBufferPassedToHandler, "test_getHandlersForReadDataById_OutputBufferPassedToHandler", 150);
+  run_test(test_getHandlersForReadDataById_BufferSizePointerPassedToHandler, "test_getHandlersForReadDataById_BufferSizePointerPassedToHandler", 171);
 
   CMock_Guts_MemFreeFinal();
   return UNITY_END();

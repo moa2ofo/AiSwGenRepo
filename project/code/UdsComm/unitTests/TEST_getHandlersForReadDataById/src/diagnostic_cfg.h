@@ -24,7 +24,7 @@ typedef Std_ReturnType (*diagHandler_t)(uint8*const  output_pu8, uint8*const  si
 Std_ReturnType RdbiVhitOverVoltageFaultDiag_(uint8*const  output_pu8,
     uint8*const  size_pu8, uint8* const errCode_pu8);
 
-Std_ReturnType Subfunction_Request_Out_Of_Range(uint8*const  output_pu8,
+Std_ReturnType SubfunctionRequestOutOfRange_(uint8*const  output_pu8,
     uint8*const  size_pu8, uint8* const errCode_pu8);
 
 #endif

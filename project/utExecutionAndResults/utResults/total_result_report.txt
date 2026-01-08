@@ -1,7 +1,8 @@
 | function_name                 | total | passed | failed | ignored | Date and time  | Tester  |
 |-------------------------------|-------|--------|--------|---------|----------------|---------|
-| ApplLinDiagReadDataById       | 5     | 5      | 0      | 0       | 15/12/25 16:13 | MOA2OFO |
-| checkMsgDataLength            | 7     | 7      | 0      | 0       | 15/12/25 16:13 | MOA2OFO |
-| getHandlersForReadDataById    | 7     | 7      | 0      | 0       | 15/12/25 16:13 | MOA2OFO |
-| voltMonRun                    | 22    | 22     | 0      | 0       | 15/12/25 16:13 | MOA2OFO |
-| VoltMon_ReadVoltageProject_mV | 18    | 18     | 0      | 0       | 15/12/25 16:13 | MOA2OFO |
+| ApplLinDiagReadDataById       | 5     | 5      | 0      | 0       | 08/01/26 15:10 | MOA2OFO |
+| checkCurrentNad               | 7     | 7      | 0      | 0       | 08/01/26 15:10 | MOA2OFO |
+| checkMsgDataLength            | 7     | 7      | 0      | 0       | 08/01/26 15:10 | MOA2OFO |
+| getHandlersForReadDataById    | 7     | 7      | 0      | 0       | 08/01/26 15:11 | MOA2OFO |
+| voltMonRun                    | 22    | 22     | 0      | 0       | 08/01/26 15:11 | MOA2OFO |
+| VoltMon_ReadVoltageProject_mV | 18    | 18     | 0      | 0       | 08/01/26 15:11 | MOA2OFO |

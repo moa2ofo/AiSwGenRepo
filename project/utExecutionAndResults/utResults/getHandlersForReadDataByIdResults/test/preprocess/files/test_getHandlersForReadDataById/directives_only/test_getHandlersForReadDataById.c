@@ -10157,7 +10157,7 @@ typedef Std_ReturnType (*diagHandler_t)(uint8*const  output_pu8, uint8*const  si
 Std_ReturnType RdbiVhitOverVoltageFaultDiag_(uint8*const  output_pu8,
     uint8*const  size_pu8, uint8* const errCode_pu8);
 
-Std_ReturnType Subfunction_Request_Out_Of_Range(uint8*const  output_pu8,
+Std_ReturnType SubfunctionRequestOutOfRange_(uint8*const  output_pu8,
     uint8*const  size_pu8, uint8* const errCode_pu8);
 
 # 6 "utExecutionAndResults/utUnderTest/src/getHandlersForReadDataById.h" 2
@@ -10238,18 +10238,18 @@ typedef Std_ReturnType (* CMOCK_RdbiVhitOverVoltageFaultDiag__CALLBACK)(uint8* c
 void RdbiVhitOverVoltageFaultDiag__AddCallback(CMOCK_RdbiVhitOverVoltageFaultDiag__CALLBACK Callback);
 void RdbiVhitOverVoltageFaultDiag__Stub(CMOCK_RdbiVhitOverVoltageFaultDiag__CALLBACK Callback);
 #define RdbiVhitOverVoltageFaultDiag__StubWithCallback RdbiVhitOverVoltageFaultDiag__Stub
-#define Subfunction_Request_Out_Of_Range_Ignore() TEST_FAIL_MESSAGE("Subfunction_Request_Out_Of_Range requires _IgnoreAndReturn");
-#define Subfunction_Request_Out_Of_Range_IgnoreAndReturn(cmock_retval) Subfunction_Request_Out_Of_Range_CMockIgnoreAndReturn(__LINE__, cmock_retval)
-void Subfunction_Request_Out_Of_Range_CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Std_ReturnType cmock_to_return);
-#define Subfunction_Request_Out_Of_Range_StopIgnore() Subfunction_Request_Out_Of_Range_CMockStopIgnore()
-void Subfunction_Request_Out_Of_Range_CMockStopIgnore(void);
-#define Subfunction_Request_Out_Of_Range_Expect(output_pu8,size_pu8,errCode_pu8) TEST_FAIL_MESSAGE("Subfunction_Request_Out_Of_Range requires _ExpectAndReturn");
-#define Subfunction_Request_Out_Of_Range_ExpectAndReturn(output_pu8,size_pu8,errCode_pu8,cmock_retval) Subfunction_Request_Out_Of_Range_CMockExpectAndReturn(__LINE__, output_pu8, size_pu8, errCode_pu8, cmock_retval)
-void Subfunction_Request_Out_Of_Range_CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, Std_ReturnType cmock_to_return);
-typedef Std_ReturnType (* CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK)(uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, int cmock_num_calls);
-void Subfunction_Request_Out_Of_Range_AddCallback(CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK Callback);
-void Subfunction_Request_Out_Of_Range_Stub(CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK Callback);
-#define Subfunction_Request_Out_Of_Range_StubWithCallback Subfunction_Request_Out_Of_Range_Stub
+#define SubfunctionRequestOutOfRange__Ignore() TEST_FAIL_MESSAGE("SubfunctionRequestOutOfRange_ requires _IgnoreAndReturn");
+#define SubfunctionRequestOutOfRange__IgnoreAndReturn(cmock_retval) SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(__LINE__, cmock_retval)
+void SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(UNITY_LINE_TYPE cmock_line, Std_ReturnType cmock_to_return);
+#define SubfunctionRequestOutOfRange__StopIgnore() SubfunctionRequestOutOfRange__CMockStopIgnore()
+void SubfunctionRequestOutOfRange__CMockStopIgnore(void);
+#define SubfunctionRequestOutOfRange__Expect(output_pu8,size_pu8,errCode_pu8) TEST_FAIL_MESSAGE("SubfunctionRequestOutOfRange_ requires _ExpectAndReturn");
+#define SubfunctionRequestOutOfRange__ExpectAndReturn(output_pu8,size_pu8,errCode_pu8,cmock_retval) SubfunctionRequestOutOfRange__CMockExpectAndReturn(__LINE__, output_pu8, size_pu8, errCode_pu8, cmock_retval)
+void SubfunctionRequestOutOfRange__CMockExpectAndReturn(UNITY_LINE_TYPE cmock_line, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, Std_ReturnType cmock_to_return);
+typedef Std_ReturnType (* CMOCK_SubfunctionRequestOutOfRange__CALLBACK)(uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, int cmock_num_calls);
+void SubfunctionRequestOutOfRange__AddCallback(CMOCK_SubfunctionRequestOutOfRange__CALLBACK Callback);
+void SubfunctionRequestOutOfRange__Stub(CMOCK_SubfunctionRequestOutOfRange__CALLBACK Callback);
+#define SubfunctionRequestOutOfRange__StubWithCallback SubfunctionRequestOutOfRange__Stub
 
 
 
@@ -11199,7 +11199,7 @@ void test_getHandlersForReadDataById_ValidDID_F308(void)
     uint8 l_diagBufSize_u8 = 0;
     Std_ReturnType l_didSupported_ = E_OK;
     uint8 l_diagBuf_pu8[10] = {0};
-
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
     /* Expect handler to be called and return E_OK */
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_OK);
 
@@ -11230,7 +11230,7 @@ void test_getHandlersForReadDataById_InvalidDID(void)
     uint8 l_diagBuf_pu8[10] = {0};
 
     /* Expect Subfunction_Request_Out_Of_Range handler to be called */
-    Subfunction_Request_Out_Of_Range_IgnoreAndReturn(E_NOT_OK);
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
 
     /* Call function */
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 
@@ -11262,7 +11262,7 @@ void test_getHandlersForReadDataById_MultipleInvalidDIDs(void)
         uint8 l_diagBuf_pu8[10] = {0};
         g_did_cu16 = invalid_dids[i];
 
-        Subfunction_Request_Out_Of_Range_IgnoreAndReturn(E_NOT_OK);
+        SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
 
         Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 
                                                            &l_diagBufSize_u8, &l_didSupported_, 
@@ -11283,6 +11283,7 @@ void test_getHandlersForReadDataById_ValidDID_HandlerReturnsError(void)
     uint8 l_diagBufSize_u8 = 0;
     Std_ReturnType l_didSupported_ = E_OK;
     uint8 l_diagBuf_pu8[10] = {0};
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
 
     /* Expect handler to be called and return E_NOT_OK */
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_NOT_OK);  /* Handler returns error */
@@ -11309,7 +11310,7 @@ void test_getHandlersForReadDataById_ErrorCodePassedToHandler(void)
     Std_ReturnType l_didSupported_ = E_OK;
     uint8 l_diagBuf_pu8[10] = {0};
 
-
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_OK);
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 
@@ -11331,7 +11332,7 @@ void test_getHandlersForReadDataById_OutputBufferPassedToHandler(void)
     uint8 l_diagBuf_pu8[10] = {0};
 
     /* Expect the specific buffer to be passed to handler */
-
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_OK);
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 
@@ -11351,7 +11352,7 @@ void test_getHandlersForReadDataById_BufferSizePointerPassedToHandler(void)
     Std_ReturnType l_didSupported_ = E_OK;
     uint8 l_diagBuf_pu8[10] = {0};
 
-
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_OK);
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 

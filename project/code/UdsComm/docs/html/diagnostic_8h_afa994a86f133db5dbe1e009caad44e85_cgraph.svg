@@ -46,7 +46,7 @@
   </g>
 </defs>
 <script type="application/ecmascript">
-var viewWidth = 527;
+var viewWidth = 565;
 var viewHeight = 175;
 var sectionId = 'dynsection-2';
 </script>
@@ -66,7 +66,7 @@ var sectionId = 'dynsection-2';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="diagnostic__cfg_8c.html#ad158936d88b7d913d4ba0f10bae535a2" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="group__DiagnosticCfgModule.html#gad158936d88b7d913d4ba0f10bae535a2" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="312,-167 211,-167 211,-148 312,-148 312,-167"/>
 <text text-anchor="middle" x="261.5" y="-155" font-family="Helvetica,sans-Serif" font-size="10.00">checkCurrentNad</text>
 </a>
@@ -84,7 +84,7 @@ var sectionId = 'dynsection-2';
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="diagnostic__cfg_8c.html#a6c372cd2d55d665a5a86e8eedc5ac715" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="group__DiagnosticCfgModule.html#ga6c372cd2d55d665a5a86e8eedc5ac715" target="_top" xlink:title="Validate the received LIN diagnostic message length.">
 <polygon fill="white" stroke="#666666" points="322.5,-130 200.5,-130 200.5,-111 322.5,-111 322.5,-130"/>
 <text text-anchor="middle" x="261.5" y="-118" font-family="Helvetica,sans-Serif" font-size="10.00">checkMsgDataLength</text>
 </a>
@@ -102,7 +102,7 @@ var sectionId = 'dynsection-2';
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="diagnostic__cfg_8c.html#a9029039986a6e787abd7c3bd809e83a3" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="group__DiagnosticCfgModule.html#ga9029039986a6e787abd7c3bd809e83a3" target="_top" xlink:title="Dispatch the handler associated with a ReadDataByIdentifier DID request.">
 <polygon fill="white" stroke="#666666" points="342,-93 181,-93 181,-74 342,-74 342,-93"/>
 <text text-anchor="middle" x="261.5" y="-81" font-family="Helvetica,sans-Serif" font-size="10.00">getHandlersForReadDataById</text>
 </a>
@@ -156,10 +156,10 @@ var sectionId = 'dynsection-2';
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="diagnostic__cfg_8c.html#ae108d0401f813aac27f8da5a3322c2ce" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="519,-122.5 378,-122.5 378,-92.5 519,-92.5 519,-122.5"/>
-<text text-anchor="start" x="386" y="-110.5" font-family="Helvetica,sans-Serif" font-size="10.00">RdbiVhitOverVoltageFault</text>
-<text text-anchor="middle" x="448.5" y="-99.5" font-family="Helvetica,sans-Serif" font-size="10.00">Diag_</text>
+<g id="a_Node000005"><a xlink:href="group__DiagnosticCfgModule.html#gae108d0401f813aac27f8da5a3322c2ce" target="_top" xlink:title="DID handler that provides the Over Voltage Fault diagnostic information.">
+<polygon fill="white" stroke="#666666" points="538,-119.5 397,-119.5 397,-89.5 538,-89.5 538,-119.5"/>
+<text text-anchor="start" x="405" y="-107.5" font-family="Helvetica,sans-Serif" font-size="10.00">RdbiVhitOverVoltageFault</text>
+<text text-anchor="middle" x="467.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">Diag_</text>
 </a>
 </g>
 </g>
@@ -167,18 +167,17 @@ var sectionId = 'dynsection-2';
 <g id="edge4_Node000004_Node000005" class="edge">
 <title>Node4&#45;&gt;Node5</title>
 <g id="a_edge4_Node000004_Node000005"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M335.88,-93.02C346.36,-94.38 357.17,-95.78 367.76,-97.16"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="367.46,-100.65 377.82,-98.46 368.36,-93.7 367.46,-100.65"/>
+<path fill="none" stroke="#63b8ff" d="M342.25,-91.71C356.87,-93.21 372.13,-94.79 386.74,-96.29"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="386.44,-99.78 396.75,-97.32 387.16,-92.81 386.44,-99.78"/>
 </a>
 </g>
 </g>
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="diagnostic__cfg_8c.html#a0e7b09558e42537166405d1da055e90d" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="#666666" points="508,-74.5 389,-74.5 389,-44.5 508,-44.5 508,-74.5"/>
-<text text-anchor="start" x="397" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">Subfunction_Request</text>
-<text text-anchor="middle" x="448.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">_Out_Of_Range</text>
+<g id="a_Node000006"><a xlink:href="group__DiagnosticCfgModule.html#ga623602ac7db748ce50de86c75b512405" target="_top" xlink:title="Default DID handler used for unsupported requests (&quot;Request Out Of Range&quot;).">
+<polygon fill="white" stroke="#666666" points="557,-71 378,-71 378,-52 557,-52 557,-71"/>
+<text text-anchor="middle" x="467.5" y="-59" font-family="Helvetica,sans-Serif" font-size="10.00">SubfunctionRequestOutOfRange_</text>
 </a>
 </g>
 </g>
@@ -186,8 +185,8 @@ var sectionId = 'dynsection-2';
 <g id="edge5_Node000004_Node000006" class="edge">
 <title>Node4&#45;&gt;Node6</title>
 <g id="a_edge5_Node000004_Node000006"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M335.88,-73.98C350.01,-72.15 364.75,-70.23 378.73,-68.42"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="379.28,-71.88 388.74,-67.12 378.38,-64.94 379.28,-71.88"/>
+<path fill="none" stroke="#63b8ff" d="M342.25,-74.9C350.76,-73.98 359.49,-73.04 368.19,-72.1"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="368.8,-75.56 378.37,-71 368.05,-68.6 368.8,-75.56"/>
 </a>
 </g>
 </g>

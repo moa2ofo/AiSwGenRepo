@@ -33,8 +33,8 @@ from typing import Optional, Iterable, Sequence, List, Tuple, Dict, Any
 # Logging helpers
 # -------------------------
 def info(msg: str):  print(f"[INFO] {msg}")
-def warn(msg: str):  print(f"[WARN] {msg}")
-def error(msg: str): print(f"[ERROR] {msg}")
+def warn(msg: str):  print(f"[WARNING_____] {msg}")
+def error(msg: str): print(f"[ERROR_______] {msg}")
 def fatal(msg: str, code: int = 1):
     print(f"[FATAL] {msg}")
     sys.exit(code)

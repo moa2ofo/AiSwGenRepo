@@ -18,7 +18,6 @@ INLINE_SOURCES         = YES
 
 # Graphviz (DOT) diagrams
 HAVE_DOT               = YES
-CLASS_DIAGRAMS         = YES
 UML_LOOK               = YES
 TEMPLATE_RELATIONS     = YES
 INCLUDE_GRAPH          = YES
@@ -28,6 +27,11 @@ CALLER_GRAPH           = YES
 DIRECTORY_GRAPH        = YES
 DOT_IMAGE_FORMAT       = svg
 INTERACTIVE_SVG        = YES
+
+# Warning
+WARNINGS = YES
+WARN_IF_UNDOCUMENTED = YES
+WARN_IF_DOC_ERROR = YES
 
 # PlantUML
 PLANTUML_JAR_PATH      = /opt/plantuml

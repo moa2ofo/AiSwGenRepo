@@ -1,11 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "acdegklmnprsu",
+  0: "acdegklmprsu",
   1: "d",
   2: "acglmrs",
-  3: "gp",
+  3: "cgp",
   4: "dsu",
-  5: "dekn"
+  5: "cdlm"
 };
 
 var indexSectionNames =
@@ -15,7 +15,7 @@ var indexSectionNames =
   2: "functions",
   3: "variables",
   4: "typedefs",
-  5: "defines"
+  5: "groups"
 };
 
 var indexSectionLabels =
@@ -25,6 +25,6 @@ var indexSectionLabels =
   2: "Functions",
   3: "Variables",
   4: "Typedefs",
-  5: "Macros"
+  5: "Modules"
 };
 

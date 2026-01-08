@@ -23,7 +23,7 @@ void test_getHandlersForReadDataById_ValidDID_F308(void)
     uint8 l_diagBufSize_u8 = 0;
     Std_ReturnType l_didSupported_ = E_OK;
     uint8 l_diagBuf_pu8[10] = {0};
-
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
     /* Expect handler to be called and return E_OK */
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_OK);
 
@@ -54,7 +54,7 @@ void test_getHandlersForReadDataById_InvalidDID(void)
     uint8 l_diagBuf_pu8[10] = {0};
 
     /* Expect Subfunction_Request_Out_Of_Range handler to be called */
-    Subfunction_Request_Out_Of_Range_IgnoreAndReturn(E_NOT_OK);
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
 
     /* Call function */
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 
@@ -86,7 +86,7 @@ void test_getHandlersForReadDataById_MultipleInvalidDIDs(void)
         uint8 l_diagBuf_pu8[10] = {0};
         g_did_cu16 = invalid_dids[i];
 
-        Subfunction_Request_Out_Of_Range_IgnoreAndReturn(E_NOT_OK);
+        SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
 
         Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 
                                                            &l_diagBufSize_u8, &l_didSupported_, 
@@ -107,6 +107,7 @@ void test_getHandlersForReadDataById_ValidDID_HandlerReturnsError(void)
     uint8 l_diagBufSize_u8 = 0;
     Std_ReturnType l_didSupported_ = E_OK;
     uint8 l_diagBuf_pu8[10] = {0};
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
 
     /* Expect handler to be called and return E_NOT_OK */
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_NOT_OK);  /* Handler returns error */
@@ -133,7 +134,7 @@ void test_getHandlersForReadDataById_ErrorCodePassedToHandler(void)
     Std_ReturnType l_didSupported_ = E_OK;
     uint8 l_diagBuf_pu8[10] = {0};
 
-
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_OK);
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 
@@ -155,7 +156,7 @@ void test_getHandlersForReadDataById_OutputBufferPassedToHandler(void)
     uint8 l_diagBuf_pu8[10] = {0};
 
     /* Expect the specific buffer to be passed to handler */
-
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_OK);
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 
@@ -175,7 +176,7 @@ void test_getHandlersForReadDataById_BufferSizePointerPassedToHandler(void)
     Std_ReturnType l_didSupported_ = E_OK;
     uint8 l_diagBuf_pu8[10] = {0};
 
-
+    SubfunctionRequestOutOfRange__IgnoreAndReturn(E_NOT_OK);
     RdbiVhitOverVoltageFaultDiag__IgnoreAndReturn(E_OK);
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16, 

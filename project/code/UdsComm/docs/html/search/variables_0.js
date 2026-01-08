@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['g_5flindiagdatalength_5fu16_0',['g_lindiagdatalength_u16',['../diagnostic_8c.html#a1532caabea39ff2369083c109c8b71b0',1,'g_linDiagDataLength_u16:&#160;diagnostic.c'],['../diagnostic_8h.html#a1532caabea39ff2369083c109c8b71b0',1,'g_linDiagDataLength_u16:&#160;diagnostic.c']]]
+  ['counter_5fu8_0',['counter_u8',['../diagnostic_8c.html#ad58d738ae6eb6ea01cfa297b4a635628',1,'diagnostic.c']]]
 ];

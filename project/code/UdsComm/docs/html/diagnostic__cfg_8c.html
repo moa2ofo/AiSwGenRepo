@@ -74,322 +74,45 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">diagnostic_cfg.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Implementation of the Diagnostic configuration services.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="diagnostic__cfg_8h_source.html">diagnostic_cfg.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="diagnostic__cfg__priv_8h_source.html">diagnostic_cfg_priv.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for diagnostic_cfg.c:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic__cfg_8c__incl.svg" width="224" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic__cfg_8c__incl.svg" width="162" height="183"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="diagnostic__cfg_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a070d2ce7b6bb7e5c05602aa8c308d0c4" id="r_a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diagnostic__cfg_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>&#160;&#160;&#160;((void *)0)</td></tr>
-<tr class="separator:a070d2ce7b6bb7e5c05602aa8c308d0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad158936d88b7d913d4ba0f10bae535a2" id="r_ad158936d88b7d913d4ba0f10bae535a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diagnostic__cfg_8c.html#ad158936d88b7d913d4ba0f10bae535a2">checkCurrentNad</a> (<a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> currentNad, <a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *result)</td></tr>
-<tr class="separator:ad158936d88b7d913d4ba0f10bae535a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c372cd2d55d665a5a86e8eedc5ac715" id="r_a6c372cd2d55d665a5a86e8eedc5ac715"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diagnostic__cfg_8c.html#a6c372cd2d55d665a5a86e8eedc5ac715">checkMsgDataLength</a> (uint16_t dataLength, <a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *result)</td></tr>
-<tr class="separator:a6c372cd2d55d665a5a86e8eedc5ac715"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae108d0401f813aac27f8da5a3322c2ce" id="r_ae108d0401f813aac27f8da5a3322c2ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diagnostic__cfg_8c.html#ae108d0401f813aac27f8da5a3322c2ce">RdbiVhitOverVoltageFaultDiag_</a> (<a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const output_pu8, <a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const size_pu8, <a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const errCode_pu8)</td></tr>
-<tr class="separator:ae108d0401f813aac27f8da5a3322c2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e7b09558e42537166405d1da055e90d" id="r_a0e7b09558e42537166405d1da055e90d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diagnostic__cfg_8c.html#a0e7b09558e42537166405d1da055e90d">Subfunction_Request_Out_Of_Range</a> (<a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const output_pu8, <a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const size_pu8, <a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const errCode_pu8)</td></tr>
-<tr class="separator:a0e7b09558e42537166405d1da055e90d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9029039986a6e787abd7c3bd809e83a3" id="r_a9029039986a6e787abd7c3bd809e83a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diagnostic__cfg_8c.html#a9029039986a6e787abd7c3bd809e83a3">getHandlersForReadDataById</a> (<a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *l_errCode_u8, <a class="el" href="diagnostic__cfg_8h.html#ac2a9e79eb120216f855626495b7bd18a">uint16</a> l_did_cu16, <a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *l_diagBufSize_u8, <a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *l_didSupported_, <a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *l_diagBuf_pu8)</td></tr>
-<tr class="separator:a9029039986a6e787abd7c3bd809e83a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad158936d88b7d913d4ba0f10bae535a2" id="r_gad158936d88b7d913d4ba0f10bae535a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DiagnosticCfgModule.html#gad158936d88b7d913d4ba0f10bae535a2">checkCurrentNad</a> (<a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> currentNad, <a class="el" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *result)</td></tr>
+<tr class="separator:gad158936d88b7d913d4ba0f10bae535a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6c372cd2d55d665a5a86e8eedc5ac715" id="r_ga6c372cd2d55d665a5a86e8eedc5ac715"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DiagnosticCfgModule.html#ga6c372cd2d55d665a5a86e8eedc5ac715">checkMsgDataLength</a> (uint16_t dataLength, <a class="el" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *result)</td></tr>
+<tr class="memdesc:ga6c372cd2d55d665a5a86e8eedc5ac715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validate the received LIN diagnostic message length.  <br /></td></tr>
+<tr class="separator:ga6c372cd2d55d665a5a86e8eedc5ac715"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae108d0401f813aac27f8da5a3322c2ce" id="r_gae108d0401f813aac27f8da5a3322c2ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DiagnosticCfgModule.html#gae108d0401f813aac27f8da5a3322c2ce">RdbiVhitOverVoltageFaultDiag_</a> (<a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const output_pu8, <a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const size_pu8, <a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const errCode_pu8)</td></tr>
+<tr class="memdesc:gae108d0401f813aac27f8da5a3322c2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">DID handler that provides the Over Voltage Fault diagnostic information.  <br /></td></tr>
+<tr class="separator:gae108d0401f813aac27f8da5a3322c2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga623602ac7db748ce50de86c75b512405" id="r_ga623602ac7db748ce50de86c75b512405"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DiagnosticCfgModule.html#ga623602ac7db748ce50de86c75b512405">SubfunctionRequestOutOfRange_</a> (<a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const output_pu8, <a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const size_pu8, <a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const errCode_pu8)</td></tr>
+<tr class="memdesc:ga623602ac7db748ce50de86c75b512405"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default DID handler used for unsupported requests ("Request Out Of Range").  <br /></td></tr>
+<tr class="separator:ga623602ac7db748ce50de86c75b512405"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9029039986a6e787abd7c3bd809e83a3" id="r_ga9029039986a6e787abd7c3bd809e83a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__DiagnosticCfgModule.html#ga9029039986a6e787abd7c3bd809e83a3">getHandlersForReadDataById</a> (<a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *l_errCode_u8, <a class="el" href="group__DiagnosticCfgModule.html#gac2a9e79eb120216f855626495b7bd18a">uint16</a> l_did_cu16, <a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *l_diagBufSize_u8, <a class="el" href="group__DiagnosticCfgModule.html#ga7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *l_didSupported_, <a class="el" href="group__DiagnosticCfgModule.html#ga33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *l_diagBuf_pu8)</td></tr>
+<tr class="memdesc:ga9029039986a6e787abd7c3bd809e83a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dispatch the handler associated with a ReadDataByIdentifier DID request.  <br /></td></tr>
+<tr class="separator:ga9029039986a6e787abd7c3bd809e83a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a070d2ce7b6bb7e5c05602aa8c308d0c4" name="a070d2ce7b6bb7e5c05602aa8c308d0c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a070d2ce7b6bb7e5c05602aa8c308d0c4">&#9670;&#160;</a></span>NULL</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Implementation of the Diagnostic configuration services. </p>
+<p>This file implements the functions documented in <a class="el" href="diagnostic__cfg_8h.html">diagnostic_cfg.h</a>. </p>
 
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define NULL&#160;&#160;&#160;((void *)0)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="diagnostic__cfg_8c_source.html#l00003">3</a> of file <a class="el" href="diagnostic__cfg_8c_source.html">diagnostic_cfg.c</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ad158936d88b7d913d4ba0f10bae535a2" name="ad158936d88b7d913d4ba0f10bae535a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad158936d88b7d913d4ba0f10bae535a2">&#9670;&#160;</a></span>checkCurrentNad()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void checkCurrentNad </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a>&#160;</td>
-          <td class="paramname"><em>currentNad</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *&#160;</td>
-          <td class="paramname"><em>result</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="diagnostic__cfg_8c_source.html#l00006">6</a> of file <a class="el" href="diagnostic__cfg_8c_source.html">diagnostic_cfg.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    7</span>{</div>
-<div class="line"><span class="lineno">    8</span>    (void)currentNad;</div>
-<div class="line"><span class="lineno">    9</span>    *result = <a class="code hl_define" href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a>;</div>
-<div class="line"><span class="lineno">   10</span>}</div>
-<div class="ttc" id="adiagnostic__cfg_8h_html_a1e7cc741c56207a8872ea58373276925"><div class="ttname"><a href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a></div><div class="ttdeci">#define E_OK</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8h_source.html#l00011">diagnostic_cfg.h:11</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic__cfg_8c_ad158936d88b7d913d4ba0f10bae535a2_icgraph.svg" width="387" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a6c372cd2d55d665a5a86e8eedc5ac715" name="a6c372cd2d55d665a5a86e8eedc5ac715"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c372cd2d55d665a5a86e8eedc5ac715">&#9670;&#160;</a></span>checkMsgDataLength()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void checkMsgDataLength </td>
-          <td>(</td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>dataLength</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *&#160;</td>
-          <td class="paramname"><em>result</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="diagnostic__cfg_8c_source.html#l00013">13</a> of file <a class="el" href="diagnostic__cfg_8c_source.html">diagnostic_cfg.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>{</div>
-<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">if</span> (dataLength &gt; 0u &amp;&amp; dataLength &lt;= 32u) {</div>
-<div class="line"><span class="lineno">   16</span>        *result = <a class="code hl_define" href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a>;</div>
-<div class="line"><span class="lineno">   17</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   18</span>        *result = <a class="code hl_define" href="diagnostic__cfg_8h.html#a1d155fa7a571f569a380bb42b1947eb4">E_NOT_OK</a>;</div>
-<div class="line"><span class="lineno">   19</span>    }</div>
-<div class="line"><span class="lineno">   20</span>}</div>
-<div class="ttc" id="adiagnostic__cfg_8h_html_a1d155fa7a571f569a380bb42b1947eb4"><div class="ttname"><a href="diagnostic__cfg_8h.html#a1d155fa7a571f569a380bb42b1947eb4">E_NOT_OK</a></div><div class="ttdeci">#define E_NOT_OK</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8h_source.html#l00012">diagnostic_cfg.h:12</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic__cfg_8c_a6c372cd2d55d665a5a86e8eedc5ac715_icgraph.svg" width="415" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="a9029039986a6e787abd7c3bd809e83a3" name="a9029039986a6e787abd7c3bd809e83a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9029039986a6e787abd7c3bd809e83a3">&#9670;&#160;</a></span>getHandlersForReadDataById()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> getHandlersForReadDataById </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *&#160;</td>
-          <td class="paramname"><em>l_errCode_u8</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#ac2a9e79eb120216f855626495b7bd18a">uint16</a>&#160;</td>
-          <td class="paramname"><em>l_did_cu16</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *&#160;</td>
-          <td class="paramname"><em>l_diagBufSize_u8</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> *&#160;</td>
-          <td class="paramname"><em>l_didSupported_</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *&#160;</td>
-          <td class="paramname"><em>l_diagBuf_pu8</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="diagnostic__cfg_8c_source.html#l00043">43</a> of file <a class="el" href="diagnostic__cfg_8c_source.html">diagnostic_cfg.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   44</span>{</div>
-<div class="line"><span class="lineno">   45</span>    <a class="code hl_typedef" href="diagnostic__cfg__priv_8h.html#ab1e66c525542f4d072fb980832f922d9">diagHandler_t</a> l_handler_ = &amp;<a class="code hl_function" href="diagnostic__cfg_8c.html#a0e7b09558e42537166405d1da055e90d">Subfunction_Request_Out_Of_Range</a>;</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>    </div>
-<div class="line"><span class="lineno">   48</span>    <span class="keywordflow">switch</span> (l_did_cu16)</div>
-<div class="line"><span class="lineno">   49</span>    {</div>
-<div class="line"><span class="lineno">   50</span>    <span class="comment">/* IS_OVERVOLT_FLAG */</span></div>
-<div class="line"><span class="lineno">   51</span>    <span class="keywordflow">case</span> 0xF308:</div>
-<div class="line"><span class="lineno">   52</span>        *l_diagBufSize_u8 = <a class="code hl_define" href="diagnostic__cfg__priv_8h.html#aa0c8436cc109dac878ab8993c22256b6">DID_F308_SIZE</a>;</div>
-<div class="line"><span class="lineno">   53</span>        l_handler_ = &amp;<a class="code hl_function" href="diagnostic__cfg_8c.html#ae108d0401f813aac27f8da5a3322c2ce">RdbiVhitOverVoltageFaultDiag_</a>;</div>
-<div class="line"><span class="lineno">   54</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">   57</span>        *l_didSupported_  = <a class="code hl_define" href="diagnostic__cfg_8h.html#a1d155fa7a571f569a380bb42b1947eb4">E_NOT_OK</a>;</div>
-<div class="line"><span class="lineno">   58</span>        *l_errCode_u8 = <a class="code hl_define" href="diagnostic__cfg_8h.html#a4f4bdb7a7e2944403763b30338e4d588">kLinDiagNrcRequestOutOfRange</a>;</div>
-<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   60</span>    }</div>
-<div class="line"><span class="lineno">   61</span>    </div>
-<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">return</span> l_handler_(l_diagBuf_pu8, l_diagBufSize_u8, &amp;l_errCode_u8);</div>
-<div class="line"><span class="lineno">   63</span>}</div>
-<div class="ttc" id="adiagnostic__cfg_8c_html_a0e7b09558e42537166405d1da055e90d"><div class="ttname"><a href="diagnostic__cfg_8c.html#a0e7b09558e42537166405d1da055e90d">Subfunction_Request_Out_Of_Range</a></div><div class="ttdeci">Std_ReturnType Subfunction_Request_Out_Of_Range(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00031">diagnostic_cfg.c:31</a></div></div>
-<div class="ttc" id="adiagnostic__cfg_8c_html_ae108d0401f813aac27f8da5a3322c2ce"><div class="ttname"><a href="diagnostic__cfg_8c.html#ae108d0401f813aac27f8da5a3322c2ce">RdbiVhitOverVoltageFaultDiag_</a></div><div class="ttdeci">Std_ReturnType RdbiVhitOverVoltageFaultDiag_(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00022">diagnostic_cfg.c:22</a></div></div>
-<div class="ttc" id="adiagnostic__cfg_8h_html_a4f4bdb7a7e2944403763b30338e4d588"><div class="ttname"><a href="diagnostic__cfg_8h.html#a4f4bdb7a7e2944403763b30338e4d588">kLinDiagNrcRequestOutOfRange</a></div><div class="ttdeci">#define kLinDiagNrcRequestOutOfRange</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8h_source.html#l00013">diagnostic_cfg.h:13</a></div></div>
-<div class="ttc" id="adiagnostic__cfg__priv_8h_html_aa0c8436cc109dac878ab8993c22256b6"><div class="ttname"><a href="diagnostic__cfg__priv_8h.html#aa0c8436cc109dac878ab8993c22256b6">DID_F308_SIZE</a></div><div class="ttdeci">#define DID_F308_SIZE</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg__priv_8h_source.html#l00008">diagnostic_cfg_priv.h:8</a></div></div>
-<div class="ttc" id="adiagnostic__cfg__priv_8h_html_ab1e66c525542f4d072fb980832f922d9"><div class="ttname"><a href="diagnostic__cfg__priv_8h.html#ab1e66c525542f4d072fb980832f922d9">diagHandler_t</a></div><div class="ttdeci">Std_ReturnType(* diagHandler_t)(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8)</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg__priv_8h_source.html#l00010">diagnostic_cfg_priv.h:10</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic__cfg_8c_a9029039986a6e787abd7c3bd809e83a3_cgraph.svg" width="462" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="diagnostic__cfg_8c_a9029039986a6e787abd7c3bd809e83a3_icgraph.svg" width="467" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="ae108d0401f813aac27f8da5a3322c2ce" name="ae108d0401f813aac27f8da5a3322c2ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae108d0401f813aac27f8da5a3322c2ce">&#9670;&#160;</a></span>RdbiVhitOverVoltageFaultDiag_()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> RdbiVhitOverVoltageFaultDiag_ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const&#160;</td>
-          <td class="paramname"><em>output_pu8</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const&#160;</td>
-          <td class="paramname"><em>size_pu8</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const&#160;</td>
-          <td class="paramname"><em>errCode_pu8</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="diagnostic__cfg_8c_source.html#l00022">22</a> of file <a class="el" href="diagnostic__cfg_8c_source.html">diagnostic_cfg.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>{</div>
-<div class="line"><span class="lineno">   25</span>  (void)size_pu8;</div>
-<div class="line"><span class="lineno">   26</span>  (void)errCode_pu8;</div>
-<div class="line"><span class="lineno">   27</span>  output_pu8[0] = 0x01; <span class="comment">/* Example data */</span></div>
-<div class="line"><span class="lineno">   28</span>  <span class="keywordflow">return</span> <a class="code hl_define" href="diagnostic__cfg_8h.html#a1e7cc741c56207a8872ea58373276925">E_OK</a>;</div>
-<div class="line"><span class="lineno">   29</span>}</div>
-</div><!-- fragment --><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="diagnostic__cfg_8c_ae108d0401f813aac27f8da5a3322c2ce_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
-</div>
-
-</div>
-</div>
-<a id="a0e7b09558e42537166405d1da055e90d" name="a0e7b09558e42537166405d1da055e90d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e7b09558e42537166405d1da055e90d">&#9670;&#160;</a></span>Subfunction_Request_Out_Of_Range()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="diagnostic__cfg_8h.html#a7ba1ab0e3cce347ba1de27f426253160">Std_ReturnType</a> Subfunction_Request_Out_Of_Range </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const&#160;</td>
-          <td class="paramname"><em>output_pu8</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const&#160;</td>
-          <td class="paramname"><em>size_pu8</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="diagnostic__cfg_8h.html#a33a5e996e7a90acefb8b1c0bea47e365">uint8</a> *const&#160;</td>
-          <td class="paramname"><em>errCode_pu8</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="diagnostic__cfg_8c_source.html#l00031">31</a> of file <a class="el" href="diagnostic__cfg_8c_source.html">diagnostic_cfg.c</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   33</span>{</div>
-<div class="line"><span class="lineno">   34</span>  (void)output_pu8;</div>
-<div class="line"><span class="lineno">   35</span>  (void)size_pu8;</div>
-<div class="line"><span class="lineno">   36</span>  <span class="keywordflow">if</span>(<a class="code hl_define" href="diagnostic__cfg_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> != errCode_pu8)</div>
-<div class="line"><span class="lineno">   37</span>  {</div>
-<div class="line"><span class="lineno">   38</span>    *errCode_pu8 = 0x12;</div>
-<div class="line"><span class="lineno">   39</span>  }</div>
-<div class="line"><span class="lineno">   40</span>  <span class="keywordflow">return</span> <a class="code hl_define" href="diagnostic__cfg_8h.html#a1d155fa7a571f569a380bb42b1947eb4">E_NOT_OK</a>;</div>
-<div class="line"><span class="lineno">   41</span>}</div>
-<div class="ttc" id="adiagnostic__cfg_8c_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="diagnostic__cfg_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="diagnostic__cfg_8c_source.html#l00003">diagnostic_cfg.c:3</a></div></div>
-</div><!-- fragment --><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="diagnostic__cfg_8c_a0e7b09558e42537166405d1da055e90d_icgraph.svg" width="100%" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
-</div>
-
-</div>
-</div>
-</div><!-- contents -->
+<p class="definition">Definition in file <a class="el" href="diagnostic__cfg_8c_source.html">diagnostic_cfg.c</a>.</p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8

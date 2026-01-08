@@ -1,15 +1,29 @@
+/**
+ * @file diagnostic_cfg.c
+ * @brief Implementation of the Diagnostic configuration services.
+ *
+ * @details
+ * This file implements the functions documented in @ref diagnostic_cfg.h.
+ */
+
 #include "diagnostic_cfg.h"
 #include "diagnostic_cfg_priv.h"
 #define NULL ((void *)0)
 
 
+/** @copydoc checkCurrentNad */
 void checkCurrentNad(uint8 currentNad, Std_ReturnType *result)
 {
     (void)currentNad;
-    *result = E_OK;
+    if(currentNad != 0x7F && currentNad != 0x7E){
+        *result = E_OK;
+    }else{
+        *result = E_NOT_OK;
+    }
+    
 }
 
-/* Check if message data length is valid */
+
 void checkMsgDataLength(uint16_t dataLength, Std_ReturnType *result)
 {
     if (dataLength > 0u && dataLength <= 32u) {
@@ -28,7 +42,7 @@ Std_ReturnType RdbiVhitOverVoltageFaultDiag_(uint8*const  output_pu8,
   return E_OK;
 }
 
-Std_ReturnType Subfunction_Request_Out_Of_Range(uint8*const  output_pu8,
+Std_ReturnType SubfunctionRequestOutOfRange_(uint8*const  output_pu8,
     uint8*const  size_pu8, uint8* const errCode_pu8)
 {
   (void)output_pu8;
@@ -42,7 +56,7 @@ Std_ReturnType Subfunction_Request_Out_Of_Range(uint8*const  output_pu8,
 
 Std_ReturnType getHandlersForReadDataById(uint8 * l_errCode_u8, uint16 l_did_cu16,  uint8 *l_diagBufSize_u8, Std_ReturnType *l_didSupported_,  uint8 *l_diagBuf_pu8)
 {
-    diagHandler_t l_handler_ = &Subfunction_Request_Out_Of_Range;
+    diagHandler_t l_handler_ = &SubfunctionRequestOutOfRange_;
 
     
     switch (l_did_cu16)
@@ -61,4 +75,3 @@ Std_ReturnType getHandlersForReadDataById(uint8 * l_errCode_u8, uint16 l_did_cu1
     
     return l_handler_(l_diagBuf_pu8, l_diagBufSize_u8, &l_errCode_u8);
 }
-

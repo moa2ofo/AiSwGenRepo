@@ -67,7 +67,7 @@ var sectionId = 'dynsection-2';
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="diagnostic__cfg_8c.html#a9029039986a6e787abd7c3bd809e83a3" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="group__DiagnosticCfgModule.html#ga9029039986a6e787abd7c3bd809e83a3" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="342,-24.5 181,-24.5 181,-5.5 342,-5.5 342,-24.5"/>
 <text text-anchor="middle" x="261.5" y="-12.5" font-family="Helvetica,sans-Serif" font-size="10.00">getHandlersForReadDataById</text>
 </a>

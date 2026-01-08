@@ -2187,7 +2187,7 @@ typedef Std_ReturnType (*diagHandler_t)(uint8*const output_pu8, uint8*const size
 Std_ReturnType RdbiVhitOverVoltageFaultDiag_(uint8*const output_pu8,
     uint8*const size_pu8, uint8* const errCode_pu8);
 
-Std_ReturnType Subfunction_Request_Out_Of_Range(uint8*const output_pu8,
+Std_ReturnType SubfunctionRequestOutOfRange_(uint8*const output_pu8,
     uint8*const size_pu8, uint8* const errCode_pu8);
 # 6 "utExecutionAndResults/utUnderTest/src/getHandlersForReadDataById.h" 2
 
@@ -2267,15 +2267,15 @@ void RdbiVhitOverVoltageFaultDiag__Stub(CMOCK_RdbiVhitOverVoltageFaultDiag__CALL
 
 
 
-void Subfunction_Request_Out_Of_Range_CMockIgnoreAndReturn(UNITY_UINT cmock_line, Std_ReturnType cmock_to_return);
+void SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(UNITY_UINT cmock_line, Std_ReturnType cmock_to_return);
 
-void Subfunction_Request_Out_Of_Range_CMockStopIgnore(void);
+void SubfunctionRequestOutOfRange__CMockStopIgnore(void);
 
 
-void Subfunction_Request_Out_Of_Range_CMockExpectAndReturn(UNITY_UINT cmock_line, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, Std_ReturnType cmock_to_return);
-typedef Std_ReturnType (* CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK)(uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, int cmock_num_calls);
-void Subfunction_Request_Out_Of_Range_AddCallback(CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK Callback);
-void Subfunction_Request_Out_Of_Range_Stub(CMOCK_Subfunction_Request_Out_Of_Range_CALLBACK Callback);
+void SubfunctionRequestOutOfRange__CMockExpectAndReturn(UNITY_UINT cmock_line, uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, Std_ReturnType cmock_to_return);
+typedef Std_ReturnType (* CMOCK_SubfunctionRequestOutOfRange__CALLBACK)(uint8* const output_pu8, uint8* const size_pu8, uint8* const errCode_pu8, int cmock_num_calls);
+void SubfunctionRequestOutOfRange__AddCallback(CMOCK_SubfunctionRequestOutOfRange__CALLBACK Callback);
+void SubfunctionRequestOutOfRange__Stub(CMOCK_SubfunctionRequestOutOfRange__CALLBACK Callback);
 # 86 "utExecutionAndResults/utUnderTest/build/test/mocks/test_getHandlersForReadDataById/mock_diagnostic_cfg.h"
 #pragma GCC diagnostic pop
 # 4 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 2
@@ -2589,7 +2589,7 @@ void test_getHandlersForReadDataById_ValidDID_F308(void)
     uint8 l_diagBufSize_u8 = 0;
     Std_ReturnType l_didSupported_ = ((Std_ReturnType)0x00u);
     uint8 l_diagBuf_pu8[10] = {0};
-
+    SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(26, ((Std_ReturnType)0x01u));
 
     RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(28, ((Std_ReturnType)0x00u));
 
@@ -2632,7 +2632,7 @@ void test_getHandlersForReadDataById_InvalidDID(void)
     uint8 l_diagBuf_pu8[10] = {0};
 
 
-    Subfunction_Request_Out_Of_Range_CMockIgnoreAndReturn(57, ((Std_ReturnType)0x01u));
+    SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(57, ((Std_ReturnType)0x01u));
 
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16,
@@ -2676,7 +2676,7 @@ void test_getHandlersForReadDataById_MultipleInvalidDIDs(void)
         uint8 l_diagBuf_pu8[10] = {0};
         g_did_cu16 = invalid_dids[i];
 
-        Subfunction_Request_Out_Of_Range_CMockIgnoreAndReturn(89, ((Std_ReturnType)0x01u));
+        SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(89, ((Std_ReturnType)0x01u));
 
         Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16,
                                                            &l_diagBufSize_u8, &l_didSupported_,
@@ -2697,9 +2697,10 @@ void test_getHandlersForReadDataById_ValidDID_HandlerReturnsError(void)
     uint8 l_diagBufSize_u8 = 0;
     Std_ReturnType l_didSupported_ = ((Std_ReturnType)0x00u);
     uint8 l_diagBuf_pu8[10] = {0};
+    SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(110, ((Std_ReturnType)0x01u));
 
 
-    RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(112, ((Std_ReturnType)0x01u));
+    RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(113, ((Std_ReturnType)0x01u));
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16,
                                                        &l_diagBufSize_u8, &l_didSupported_,
@@ -2707,17 +2708,17 @@ void test_getHandlersForReadDataById_ValidDID_HandlerReturnsError(void)
 
 
     UnityAssertEqualNumber((UNITY_INT)((1U)), (UNITY_INT)((l_diagBufSize_u8)), (
-# 119 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
+# 120 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
    ((void *)0)
-# 119 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
-   ), (UNITY_UINT)(119), UNITY_DISPLAY_STYLE_INT);
+# 120 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
+   ), (UNITY_UINT)(120), UNITY_DISPLAY_STYLE_INT);
 
 
     UnityAssertEqualNumber((UNITY_INT)((((Std_ReturnType)0x01u))), (UNITY_INT)((result)), (
-# 122 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
+# 123 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
    ((void *)0)
-# 122 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
-   ), (UNITY_UINT)(122), UNITY_DISPLAY_STYLE_INT);
+# 123 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
+   ), (UNITY_UINT)(123), UNITY_DISPLAY_STYLE_INT);
 }
 
 
@@ -2731,18 +2732,18 @@ void test_getHandlersForReadDataById_ErrorCodePassedToHandler(void)
     Std_ReturnType l_didSupported_ = ((Std_ReturnType)0x00u);
     uint8 l_diagBuf_pu8[10] = {0};
 
-
-    RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(137, ((Std_ReturnType)0x00u));
+    SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(137, ((Std_ReturnType)0x01u));
+    RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(138, ((Std_ReturnType)0x00u));
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16,
                                                        &l_diagBufSize_u8, &l_didSupported_,
                                                        l_diagBuf_pu8);
 
     UnityAssertEqualNumber((UNITY_INT)((((Std_ReturnType)0x00u))), (UNITY_INT)((result)), (
-# 143 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
+# 144 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
    ((void *)0)
-# 143 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
-   ), (UNITY_UINT)(143), UNITY_DISPLAY_STYLE_INT);
+# 144 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
+   ), (UNITY_UINT)(144), UNITY_DISPLAY_STYLE_INT);
 }
 
 
@@ -2757,17 +2758,17 @@ void test_getHandlersForReadDataById_OutputBufferPassedToHandler(void)
     uint8 l_diagBuf_pu8[10] = {0};
 
 
-
-    RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(159, ((Std_ReturnType)0x00u));
+    SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(159, ((Std_ReturnType)0x01u));
+    RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(160, ((Std_ReturnType)0x00u));
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16,
                                                        &l_diagBufSize_u8, &l_didSupported_,
                                                        l_diagBuf_pu8);
     UnityAssertEqualNumber((UNITY_INT)((((Std_ReturnType)0x00u))), (UNITY_INT)((result)), (
-# 164 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
+# 165 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
    ((void *)0)
-# 164 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
-   ), (UNITY_UINT)(164), UNITY_DISPLAY_STYLE_INT);
+# 165 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
+   ), (UNITY_UINT)(165), UNITY_DISPLAY_STYLE_INT);
 }
 
 
@@ -2781,8 +2782,8 @@ void test_getHandlersForReadDataById_BufferSizePointerPassedToHandler(void)
     Std_ReturnType l_didSupported_ = ((Std_ReturnType)0x00u);
     uint8 l_diagBuf_pu8[10] = {0};
 
-
-    RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(179, ((Std_ReturnType)0x00u));
+    SubfunctionRequestOutOfRange__CMockIgnoreAndReturn(179, ((Std_ReturnType)0x01u));
+    RdbiVhitOverVoltageFaultDiag__CMockIgnoreAndReturn(180, ((Std_ReturnType)0x00u));
 
     Std_ReturnType result = getHandlersForReadDataById(&g_errCode_u8, g_did_cu16,
                                                        &l_diagBufSize_u8, &l_didSupported_,
@@ -2790,13 +2791,13 @@ void test_getHandlersForReadDataById_BufferSizePointerPassedToHandler(void)
 
 
     UnityAssertEqualNumber((UNITY_INT)((1U)), (UNITY_INT)((l_diagBufSize_u8)), (
-# 186 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
-   ((void *)0)
-# 186 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
-   ), (UNITY_UINT)(186), UNITY_DISPLAY_STYLE_INT);
-    UnityAssertEqualNumber((UNITY_INT)((((Std_ReturnType)0x00u))), (UNITY_INT)((result)), (
 # 187 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
    ((void *)0)
 # 187 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
    ), (UNITY_UINT)(187), UNITY_DISPLAY_STYLE_INT);
+    UnityAssertEqualNumber((UNITY_INT)((((Std_ReturnType)0x00u))), (UNITY_INT)((result)), (
+# 188 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c" 3 4
+   ((void *)0)
+# 188 "utExecutionAndResults/utUnderTest/test/test_getHandlersForReadDataById.c"
+   ), (UNITY_UINT)(188), UNITY_DISPLAY_STYLE_INT);
 }
