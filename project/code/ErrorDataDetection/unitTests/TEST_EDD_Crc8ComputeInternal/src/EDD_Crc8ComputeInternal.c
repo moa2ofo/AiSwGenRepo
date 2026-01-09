@@ -1,10 +1,5 @@
 #include "EDD_Crc8ComputeInternal.h"
 
-/* Global buffers normally provided by LIN stack */
-uint8_t pbLinDiagBuffer[32];
-/* Message length */
-uint16_t g_linDiagDataLength_u16 = 0;
-
 
 
 /* FUNCTION TO TEST */

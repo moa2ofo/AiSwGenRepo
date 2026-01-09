@@ -1,0 +1,4 @@
+---
+- utExecutionAndResults/utUnderTest/build/vendor/unity/src/unity.h
+- utExecutionAndResults/utUnderTest/src/EDD_VerifyCrc8.h
+- mock_errorDataDetection_priv.h
