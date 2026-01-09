@@ -377,10 +377,40 @@ def update_total_result_report(build_folder: Path, function_name: str, report_fo
     fail_file = build_folder / "test" / "results" / f"test_{function_name}.fail"
     report_file = pass_file if pass_file.exists() else fail_file
 
+    now_str = datetime.now().strftime("%d/%m/%y %H:%M")
+    tester = getpass.getuser()
+
+    report_folder.mkdir(parents=True, exist_ok=True)
+    summary_file = report_folder / RESULT_REPORT
+
+    rows = load_result_rows(summary_file)
+
+    # ============================================================
+    # ✅ NEW BEHAVIOR: if no report exists, still update summary
+    # ============================================================
     if not report_file.exists():
-        warn(f"Report file does not exist: {report_file}")
+        warn(f"Report file does not exist: {report_file}. Marking as FAILED in summary.")
+
+        rows[function_name] = TestResultRow(
+            function_name=function_name,
+            total="FAILED",
+            passed="FAILED",
+            failed="FAILED",
+            ignored="FAILED",
+            date_time=now_str,
+            tester=tester
+        )
+
+        header_csv = "function_name,total,passed,failed,ignored,Date and time,Tester"
+        lines_out = [header_csv] + [row.to_csv_line() for row in rows.values()]
+        summary_file.write_text("\n".join(lines_out) + "\n", encoding="utf-8")
+
+        info(f"Updated summary for '{function_name}' (FAILED - no report found): {summary_file}")
         return
 
+    # ============================================================
+    # Normal flow: report exists -> parse values as before
+    # ============================================================
     total = passed = failed = ignored = None
 
     try:
@@ -396,17 +426,18 @@ def update_total_result_report(build_folder: Path, function_name: str, report_fo
                 ignored = line.split(":", 2)[2].strip()
 
         if None in (total, passed, failed, ignored):
-            warn(f"Missing values in report file: {report_file}")
-            return
+            warn(f"Missing values in report file: {report_file}. Marking as FAILED in summary.")
+            total = passed = failed = ignored = "FAILED"
 
-        now_str = datetime.now().strftime("%d/%m/%y %H:%M")
-        tester = getpass.getuser()
-
-        report_folder.mkdir(parents=True, exist_ok=True)
-        summary_file = report_folder / RESULT_REPORT
-
-        rows = load_result_rows(summary_file)
-        rows[function_name] = TestResultRow(function_name, total, passed, failed, ignored, now_str, tester)
+        rows[function_name] = TestResultRow(
+            function_name=function_name,
+            total=total,
+            passed=passed,
+            failed=failed,
+            ignored=ignored,
+            date_time=now_str,
+            tester=tester
+        )
 
         header_csv = "function_name,total,passed,failed,ignored,Date and time,Tester"
         lines_out = [header_csv] + [row.to_csv_line() for row in rows.values()]
@@ -414,7 +445,24 @@ def update_total_result_report(build_folder: Path, function_name: str, report_fo
         info(f"Updated summary for '{function_name}': {summary_file}")
 
     except Exception as e:
-        warn(f"Error updating report data: {e}")
+        warn(f"Error updating report data: {e}. Marking as FAILED in summary.")
+
+        rows[function_name] = TestResultRow(
+            function_name=function_name,
+            total="FAILED",
+            passed="FAILED",
+            failed="FAILED",
+            ignored="FAILED",
+            date_time=now_str,
+            tester=tester
+        )
+
+        header_csv = "function_name,total,passed,failed,ignored,Date and time,Tester"
+        lines_out = [header_csv] + [row.to_csv_line() for row in rows.values()]
+        summary_file.write_text("\n".join(lines_out) + "\n", encoding="utf-8")
+
+        info(f"Updated summary for '{function_name}' (FAILED due to exception): {summary_file}")
+
 
 
 def format_total_result_report(report_folder: Path):
