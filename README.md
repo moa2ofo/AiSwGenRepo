@@ -51,6 +51,12 @@ project
 swCmpBuildCheck.py
   Script used to build and perform static checks on all software components inside the code folder
 
+commonUtils.py
+  Contains all the common utilities that the scripts share
+
+lanchAll.py
+  To lauch all other scripts
+
 CMakeLists.txt
   Template CMake configuration used during the build process
 ```
