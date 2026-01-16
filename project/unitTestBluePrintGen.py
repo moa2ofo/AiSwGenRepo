@@ -159,6 +159,180 @@ def brace_match_c(text: str, open_brace_index: int) -> Optional[int]:
     return None
 
 
+def _strip_c_comments_and_strings_keep_len(s: str) -> str:
+    """
+    Replace comments/strings/chars with spaces (same length) to preserve indices.
+    Helps scanning without being confused by ' ; { } ' inside strings/comments.
+    """
+    out = list(s)
+    n = len(s)
+    i = 0
+    in_str = False
+    in_chr = False
+    in_line_comment = False
+    in_block_comment = False
+    escape = False
+
+    while i < n:
+        c = s[i]
+
+        if in_line_comment:
+            out[i] = " "
+            if c == "\n":
+                in_line_comment = False
+            i += 1
+            continue
+
+        if in_block_comment:
+            out[i] = " "
+            if c == "*" and i + 1 < n and s[i + 1] == "/":
+                out[i + 1] = " "
+                in_block_comment = False
+                i += 2
+                continue
+            i += 1
+            continue
+
+        if in_str:
+            out[i] = " "
+            if escape:
+                escape = False
+            elif c == "\\":
+                escape = True
+            elif c == '"':
+                in_str = False
+            i += 1
+            continue
+
+        if in_chr:
+            out[i] = " "
+            if escape:
+                escape = False
+            elif c == "\\":
+                escape = True
+            elif c == "'":
+                in_chr = False
+            i += 1
+            continue
+
+        if c == "/" and i + 1 < n:
+            nxt = s[i + 1]
+            if nxt == "/":
+                out[i] = out[i + 1] = " "
+                in_line_comment = True
+                i += 2
+                continue
+            if nxt == "*":
+                out[i] = out[i + 1] = " "
+                in_block_comment = True
+                i += 2
+                continue
+
+        if c == '"':
+            out[i] = " "
+            in_str = True
+            i += 1
+            continue
+
+        if c == "'":
+            out[i] = " "
+            in_chr = True
+            i += 1
+            continue
+
+        i += 1
+
+    return "".join(out)
+
+
+def extract_file_scope_variable_definitions_c(full_c_text: str) -> List[str]:
+    """
+    Extract *file-scope* variable definition statements from a .c file.
+
+    Heuristics (best-effort):
+      - Only considers statements ending with ';' at brace depth 0.
+      - Skips preprocessor, typedef, extern declarations and likely function prototypes.
+      - Keeps globals/static/const vars and initialized objects (arrays/structs).
+    """
+    txt = full_c_text
+    masked = _strip_c_comments_and_strings_keep_len(txt)
+
+    vars_out: List[str] = []
+
+    brace_depth = 0
+    paren_depth = 0
+    bracket_depth = 0
+
+    stmt_start = 0
+    i = 0
+    n = len(masked)
+
+    def looks_like_function_prototype(stmt: str) -> bool:
+        s = stmt.strip()
+        if not s.endswith(';'):
+            return True
+        if '{' in s:
+            return True
+        # likely prototype: has ( ) and no '=' and not function-pointer var
+        if '(' in s and ')' in s and '=' not in s and '(*' not in s:
+            return True
+        return False
+
+    while i < n:
+        c = masked[i]
+
+        if c == '(':
+            paren_depth += 1
+        elif c == ')':
+            paren_depth = max(0, paren_depth - 1)
+        elif c == '[':
+            bracket_depth += 1
+        elif c == ']':
+            bracket_depth = max(0, bracket_depth - 1)
+
+        if c == '{' and paren_depth == 0 and bracket_depth == 0:
+            brace_depth += 1
+        elif c == '}' and paren_depth == 0 and bracket_depth == 0:
+            brace_depth = max(0, brace_depth - 1)
+
+        if c == ';' and brace_depth == 0 and paren_depth == 0 and bracket_depth == 0:
+            stmt = txt[stmt_start:i + 1]
+            stmt_start = i + 1
+
+            s = stmt.strip()
+            if not s:
+                i += 1
+                continue
+
+            if s.startswith('#'):
+                i += 1
+                continue
+            if re.match(r'^\s*typedef\b', s):
+                i += 1
+                continue
+            if re.match(r'^\s*extern\b', s):
+                i += 1
+                continue
+            if looks_like_function_prototype(s):
+                i += 1
+                continue
+
+            vars_out.append(s.rstrip() + "\n")
+
+        i += 1
+
+    # de-dup preserving order
+    seen = set()
+    uniq: List[str] = []
+    for v in vars_out:
+        key = normalize_ws(v)
+        if key not in seen:
+            seen.add(key)
+            uniq.append(v)
+
+    return uniq
+
+
 def find_c_definition_spans(text: str, func_name: str) -> List[Tuple[int, int, str]]:
     """
     Find all C function definition blocks for func_name.
@@ -671,6 +845,10 @@ def write_wrapper_files(dst_src_dir: Path, func_name: str, extracted: Extracted,
     that was immediately above the declaration in the original module header.
 
     <func_name>.c includes <func_name>.h and ALL other .h files in dst_src_dir.
+
+    NEW:
+      - If the function definition was extracted from a .c file, also extract file-scope variable
+        definitions from that same .c file and inject them into <func_name>.c (before the function).
     """
     dst_src_dir.mkdir(parents=True, exist_ok=True)
 
@@ -717,6 +895,18 @@ def write_wrapper_files(dst_src_dir: Path, func_name: str, extracted: Extracted,
             inc_unique.append(line)
     includes_block = "\n".join(inc_unique)
 
+    # NEW: extract file-scope variable definitions from the same .c file where the function was found
+    var_block = ""
+    if extracted.lang == "c" and extracted.source_path.suffix.lower() == ".c":
+        src_txt = read_text_file(extracted.source_path) or ""
+        var_defs = extract_file_scope_variable_definitions_c(src_txt)
+        if var_defs:
+            var_block = (
+                "/* ---- extracted file-scope variables from original source ---- */\n"
+                + "".join(var_defs)
+                + "\n"
+            )
+
     if extracted.lang == "c":
         defn = extracted.definition_text
         open_brace = defn.find("{")
@@ -725,7 +915,8 @@ def write_wrapper_files(dst_src_dir: Path, func_name: str, extracted: Extracted,
             rest = defn[open_brace:]
             sig2 = strip_static_words(sig)
             defn = sig2.rstrip() + "\n" + rest.lstrip("\n")
-        c_txt = f"{includes_block}\n\n{defn}"
+
+        c_txt = f"{includes_block}\n\n{var_block}{defn}"
     else:
         c_txt = (
             f"{includes_block}\n\n"
@@ -734,7 +925,6 @@ def write_wrapper_files(dst_src_dir: Path, func_name: str, extracted: Extracted,
         )
 
     write_text_file(c_path, c_txt)
-
 def main(argv: List[str]) -> int:
     repo_root = Path(argv[1]) if len(argv) > 1 else Path(".")
     code_root = repo_root / "code"
