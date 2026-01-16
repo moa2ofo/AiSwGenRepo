@@ -651,6 +651,115 @@ def strip_func_decl_from_all_headers_in_src(dst_src_dir: Path, func_name: str) -
             write_text_file(hp, new_txt)
 
 
+def convert_static_vars_to_extern_in_header(header_text: str) -> str:
+    """
+    In a header file:
+    - Replace 'static <type> <var>;' with 'extern <type> <var>;' (variables only)
+    - Add 'extern' to bare variable declarations (type var;)
+    - Remove 'static' keyword from function declarations (keep them as prototypes without extern)
+    """
+    text = header_text
+    
+    # First pass: Replace 'static ' with 'extern ' for variables, remove for functions
+    lines = text.split('\n')
+    pass1_lines = []
+    
+    for line in lines:
+        stripped = line.strip()
+        
+        # If line has 'static', check if it's a variable or function
+        if 'static ' in line and ';' in line:
+            # Check if it's a function (has parentheses with matching closing before semicolon)
+            paren_start = stripped.find('(')
+            paren_end = stripped.find(')')
+            
+            if paren_start >= 0 and paren_end > paren_start and paren_end < len(stripped) - 1:
+                # Has parentheses before the end - likely a function
+                after_paren = stripped[paren_end+1:].strip()
+                if after_paren == ';':
+                    # It's a function prototype - remove static but don't add extern
+                    line = STATIC_WORDS_RE.sub('', line)
+                    line = re.sub(r'\s+', ' ', line).rstrip()
+                else:
+                    # It's a variable with pointer - convert static to extern
+                    line = line.replace('static ', 'extern ', 1)
+            else:
+                # No parentheses or after semicolon - it's a variable
+                line = line.replace('static ', 'extern ', 1)
+        elif 'static' in line and ';' not in line:
+            # Multi-line declaration starting with static - just remove static
+            line = STATIC_WORDS_RE.sub('', line)
+            line = re.sub(r'\s+', ' ', line).rstrip()
+        
+        pass1_lines.append(line)
+    
+    text = '\n'.join(pass1_lines)
+    
+    # Second pass: Add 'extern' to bare variable declarations (not functions)
+    type_keywords = {'int', 'char', 'float', 'double', 'void', 'uint8_t', 'uint16_t', 'uint32_t', 
+                    'uint64_t', 'int8_t', 'int16_t', 'int32_t', 'int64_t', 'bool', 'size_t',
+                    'struct', 'union', 'enum'}
+    
+    lines = text.split('\n')
+    result_lines = []
+    
+    for line in lines:
+        stripped = line.strip()
+        
+        # Skip empty lines, comments, preprocessor directives
+        if not stripped or stripped.startswith('/*') or stripped.startswith('*') or \
+           stripped.startswith('//') or stripped.startswith('#') or stripped == '}':
+            result_lines.append(line)
+            continue
+        
+        # Skip lines that already have extern or contain { or =
+        if 'extern' in line or '{' in line or '=' in line:
+            result_lines.append(line)
+            continue
+        
+        # Check if line ends with semicolon
+        if stripped.endswith(';'):
+            # Get first word
+            words = stripped.split()
+            if words:
+                first_word = words[0]
+                
+                # Check if it's a known C type (not 'void' which is usually for functions)
+                if first_word in type_keywords and first_word != 'void':
+                    # Check if it's not a function (functions have ( and ))
+                    has_paren = '(' in stripped and ')' in stripped and stripped.find('(') < stripped.find(';')
+                    
+                    if not has_paren:
+                        # It's a variable declaration, ensure it starts with 'extern '
+                        if not stripped.startswith('extern'):
+                            indent = len(line) - len(line.lstrip())
+                            line = ' ' * indent + 'extern ' + stripped
+                    else:
+                        # Has parentheses - it might be a function pointer variable
+                        # Only add extern if it has * (function pointer)
+                        if '*' in stripped and '(*' in stripped:
+                            if not stripped.startswith('extern'):
+                                indent = len(line) - len(line.lstrip())
+                                line = ' ' * indent + 'extern ' + stripped
+        
+        result_lines.append(line)
+    
+    return '\n'.join(result_lines)
+
+
+def convert_static_to_extern_in_all_headers(dst_src_dir: Path) -> None:
+    """
+    Process all .h files in dst_src_dir to convert static variables to extern.
+    """
+    for hp in dst_src_dir.glob("*.h"):
+        txt = read_text_file(hp)
+        if txt is None:
+            continue
+        new_txt = convert_static_vars_to_extern_in_header(txt)
+        if new_txt != txt:
+            write_text_file(hp, new_txt)
+
+
 
 def _find_next_semicolon_c_like(s: str, start: int) -> int:
     """Scan to the next ';' while skipping strings/comments (basic C-like)."""
@@ -900,12 +1009,43 @@ def find_declaration_and_doxygen_in_module(module_root: Path, func_name: str) ->
     return (None, None, None)
 
 
+def extract_extern_variables_from_headers(src_dir: Path) -> List[str]:
+    """
+    Extract all 'extern <type> <var>;' declarations from all .h files in src_dir.
+    Returns a list of extern variable declarations (strings).
+    """
+    extern_vars: List[str] = []
+    seen = set()
+    
+    for hp in sorted(src_dir.glob("*.h")):
+        txt = read_text_file(hp)
+        if txt is None:
+            continue
+        
+        # Find all lines with 'extern' that end with ';'
+        for line in txt.split('\n'):
+            stripped = line.strip()
+            
+            # Check if it's an extern variable declaration (not a function)
+            if stripped.startswith('extern ') and stripped.endswith(';'):
+                # Make sure it's not a function (no '(' and ')' together before ';')
+                has_func_parens = '(' in stripped and ')' in stripped and stripped.find('(') < stripped.rfind(';')
+                
+                if not has_func_parens:
+                    # It's a variable declaration
+                    key = normalize_ws(stripped)
+                    if key not in seen:
+                        seen.add(key)
+                        extern_vars.append(stripped)
+    
+    return extern_vars
+
+
 def write_wrapper_files(dst_src_dir: Path, func_name: str, extracted: Extracted, decl_comment: Optional[str], decl_proto: Optional[str]) -> None:
     """
     Create <func_name>.h and <func_name>.c in dst_src_dir.
 
-    <func_name>.h contains the declaration/prototype and, if available, the doxygen comment
-    that was immediately above the declaration in the original module header.
+    <func_name>.h contains the declaration/prototype (NO Doxygen comment).
 
     <func_name>.c includes <func_name>.h and ALL other .h files in dst_src_dir.
 
@@ -924,11 +1064,9 @@ def write_wrapper_files(dst_src_dir: Path, func_name: str, extracted: Extracted,
     if extracted.lang == "c":
         proto = decl_proto or extracted.prototype or f"/* TODO: prototype for {func_name} */"
         proto = strip_static_words(proto)
-        comment_txt = decl_comment or ""
         h_txt = (
             f"#ifndef {guard}\n"
             f"#define {guard}\n\n"
-            f"{comment_txt}"
             f"{proto}\n\n"
             f"#endif /* {guard} */\n"
         )
@@ -964,11 +1102,36 @@ def write_wrapper_files(dst_src_dir: Path, func_name: str, extracted: Extracted,
         src_txt = read_text_file(extracted.source_path) or ""
         var_defs = extract_file_scope_variable_definitions_c(src_txt)
         if var_defs:
+            # Convert extracted variable definitions: remove static, add extern for declarations
+            converted_defs = []
+            for var_def in var_defs:
+                # If it's a definition with initialization, keep it as is (but remove static)
+                # If it's just a declaration, convert to extern
+                cleaned = STATIC_WORDS_RE.sub("", var_def).strip()
+                # If it has '=', it's a definition with init value
+                if '=' in cleaned:
+                    converted_defs.append(cleaned + "\n")
+                else:
+                    # It's a declaration, convert to extern
+                    if not cleaned.startswith('extern'):
+                        cleaned = 'extern ' + cleaned
+                    converted_defs.append(cleaned + "\n")
+            
             var_block = (
                 "/* ---- extracted file-scope variables from original source ---- */\n"
-                + "".join(var_defs)
+                + "".join(converted_defs)
                 + "\n"
             )
+    
+    # NEW: extract extern variable declarations from all copied headers
+    extern_vars_block = ""
+    extern_vars = extract_extern_variables_from_headers(dst_src_dir)
+    if extern_vars:
+        extern_vars_block = (
+            "/* ---- extern variables from module headers ---- */\n"
+            + "\n".join(extern_vars)
+            + "\n\n"
+        )
 
     if extracted.lang == "c":
         defn = extracted.definition_text
@@ -979,7 +1142,7 @@ def write_wrapper_files(dst_src_dir: Path, func_name: str, extracted: Extracted,
             sig2 = strip_static_words(sig)
             defn = sig2.rstrip() + "\n" + rest.lstrip("\n")
 
-        c_txt = f"{includes_block}\n\n{var_block}{defn}"
+        c_txt = f"{includes_block}\n\n{extern_vars_block}{var_block}{defn}"
     else:
         c_txt = (
             f"{includes_block}\n\n"
@@ -1018,7 +1181,10 @@ def main(argv: List[str]) -> int:
             # 2) copy all headers flat
             copy_headers_flat(module_root, src_dir)
 
-            # 3) strip function *declaration* from all copied headers except <namefunction>.h
+            # 3) convert static variables to extern in all copied headers
+            convert_static_to_extern_in_all_headers(src_dir)
+
+            # 4) strip function *declaration* from all copied headers except <namefunction>.h
             # (it doesn't exist yet, but rule will still be enforced)
             strip_func_decl_from_all_headers_in_src(src_dir, func_name)
 
@@ -1033,6 +1199,7 @@ def main(argv: List[str]) -> int:
             write_wrapper_files(src_dir, func_name, extracted, decl_comment, decl_proto)
 
             # Safety: enforce rule again AFTER generation (do not touch <namefunction>.h)
+            convert_static_to_extern_in_all_headers(src_dir)
             strip_func_decl_from_all_headers_in_src(src_dir, func_name)
 
             ok += 1
