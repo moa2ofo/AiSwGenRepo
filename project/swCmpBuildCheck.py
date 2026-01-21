@@ -10,6 +10,8 @@ import re
 from pathlib import Path
 from typing import Union, Dict
 import sys
+import subprocess
+
 
 from common_utils import (
     info, warn, error, fatal,

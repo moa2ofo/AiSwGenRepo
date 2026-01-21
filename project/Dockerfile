@@ -3,40 +3,12 @@
 # ------------------------------------------------------------------------
 # Base Image (Frozen by Digest)
 # ------------------------------------------------------------------------
-# This image uses Ubuntu 24.04 pinned by SHA256 digest to guarantee
-# PERFECT REPRODUCIBILITY over time.
-#
-# HOW TO UPDATE THE BASE IMAGE:
-# 1. Pull the desired Ubuntu version:
-#       docker pull ubuntu:24.04
-# 2. Retrieve its immutable digest:
-#       docker inspect --format='{{index .RepoDigests 0}}' ubuntu:24.04
-# 3. Replace the digest below with the new value.
-#
-# IMPORTANT:
-# Use ONLY:  ubuntu@sha256:<digest>
-# Do NOT use: ubuntu:24.04@sha256:<digest>
-# ------------------------------------------------------------------------
 FROM ubuntu@sha256:c35e29c9450151419d9448b0fd75374fec4fff364a27f176fb458d472dfc9e54
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 # ------------------------------------------------------------------------
 # Install Required Tools (all versions pinned)
-# ------------------------------------------------------------------------
-# All packages are installed with fixed version numbers to ensure that:
-# - Docker builds are deterministic
-# - CI behaves consistently
-# - No unexpected package upgrades break the environment
-#
-# HOW TO UPDATE PACKAGE VERSIONS:
-# 1. Run inside a temporary Ubuntu 24.04 container:
-#       apt-get update
-#       apt-cache policy <package>
-# 2. Identify the "Candidate" version.
-# 3. Update the version here accordingly.
-#
-# If a pinned version stops being available, update to the next compatible one.
 # ------------------------------------------------------------------------
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -48,26 +20,17 @@ RUN apt-get update && \
         python3-lxml=5.2.1-1 \
         python3-pygments=2.17.2+dfsg-1 \
         git=1:2.43.0-1ubuntu7.3 \
-        ca-certificates=20240203 && \
+        ca-certificates=20240203 \
+
+        indent \
+    && \
     rm -rf /var/lib/apt/lists/*
 
-# ------------------------------------------------------------------------
-# Workspace where user projects will be mounted at runtime.
-# This folder is expected to contain:
-#   /workspace/code   → CMake-based C projects
-#   /workspace/misra  → MISRA rule files (copied by user)
-# ------------------------------------------------------------------------
+
 WORKDIR /workspace
 
 # ------------------------------------------------------------------------
 # Configure MISRA Addon for Cppcheck
-#
-# This block creates:
-#   /opt/misra/misra.json  → configuration file for the MISRA addon
-#
-# HOW TO UPDATE MISRA RULES:
-# - Place the updated rule file inside: /workspace/misra/
-# - Ensure the filename matches the path below or update the JSON.
 # ------------------------------------------------------------------------
 RUN mkdir -p /opt/misra && \
     cat <<'EOF' > /opt/misra/misra.json
@@ -82,24 +45,6 @@ EOF
 
 # ------------------------------------------------------------------------
 # Script: run-misra-check.sh
-#
-# PURPOSE:
-#   Runs a MISRA-style cppcheck analysis on a single CMake project.
-#
-# EXPECTATIONS:
-#   - The project has been configured with:
-#       cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-#   - A compile_commands.json file exists.
-#
-# USAGE:
-#   run-misra-check.sh               → run in current directory
-#   run-misra-check.sh <project>     → run on a specific path
-#
-# PARALLELISM:
-#   - By default, cppcheck uses all available cores (via nproc).
-#   - Override with env var:
-#       CPPCHECK_JOBS=8 run-misra-check.sh
-#       docker run -e CPPCHECK_JOBS=8 ...
 # ------------------------------------------------------------------------
 RUN cat <<'EOF' > /usr/local/bin/run-misra-check.sh
 #!/usr/bin/env bash
@@ -121,9 +66,6 @@ else
 fi
 
 # Determine number of parallel jobs for cppcheck:
-# 1. Use CPPCHECK_JOBS env var, if set and > 0
-# 2. Otherwise, use nproc if available
-# 3. Fallback to 4 if everything else fails
 CPPCHECK_JOBS_DEFAULT=0
 CPPCHECK_JOBS="${CPPCHECK_JOBS:-$CPPCHECK_JOBS_DEFAULT}"
 
@@ -155,23 +97,6 @@ RUN chmod +x /usr/local/bin/run-misra-check.sh
 
 # ------------------------------------------------------------------------
 # Script: build-and-check-all.sh
-#
-# PURPOSE:
-#   Automatically:
-#     1. Finds all CMake-based projects inside /workspace/code
-#     2. Configures and builds each project
-#     3. Runs ctest (if available)
-#     4. Performs MISRA/cppcheck analysis
-#
-# PROJECT DISCOVERY RULE:
-#   Any folder inside: /workspace/code/*/* containing a CMakeLists.txt
-#
-# HOW TO ADD NEW PROJECTS:
-#   - Place them under /workspace/code/<something>/<project>
-#   - Ensure they contain a CMakeLists.txt
-#
-# HOW TO DISABLE AUTOMATIC CHECKING:
-#   Comment out the CMD at the bottom or override at runtime.
 # ------------------------------------------------------------------------
 RUN cat <<'EOF' > /usr/local/bin/build-and-check-all.sh
 #!/usr/bin/env bash
@@ -179,10 +104,51 @@ set -euo pipefail
 
 ROOT_DIR="/workspace/code"
 
+echo "Auto-formatting C/H files under ${ROOT_DIR} (excluding build/ and docs/)..." >&2
+
+INDENT_OPTS=(
+  -i2        # 2 spaces indentation
+  -nut       # spaces, not tabs
+  -br        # braces on same line
+  -brf       # function braces on same line
+  -bli0      # no extra indent for blank lines
+  -npcs      # no space after cast
+  -npsl      # keep return type and function name on same line
+  -bad       # no blank line after declarations
+  -bap       # no blank line after procedures
+  -bbb       # no blank line before block
+)
+
+
+
+# Find and indent all .c/.h files under ROOT_DIR, excluding any path that contains /build/ or /docs/
+# - Works for directories named exactly "build" or "docs" at any depth.
+# - In-place formatting (no backups) and preserve timestamps where possible.
+mapfile -t FILES < <(
+  find "${ROOT_DIR}" -type f \( -name "*.c" -o -name "*.h" \) \
+    -not -path "*/build/*" \
+    -not -path "*/docs/*" \
+    -not -path "*/.git/*" \
+    | sort
+)
+
+if [ "${#FILES[@]}" -eq 0 ]; then
+  echo "No .c/.h files found under ${ROOT_DIR} (after exclusions)." >&2
+else
+  echo "Indenting ${#FILES[@]} files..." >&2
+  for f in "${FILES[@]}"; do
+  indent "${INDENT_OPTS[@]}" -o "${f}" "${f}"
+  done
+  echo "Indent formatting completed." >&2
+fi
+
 echo "Scanning ${ROOT_DIR} for CMake projects..." >&2
 
 # Collect all directory paths containing a CMakeLists.txt
-mapfile -t PROJECT_DIRS < <(find "${ROOT_DIR}" -mindepth 2 -maxdepth 2 -type f -name "CMakeLists.txt" -printf "%h\n" | sort -u)
+mapfile -t PROJECT_DIRS < <(
+  find "${ROOT_DIR}" -mindepth 2 -maxdepth 2 -type f -name "CMakeLists.txt" -printf "%h\n" \
+  | sort -u
+)
 
 if [ ${#PROJECT_DIRS[@]} -eq 0 ]; then
   echo "No CMake projects found under ${ROOT_DIR}" >&2
@@ -234,23 +200,6 @@ RUN chmod +x /usr/local/bin/build-and-check-all.sh
 
 # ------------------------------------------------------------------------
 # Normalize line endings on all scripts under /usr/local/bin
-#
-# This avoids the common Windows/CRLF issue inside the container:
-#   /usr/bin/env: 'bash\r': No such file or directory
-#
-# Even if the Dockerfile or build context is checked out with CRLF,
-# this step ensures all scripts use Unix LF endings.
 # ------------------------------------------------------------------------
 RUN find /usr/local/bin -type f -exec sed -i 's/\r$//' {} \;
 
-# ------------------------------------------------------------------------
-# Default behavior of the container:
-# Automatically build and MISRA-check all projects under /workspace/code
-#
-# To override at runtime:
-#   docker run -it -v "$PWD:/workspace" cmake-misra-multi bash
-#   docker run --rm -v "$PWD:/workspace" \
-#       -e CPPCHECK_JOBS=8 \
-#       cmake-misra-multi build-and-check-all.sh
-# ------------------------------------------------------------------------
-CMD ["build-and-check-all.sh"]
