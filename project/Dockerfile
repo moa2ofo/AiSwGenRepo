@@ -23,7 +23,6 @@ RUN apt-get update && \
         ca-certificates=20240203 \
 
         indent \
-    && \
     rm -rf /var/lib/apt/lists/*
 
 
@@ -199,7 +198,62 @@ EOF
 RUN chmod +x /usr/local/bin/build-and-check-all.sh
 
 # ------------------------------------------------------------------------
+# Script: run-clang-format-all.sh
+#
+# PURPOSE:
+#   Formats all C/C++ source files under the fixed workspace folder:
+#       /workspace/code
+#
+# BEHAVIOR:
+#   - Ensures /workspace/code/.clang-format exists with the requested style
+#   - Runs clang-format in-place recursively on common C/C++ extensions
+#
+# NOTE:
+#   No user input is accepted (no args, no env vars). The target is fixed.
+# ------------------------------------------------------------------------
+RUN cat <<'EOF' > /usr/local/bin/run-clang-format-all.sh
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="/workspace/code"
+
+if [[ ! -d "${ROOT_DIR}" ]]; then
+  echo "ERROR: Expected directory does not exist: ${ROOT_DIR}" >&2
+  exit 1
+fi
+
+# Ensure .clang-format exists at the root (applies to all subfolders)
+if [[ ! -f "${ROOT_DIR}/.clang-format" ]]; then
+  cat <<'YAML' > "${ROOT_DIR}/.clang-format"
+BasedOnStyle: LLVM
+IndentWidth: 2
+UseTab: Never
+BreakBeforeBraces: Attach
+AllowShortIfStatementsOnASingleLine: true
+AllowShortBlocksOnASingleLine: true
+AllowShortFunctionsOnASingleLine: All
+AllowShortLoopsOnASingleLine: true
+ColumnLimit: 200
+SpaceBeforeParens: Never
+YAML
+fi
+
+echo "Running clang-format recursively under ${ROOT_DIR}..." >&2
+
+find "${ROOT_DIR}" -type f \( \
+  -name '*.c' -o -name '*.h' -o -name '*.cpp' -o -name '*.hpp' -o \
+  -name '*.cc' -o -name '*.hh' -o -name '*.cxx' -o -name '*.hxx' \
+\) -print0 | xargs -0 clang-format -i
+
+echo "clang-format completed." >&2
+EOF
+
+RUN chmod +x /usr/local/bin/run-clang-format-all.sh
+
+# ------------------------------------------------------------------------
 # Normalize line endings on all scripts under /usr/local/bin
 # ------------------------------------------------------------------------
 RUN find /usr/local/bin -type f -exec sed -i 's/\r$//' {} \;
 
+# Automatically build and MISRA-check all projects under /workspace/code
+CMD ["build-and-check-all.sh"]

@@ -300,10 +300,18 @@ def scan_components(codebase_root: Path, template_content: str) -> list[Path]:
 def build_and_run_docker(script_dir: Path) -> None:
     info("Building Docker image: cmake-misra-multi")
     run_cmd(["docker", "build", "-t", "cmake-misra-multi", "."], cwd=script_dir, check=True)
-
     cwd = str(script_dir.resolve())
     info(f"Running analysis container with workspace: {cwd}")
-
+    run_cmd(
+    [
+        "docker", "run", "--rm",
+        "-v", f"{cwd}:/workspace",
+        "cmake-misra-multi",
+        "bash", "-lc",
+        "run-clang-format-all.sh && build-and-check-all.sh"
+    ],
+    check=True,
+)
     run_cmd(
         ["docker", "run", "--rm", "-v", f"{cwd}:/workspace", "cmake-misra-multi", "build-and-check-all.sh"],
         check=True,
