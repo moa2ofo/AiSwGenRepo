@@ -3,13 +3,12 @@
 
 #include <stdint.h>
 
-
 extern uint16_t supplyDcFiler_u16;
 extern uint16_t supplyDcNotFiler_u16;
-extern const uint16_t  lowerVoltMonCfg_cu16;
-extern const uint16_t  higherVoltMonCfg_cu16;
-extern const uint16_t  middleLowerVoltMonCfg_cu16;
-extern const uint16_t  middleHigherVoltMonCfg_cu16;
+extern const uint16_t lowerVoltMonCfg_cu16;
+extern const uint16_t higherVoltMonCfg_cu16;
+extern const uint16_t middleLowerVoltMonCfg_cu16;
+extern const uint16_t middleHigherVoltMonCfg_cu16;
 
 /**
  * @file VoltMonitoring_cfg.h
@@ -129,7 +128,6 @@ extern const uint16_t VoltMon_TaskPeriod_ms;
 /*==============================================================================
  * Project voltage reading function
  *============================================================================*/
-
 
 /**
  * @brief Read and condition the project supply voltage in millivolts.

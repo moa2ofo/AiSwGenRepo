@@ -4,7 +4,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-
 /**
  * @defgroup DiagnosticModule LIN Diagnostic Module
  * @brief Module providing LIN diagnostic services and shared diagnostic buffers.
@@ -54,7 +53,6 @@
  */
 
 /** @} */
-
 
 /**
  * @file Diagnostic.h
@@ -122,7 +120,6 @@ extern uint16_t g_linDiagDataLength_u16;
  * @endinternal
  */
 
-
 /**
  * @brief Handle LIN diagnostic service "ReadDataByIdentifier" (0x22).
  *
@@ -149,17 +146,19 @@ extern uint16_t g_linDiagDataLength_u16;
  *
  * @par Interface summary
  *
- * | Interface                               | In | Out | Data type / Signature                                                | Param | Data factor | Data offset | Data size | Data range      | Data unit |
+ * | Interface                               | In | Out | Data type / Signature                                                | Param | Data factor | Data offset | Data size | Data range      | Data
+ * unit |
  * |-----------------------------------------|:--:|:---:|----------------------------------------------------------------------|:-----:|------------:|------------:|----------:|-----------------|----------|
- * | pbLinDiagBuffer[1]                      | X  |     | uint8                                                                |   -   |      1      |      0      |     1     | [0,255]         | [-]      |
- * | pbLinDiagBuffer[2]                      | X  |     | uint8                                                                |   -   |      1      |      0      |     1     | [0,255]         | [-]      |
- * | pbLinDiagBuffer[3..]                    | X  |  X  | uint8[]                                                              |   -   |      1      |      0      |     N     | project-defined | [-]      |
- * | g_linDiagDataLength_u16                     | X  |  X  | uint16                                                              |   -   |      1      |      0      |     1     | [0,65535]       | [byte]   |
- * | checkCurrentNad()                       | X  |  X  | void(uint8 nad, Std_ReturnType *result)                               |   -   |      -      |      -      |     -     |                | [-]      |
- * | checkMsgDataLength()                    | X  |  X  | void(uint16 len, Std_ReturnType *result)                              |   -   |      -      |      -      |     -     |               | [-]      |
- * | getHandlersForReadDataById()             | X  |  X  | Std_ReturnType(uint8*, uint16, uint8*, Std_ReturnType*, uint8*)        |   -   |      -      |      -      |     -     | E_OK/E_NOT_OK   | [-]      |
- * | LinDiagSendPosResponse()                |    |  X  | void(void)                                                          |   -   |      -      |      -      |     -     | -               | [-]      |
- * | LinDiagSendNegResponse()                | X  |  X  | void(uint8 errorCode)                                                |   -   |      -      |      -      |     -     | -               | [-]      |
+ * | pbLinDiagBuffer[1]                      | X  |     | uint8                                                                |   -   |      1      |      0      |     1     | [0,255]         | [-] |
+ * | pbLinDiagBuffer[2]                      | X  |     | uint8                                                                |   -   |      1      |      0      |     1     | [0,255]         | [-] |
+ * | pbLinDiagBuffer[3..]                    | X  |  X  | uint8[]                                                              |   -   |      1      |      0      |     N     | project-defined | [-] |
+ * | g_linDiagDataLength_u16                     | X  |  X  | uint16                                                              |   -   |      1      |      0      |     1     | [0,65535]       |
+ * [byte]   | | checkCurrentNad()                       | X  |  X  | void(uint8 nad, Std_ReturnType *result)                               |   -   |      -      |      -      |     -     | | [-] | |
+ * checkMsgDataLength()                    | X  |  X  | void(uint16 len, Std_ReturnType *result)                              |   -   |      -      |      -      |     -     |               | [-] | |
+ * getHandlersForReadDataById()             | X  |  X  | Std_ReturnType(uint8*, uint16, uint8*, Std_ReturnType*, uint8*)        |   -   |      -      |      -      |     -     | E_OK/E_NOT_OK   | [-]
+ * | | LinDiagSendPosResponse()                |    |  X  | void(void)                                                          |   -   |      -      |      -      |     -     | -               | [-]
+ * | | LinDiagSendNegResponse()                | X  |  X  | void(uint8 errorCode)                                                |   -   |      -      |      -      |     -     | -               | [-]
+ * |
  *
  * @par Activity diagram (PlantUML)
  *

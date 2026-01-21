@@ -33,16 +33,15 @@
  * - #VOLT_MON_STATE_OVERVOLTAGE: The measured voltage is considered above the
  *   configured overvoltage threshold (after debouncing).
  */
-typedef enum
-{
-    /** Voltage is below the undervoltage threshold (debounced condition). */
-    VOLT_MON_STATE_UNDERVOLTAGE = 0,
+typedef enum {
+  /** Voltage is below the undervoltage threshold (debounced condition). */
+  VOLT_MON_STATE_UNDERVOLTAGE = 0,
 
-    /** Voltage is within the acceptable range (no under/overvoltage). */
-    VOLT_MON_STATE_NORMAL,
+  /** Voltage is within the acceptable range (no under/overvoltage). */
+  VOLT_MON_STATE_NORMAL,
 
-    /** Voltage is above the overvoltage threshold (debounced condition). */
-    VOLT_MON_STATE_OVERVOLTAGE
+  /** Voltage is above the overvoltage threshold (debounced condition). */
+  VOLT_MON_STATE_OVERVOLTAGE
 } VoltMon_State_t;
 
 /**
@@ -169,7 +168,7 @@ void VoltMon_Init(void);
  *
  * @param dt_ms Elapsed time since the last call, in milliseconds.
  *
- * @return None.  
+ * @return None.
  * The function updates the internal state and timers of the Voltage Monitoring module.
  */
 void voltMonRun(uint16_t dt_ms);

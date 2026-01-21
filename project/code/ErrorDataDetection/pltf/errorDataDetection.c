@@ -35,69 +35,47 @@
  *
  * @return CRC-8 computed value.
  */
-static uint8_t EDD_Crc8ComputeInternal(const uint8_t* data, uint8_t length)
-{
-    uint8_t crc = EDD_CRC8_INIT;
-    uint8_t i;
+static uint8_t EDD_Crc8ComputeInternal(const uint8_t *data, uint8_t length) {
+  uint8_t crc = EDD_CRC8_INIT;
+  uint8_t i;
 
-    for (i = 0u; i < length; i++)
-    {
-        crc = EDD_Crc8Table[crc ^ data[i]];
-    }
+  for(i = 0u; i < length; i++) { crc = EDD_Crc8Table[crc ^ data[i]]; }
 
-    return crc;
+  return crc;
 }
 
 /* =============================
  *  Public API Implementation
  * ============================= */
 
-EDD_ReturnType EDD_CalcCrc8(const uint8_t* data, uint8_t length, uint8_t* crc_out)
-{
-    if ((data == NULL) || (crc_out == NULL))
-    {
-        return EDD_NULL_PTR;
-    }
+EDD_ReturnType EDD_CalcCrc8(const uint8_t *data, uint8_t length, uint8_t *crc_out) {
+  if((data == NULL) || (crc_out == NULL)) { return EDD_NULL_PTR; }
 
-    if (length == 0u)
-    {
-        return EDD_INVALID_LENGTH;
-    }
+  if(length == 0u) { return EDD_INVALID_LENGTH; }
 
-    *crc_out = EDD_Crc8ComputeInternal(data, length);
+  *crc_out = EDD_Crc8ComputeInternal(data, length);
 
-    return EDD_OK;
+  return EDD_OK;
 }
 
-EDD_ReturnType EDD_VerifyCrc8(const uint8_t* data, uint8_t length, uint8_t expected_crc, uint8_t* result_out)
-{
-    uint8_t computed;
+EDD_ReturnType EDD_VerifyCrc8(const uint8_t *data, uint8_t length, uint8_t expected_crc, uint8_t *result_out) {
+  uint8_t computed;
 
-    if ((data == NULL) || (result_out == NULL))
-    {
-        return EDD_NULL_PTR;
-    }
+  if((data == NULL) || (result_out == NULL)) { return EDD_NULL_PTR; }
 
-    if (length == 0u)
-    {
-        return EDD_INVALID_LENGTH;
-    }
+  if(length == 0u) { return EDD_INVALID_LENGTH; }
 
-    computed = EDD_Crc8ComputeInternal(data, length);
+  computed = EDD_Crc8ComputeInternal(data, length);
 
-    *result_out = (computed == expected_crc) ? 1u : 0u;
+  *result_out = (computed == expected_crc) ? 1u : 0u;
 
-    return EDD_OK;
+  return EDD_OK;
 }
 
-EDD_ReturnType EDD_Crc8Update(uint8_t* crc_in_out, uint8_t byte)
-{
-    if (crc_in_out == NULL)
-    {
-        return EDD_NULL_PTR;
-    }
+EDD_ReturnType EDD_Crc8Update(uint8_t *crc_in_out, uint8_t byte) {
+  if(crc_in_out == NULL) { return EDD_NULL_PTR; }
 
-    *crc_in_out = EDD_Crc8Table[(*crc_in_out) ^ byte];
+  *crc_in_out = EDD_Crc8Table[(*crc_in_out) ^ byte];
 
-    return EDD_OK;
+  return EDD_OK;
 }

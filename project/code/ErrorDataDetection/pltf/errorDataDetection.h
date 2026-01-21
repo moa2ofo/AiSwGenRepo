@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 /**
  * @file errorDataDetection.h
@@ -29,8 +29,6 @@ extern "C" {
  * - XOROut: 0x00
  */
 
-
-
 /* =============================
  *  Error Codes
  * ============================= */
@@ -38,11 +36,10 @@ extern "C" {
 /**
  * @brief Return values used by Error Data Detection APIs.
  */
-typedef enum
-{
-    EDD_OK = 0,          /**< Operation completed successfully. */
-    EDD_NULL_PTR,        /**< A required pointer argument was NULL. */
-    EDD_INVALID_LENGTH   /**< Provided length was invalid (e.g. 0). */
+typedef enum {
+  EDD_OK = 0,        /**< Operation completed successfully. */
+  EDD_NULL_PTR,      /**< A required pointer argument was NULL. */
+  EDD_INVALID_LENGTH /**< Provided length was invalid (e.g. 0). */
 } EDD_ReturnType;
 
 /* =============================
@@ -104,7 +101,7 @@ typedef enum
  * - EDD_NULL_PTR if any input pointer is NULL.
  * - EDD_INVALID_LENGTH if length is 0.
  */
-EDD_ReturnType EDD_CalcCrc8(const uint8_t* data, uint8_t length, uint8_t* crc_out);
+EDD_ReturnType EDD_CalcCrc8(const uint8_t *data, uint8_t length, uint8_t *crc_out);
 
 /**
  * @brief Verify that a buffer CRC matches an expected CRC.
@@ -163,7 +160,7 @@ EDD_ReturnType EDD_CalcCrc8(const uint8_t* data, uint8_t length, uint8_t* crc_ou
  * - EDD_NULL_PTR if any required pointer is NULL.
  * - EDD_INVALID_LENGTH if length is 0.
  */
-EDD_ReturnType EDD_VerifyCrc8(const uint8_t* data, uint8_t length, uint8_t expected_crc, uint8_t* result_out);
+EDD_ReturnType EDD_VerifyCrc8(const uint8_t *data, uint8_t length, uint8_t expected_crc, uint8_t *result_out);
 
 /**
  * @brief Update CRC-8 accumulator with a new byte (streaming support).
@@ -205,7 +202,7 @@ EDD_ReturnType EDD_VerifyCrc8(const uint8_t* data, uint8_t length, uint8_t expec
  * - EDD_OK if update executed successfully.
  * - EDD_NULL_PTR if crc_in_out is NULL.
  */
-EDD_ReturnType EDD_Crc8Update(uint8_t* crc_in_out, uint8_t byte);
+EDD_ReturnType EDD_Crc8Update(uint8_t *crc_in_out, uint8_t byte);
 
 #ifdef __cplusplus
 }

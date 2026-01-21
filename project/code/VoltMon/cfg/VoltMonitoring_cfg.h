@@ -122,7 +122,6 @@ extern const uint16_t VoltMon_TaskPeriod_ms;
  * Project voltage reading function
  *============================================================================*/
 
-
 /**
  * @brief Read and condition the project supply voltage in millivolts.
  *

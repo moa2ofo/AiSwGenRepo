@@ -6,12 +6,12 @@
 #define READ_VOLT_PROJECT_MV VoltMon_ReadVoltageProject_mV()
 
 /* Parametri di configurazione (tutti in cfg) */
-extern const uint16_t VoltMon_ThresholdUnder_mV;      /* es. 8000 mV  */
-extern const uint16_t VoltMon_ThresholdOver_mV;       /* es. 13000 mV */
-extern const uint16_t VoltMon_Hysteresis_mV;          /* es. 500 mV   */
+extern const uint16_t VoltMon_ThresholdUnder_mV; /* es. 8000 mV  */
+extern const uint16_t VoltMon_ThresholdOver_mV;  /* es. 13000 mV */
+extern const uint16_t VoltMon_Hysteresis_mV;     /* es. 500 mV   */
 
-extern const uint16_t VoltMon_ActivationTime_ms;      /* es. 500 ms */
-extern const uint16_t VoltMon_DeactivationTime_ms;    /* es. 500 ms */
+extern const uint16_t VoltMon_ActivationTime_ms;   /* es. 500 ms */
+extern const uint16_t VoltMon_DeactivationTime_ms; /* es. 500 ms */
 
 /*
  * Periodo di chiamata di voltMonRun in ms.

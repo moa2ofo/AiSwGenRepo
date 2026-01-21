@@ -17,8 +17,7 @@
 
 #define DID_F308_SIZE 1U
 
-typedef Std_ReturnType (*diagHandler_t)(uint8*const  output_pu8, uint8*const  size_pu8,
-                                        uint8* const errCode_pu8);
+typedef Std_ReturnType (*diagHandler_t)(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8);
 
 /**
  * @brief DID handler that provides the Over Voltage Fault diagnostic information.
@@ -95,9 +94,7 @@ typedef Std_ReturnType (*diagHandler_t)(uint8*const  output_pu8, uint8*const  si
  * - E_NOT_OK: handler failure (not expected in current implementation).
  */
 
-
-Std_ReturnType RdbiVhitOverVoltageFaultDiag_(uint8*const  output_pu8,
-    uint8*const  size_pu8, uint8* const errCode_pu8);
+Std_ReturnType RdbiVhitOverVoltageFaultDiag_(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8);
 
 /**
  * @brief Default DID handler used for unsupported requests ("Request Out Of Range").
@@ -181,8 +178,6 @@ Std_ReturnType RdbiVhitOverVoltageFaultDiag_(uint8*const  output_pu8,
  * - E_NOT_OK: request is not supported.
  */
 
-
-Std_ReturnType SubfunctionRequestOutOfRange_(uint8*const  output_pu8,
-    uint8*const  size_pu8, uint8* const errCode_pu8);
+Std_ReturnType SubfunctionRequestOutOfRange_(uint8 *const output_pu8, uint8 *const size_pu8, uint8 *const errCode_pu8);
 
 #endif

@@ -6,7 +6,6 @@
 #include "errorDataDetection_priv.h"
 #include <stdint.h>
 
-
-uint8_t EDD_Crc8ComputeInternal(const uint8_t* data, uint8_t length);
+uint8_t EDD_Crc8ComputeInternal(const uint8_t *data, uint8_t length);
 
 #endif

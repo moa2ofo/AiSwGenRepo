@@ -2,7 +2,6 @@
 #include "diagnostic_cfg.h"
 #include <stddef.h>
 
-
 /* Send positive response */
 void LinDiagSendPosResponse(void);
 
